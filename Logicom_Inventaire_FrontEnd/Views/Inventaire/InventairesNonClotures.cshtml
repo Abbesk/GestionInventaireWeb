@@ -1,0 +1,113 @@
+﻿
+@model IEnumerable<Logicom_Inventaire_FrontEnd.Models.Inventaire>
+@{
+    ViewBag.Title = "Home Page";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListeInventairesNonCloturés</title>
+</head>
+<body>
+   
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Numéro")
+            </th>
+            <th>
+                @Html.DisplayName("Date")
+            </th>
+
+            <th>
+                @Html.DisplayName("Commentaire")
+            </th>
+            
+           
+            <th>
+                @Html.DisplayName("Utilisateur")
+            </th>
+
+            <th>
+                @Html.DisplayName("DATEDMAJ")
+            </th>
+            <th>
+                @Html.DisplayName("CodePV")
+            </th>
+            <th>
+                @Html.DisplayName("NomPV")
+            </th>
+            <th>
+                @Html.DisplayName("CodeDepot")
+            </th>
+            <th>
+                @Html.DisplayName("NomDepot")
+            </th>
+
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.cloture == "0")
+            {
+                <tr>
+                    <td>
+                        @item.numinv
+                    </td>
+                    <td>
+                        @item.dateinv
+                    </td>
+
+                    
+                    <td>
+                        @item.commentaire
+                    </td>
+                    
+                   
+                    <td>
+                        @item.utilisateur
+                    </td>
+
+                    <td>
+                        @item.DATEDMAJ
+                    </td>
+                    <td>
+                        @item.codepv
+                    </td>
+                    <td>
+                        @item.libpv
+                    </td>
+                    <td>
+                        @item.codedep
+                    </td>
+                    <td>
+                        @item.libdep
+                    </td>
+                   
+
+                    <td>
+                        <table>
+                            
+                                <tr>  <td>@Html.ActionLink("Selectionner Articles", "SelectionnerArticles", new { id = item.numinv })</td></tr>
+                                <tr>   <td>   @Html.ActionLink("Saisir Comptage", "SaisirComptagePhysique", new { id = item.numinv }) </td></tr>
+                                <tr>  <td> @Html.ActionLink("Cloturer", "CloturerInventaire", new { id = item.numinv }) </td></tr>
+                            
+                        </table>
+                    </td>
+
+                </tr>
+            }
+
+        }
+
+    </table>
+</body>
+</html>
+
+
+
+

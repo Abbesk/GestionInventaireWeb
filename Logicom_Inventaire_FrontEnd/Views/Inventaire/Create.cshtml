@@ -1,0 +1,150 @@
+﻿@model Logicom_Inventaire_FrontEnd.Models.Inventaire
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CréationInventaire</title>
+    <style>
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    
+        @using (Html.BeginForm())
+        {
+
+            @Html.HiddenFor(model => model.commentaire)
+            @Html.HiddenFor(model => model.nbrcomptage)
+            @Html.HiddenFor(model => model.dateinv)
+            @Html.HiddenFor(model => model.cloture)
+
+
+            
+
+            <div class="form-horizontal">
+                <h4>Création d'un Inventaire physique</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.numinv, "Numéro de l'inventaire:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*Html.EditorFor(model => model.numinv, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.EditorFor(model => model.numinv, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.numinv, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.dateinv,"Date:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.dateinv, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", disabled = "disabled" } })
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.nbrcomptage, "Nombre de comptage: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.nbrcomptage, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.nbrcomptage, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.commentaire, "Commentaire: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*@<input id="numinv" type="text" readonly="readonly" value="@ViewBag.commentaire" />*@
+                        @Html.EditorFor(model => model.commentaire, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.commentaire, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.utilisateur, "Utilisateur:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.utilisateur, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.utilisateur, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.codepv, "Point de vente:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.codepv, ViewBag.Code_Point_Vente as SelectList, htmlAttributes: new { @class = "form-control", onclick = "filterDepots(this.value)" })
+                        @Html.ValidationMessageFor(model => model.codepv, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.codedep, "Dépot:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.codedep, new SelectList(new List<SelectListItem>()), htmlAttributes: new { @class = "form-control", disabled = "disabled" })
+                        @Html.ValidationMessageFor(model => model.codedep, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+            
+        }
+
+<div>
+    @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-default" })
+</div>
+   
+</body>
+</html>
+@section Scripts {
+    <script>
+        function filterDepots(selectedCodePV) {
+            if (selectedCodePV) {
+                // Enable the second dropdownlist
+                $('#codedep').prop('disabled', false);
+                // Call the API to get the filtered data for the second dropdownlist
+                $.ajax({
+                    url: 'http://localhost:44328/api/Inventaire/DepotParCodePV',
+                    type: 'GET',
+                    data: { code: selectedCodePV },
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log('API returned data:', data);
+                        // Populate the second dropdownlist with the filtered data
+                        var options = '<option value="">-- Sélectionnez un code dépot --</option>';
+                        $.each(data, function (i, item) {
+                            options += '<option value="' + item.Code + '">' + item.Libelle + '</option>';
+                        });
+                        console.log('Generated options:', options);
+                        $('#codedep').html(options);
+                    }
+                });
+            } else {
+                // Disable the second dropdownlist and clear its options
+                $('#codedep').prop('disabled', true).html('<option value="">-- Sélectionnez un point de vente --</option>');
+            }
+        }
+    </script>
+    }

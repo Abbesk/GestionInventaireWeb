@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a4c109495f7241bfb941826533fc6164" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="somabeModel.article" Width="1.5" PointX="4.125" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="somabeModel.depot" Width="1.5" PointX="11.5" PointY="5.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="somabeModel.famille" Width="1.5" PointX="1.25" PointY="2.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="somabeModel.fournisseur" Width="1.5" PointX="1.375" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="somabeModel.invphysique" Width="1.5" PointX="10.125" PointY="3.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="somabeModel.lignedepot" Width="1.5" PointX="7.5" PointY="0.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="somabeModel.linv" Width="1.5" PointX="10.125" PointY="1.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="somabeModel.pointvente" Width="1.5" PointX="6.875" PointY="2.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="somabeModel.societe" Width="1.5" PointX="6.75" PointY="6.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="somabeModel.tmplignedepot" Width="1.5" PointX="4.5" PointY="5" IsExpanded="false" />
+        <EntityTypeShape EntityType="somabeModel.utilisateurpv" Width="1.5" PointX="8.75" PointY="6.25" IsExpanded="false" />
+        <AssociationConnector Association="somabeModel.articlefournisseur" />
+        <AssociationConnector Association="somabeModel.articlefamille" />
+        <AssociationConnector Association="somabeModel.depotpointvente" />
+        <AssociationConnector Association="somabeModel.invphysiquepointvente" />
+        <AssociationConnector Association="somabeModel.tmplignedepotdepot" />
+        <AssociationConnector Association="somabeModel.invphysiquelinv" />
+        <AssociationConnector Association="somabeModel.depotlignedepot" />
+        <AssociationConnector Association="somabeModel.articlelignedepot" />
+        <AssociationConnector Association="somabeModel.articletmplignedepot" />
+        <AssociationConnector Association="somabeModel.linvarticle" />
+        <AssociationConnector Association="somabeModel.invphysiquedepot" />
+        <AssociationConnector Association="somabeModel.utilisateurpvpointvente" />
+        <AssociationConnector Association="somabeModel.societeutilisateurpv" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

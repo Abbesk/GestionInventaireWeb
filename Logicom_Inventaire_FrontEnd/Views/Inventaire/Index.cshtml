@@ -1,0 +1,137 @@
+﻿@model IEnumerable<Logicom_Inventaire_FrontEnd.Models.Inventaire>
+@{
+    ViewBag.Title = "Liste des inventaires";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListeInventaires</title>
+</head>
+<body>
+    
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Numéro")
+            </th>
+            <th>
+                @Html.DisplayName("Date")
+            </th>
+            
+            <th>
+                @Html.DisplayName("Commentaire")
+            </th>
+            <th>
+                @Html.DisplayName("Cloture")
+            </th>
+            <th>
+                @Html.DisplayName("DateCloture")
+            </th>
+            <th>
+                @Html.DisplayName("Utilisateur")
+            </th>
+            
+            <th>
+                @Html.DisplayName("DATEDMAJ")
+            </th>
+            <th>
+                @Html.DisplayName("CodePV")
+            </th>
+            <th>
+                @Html.DisplayName("NomPV")
+            </th>
+            <th>
+                @Html.DisplayName("CodeDepot")
+            </th>
+            <th>
+                @Html.DisplayName("NomDepot")
+            </th>
+          
+            
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model) { 
+        
+    <tr>
+        <td>
+            @item.numinv
+        </td>
+        <td>
+            @item.dateinv
+        </td>
+
+
+        <td>
+            @item.commentaire
+        </td>
+        @if (item.cloture == "0")
+        {
+            <td>
+                Non
+            </td>
+
+        }
+        else
+        {
+            <td>
+                Oui
+            </td>
+        }
+        <td>
+            @item.datecloture
+        </td>
+        <td>
+            @item.utilisateur
+        </td>
+
+
+        <td>
+            @item.DATEDMAJ
+        </td>
+        <td>
+            @item.codepv
+        </td>
+        <td>
+            @item.libpv
+        </td>
+        <td>
+            @item.codedep
+        </td>
+        <td>
+            @item.libdep
+        </td>
+
+        @if (item.cloture == "0")
+        {
+            <td>
+                @Html.ActionLink("Selectionner Articles", "SelectionnerArticles", new { id = item.numinv })
+                @Html.ActionLink("Saisir Comptage", "SaisirComptagePhysique", new { id = item.numinv })
+                @Html.ActionLink("Cloturer", "CloturerInventaire", new { id = item.numinv })
+            </td>
+
+        }
+        @if (item.cloture == "1")
+        {
+            <td>
+                @Html.ActionLink("Afficher Lignes Inventaires", "AfficherLignes", new { id = item.numinv })
+
+            </td>
+
+        }
+
+
+
+
+
+    </tr>
+        }
+</table>
+</body>
+</html>
+
+
+

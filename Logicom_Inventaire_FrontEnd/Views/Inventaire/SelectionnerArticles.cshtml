@@ -1,0 +1,538 @@
+﻿@model Logicom_Inventaire_FrontEnd.Models.Inventaire
+
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Selection des Articles</title>
+    <style>
+        .input-bordered {
+            border-top-width: 1px;
+            border-right-width: 1px;
+            border-bottom-width: 1px;
+            border-left-width: 1px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: rgb(4, 0, 253);
+            border-right-color: rgb(4, 0, 253);
+            border-bottom-color: rgb(4, 0, 253);
+            border-left-color: rgb(4, 0, 253);
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h2>Sélectionner les articles de l'inventaire </h2>
+    </center>
+    @using (Html.BeginForm())
+    {
+
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.numinv)
+
+        @Html.HiddenFor(model => model.cloture)
+        @Html.HiddenFor(model => model.Depot.Code)
+        @Html.HiddenFor(model => model.Depot.Libelle)
+        @Html.HiddenFor(model => model.PointVente.Code)
+        @Html.HiddenFor(model => model.PointVente.Libelle)
+        @Html.HiddenFor(model => model.codepv)
+        @Html.HiddenFor(model => model.libpv)
+        @Html.HiddenFor(model => model.codedep)
+        @Html.HiddenFor(model => model.libdep)
+        @Html.HiddenFor(model => model.Depot.Adresse)
+        @Html.HiddenFor(model => model.Depot.Responsable)
+        @Html.HiddenFor(model => model.Depot.Datec)
+        @Html.HiddenFor(model => model.Depot.TEL)
+        @Html.HiddenFor(model => model.Depot.FAX)
+        @Html.HiddenFor(model => model.Depot.EMAIL)
+        @Html.HiddenFor(model => model.Depot.TYPED)
+
+        @Html.HiddenFor(model => model.Depot.libpv)
+        @Html.HiddenFor(model => model.Depot.inactif)
+        @Html.HiddenFor(model => model.Depot.sel)
+        @Html.HiddenFor(model => model.Depot.SAISIQTENEG)
+
+
+
+        <table class="table">
+            <tr>
+                <th>
+                    Numero de l'inventaire
+                </th>
+                <th>
+                    Date de l'inventaire
+                </th>
+                <th>
+                    Code depot
+                </th>
+                <th>
+                    Nom depot
+                </th>
+                <th>
+                    Code point vente
+                </th>
+                <th>
+                    Nom point vente
+                </th>
+
+
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.numinv, new { htmlAttributes = new { @class = "form-control input-bordered", @readonly = "readonly" } })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.dateinv, new { htmlAttributes = new { @class = "form-control input-bordered", @readonly = "readonly" } })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Depot.Code, new { htmlAttributes = new { @class = "form-control input-bordered", @readonly = "readonly" } })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Depot.Libelle, new { htmlAttributes = new { @class = "form-control input-bordered", @readonly = "readonly" } })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.PointVente.Code, new { htmlAttributes = new { @class = "form-control input-bordered", @readonly = "readonly" } })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.PointVente.Libelle, new { htmlAttributes = new { @class = "form-control input-bordered", @readonly = "readonly" } })
+                </td>
+            </tr>
+
+        </table><hr />
+
+
+        <table>
+            <tr>
+                <th>
+                    <label>Filtrage:</label>
+                </th>
+            </tr>
+            <tr>
+
+                <th>
+                    <label for="selection_globale">Globale</label>
+                </th>
+                <th>
+                    <input type="radio" class="form-check-input" id="selectionglobale" name="selection" value="Globale" onclick="Disable()" checked="checked">
+                </th>
+                <th></th>
+                <th></th>
+                <th>
+                    <input class="form-control" type="text" id="TriDes" disabled="disabled"
+                           minlength="4" maxlength="8" size="10">
+                </th>
+                <th>
+                    <input class="form-control" type="text" id="des" name="designation" disabled="disabled"
+                           size="10" onkeyup="filtrer()">
+                </th>
+                <th>
+                    Nombre Total Articles :
+                </th>
+                <th>
+                    <input class="form-control" id="nbTotalArticles" size="5" value=@Model.Depot.LignesDepot.Count() disabled="disabled" />
+                </th>
+
+
+
+            </tr>
+            <tr>
+                <th>
+                    <label for="selection_famille">Par Famille</label>
+                </th>
+                <th>
+                    <input type="radio" class="form-check-input" id="btn_selection_famille" name="selection" value="Famille" onclick="EnableByFamille()">
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <label for="selection_fournisseur">Par Fournisseur</label>
+                </th>
+                <th>
+                    <input type="radio" class="form-check-input" id="btn_selection_fournisseur" name="selection" value="Fournisseur" onclick="EnableByFournisseur()">
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Nombre d'articles sélectionnés</strong>
+                </td>
+                <td>
+                    <input class="form-control" id="nombre_selectionne" size="5" type="number" value="0" disabled="disabled" />
+                </td>
+                <td>
+                </td>
+                <td>
+                    <strong>Code Article</strong>
+                </td>
+                <td>
+                    <input class="form-control" type="text" id="codeart" name="codeart"
+                           size="10" onkeyup="filtrercodeart()">
+                </td>
+                <td>
+                </td>
+                <td>
+                    <strong>Désignation Article</strong>
+                </td>
+                <td>
+                    <input class="form-control" type="text" id="desart" name="desart"
+                           size="10" onkeyup="filtrerdesart()">
+                </td>
+
+            </tr>
+
+
+
+
+        </table>
+
+
+
+
+
+
+        <table id="ExpTable" class="table table-striped table-sm">
+            <thead>
+                <tr>
+
+                    <th>
+                        Nom de Famille
+                    </th>
+                    <th>
+                        Code Article
+                    </th>
+                    <th>
+                        Designation
+                    </th>
+                    <th>
+                        Quantité en stock
+                    </th>
+                    <th>
+                        Libellé du fournisseur
+                    </th>
+
+                    <th>
+                        <input type="checkbox" id="checkboxAll" onclick="checkAll()">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (int i = 0; i < Model.Depot.LignesDepot.Count; i++)
+                {
+
+                    string checkboxId = "Checkbox_" + i;
+                    string selectedId = "selected_" + i;
+                    <tr>
+
+
+
+
+
+
+
+                        <td>
+
+                            @Html.EditorFor(m => m.Depot.LignesDepot[i].famille, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+
+                        </td>
+
+
+                        <td>
+                            @Html.EditorFor(m => m.Depot.LignesDepot[i].codeart, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+
+                        </td>
+                        <td>
+                            @Html.EditorFor(m => m.Depot.LignesDepot[i].desart, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+
+                        </td>
+                        <td>
+                            @Html.EditorFor(m => m.Depot.LignesDepot[i].qteart, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+
+                        </td>
+                        <td>
+                            @Html.EditorFor(m => m.Depot.LignesDepot[i].article.libellefourn, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+
+                        </td>
+                        <td>
+                            @if (Model.Depot.LignesDepot[i].isSelected == 1)
+                            {
+                                <input type="checkbox" id=@checkboxId onclick="check()" checked="checked" name="attr_var">
+                            }
+                            else
+                            {
+                                <input type="checkbox" id=@checkboxId onclick="check()" name="attr_var">
+                            }
+
+                            @Html.EditorFor(m => m.Depot.LignesDepot[i].isSelected, new { HtmlAttributes = new { @class = "form-control", @id = selectedId, style = "display:none " } })
+                            @*<input asp-for=@Model.Depot.LignesDepot[i].isSelected type="number" id="@selectedId" />*@
+
+
+                        </td>
+
+
+
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].codedep)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].codeart)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].libelle)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].desart)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].famille)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].qteart)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].stockinitial)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].stockmin)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].stockmax)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].typearticle)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].qteres)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].numfourn)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].libfourn)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].datderninv)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].type)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].artmouv)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].lot)
+                        @*Html.HiddenFor(m => m.Depot.LignesDepot[i].Article.code)
+                            @Html.HiddenFor(m => m.Depot.LignesDepot[i].Article.fam)
+                            @Html.HiddenFor(m => m.Depot.LignesDepot[i].Article.libelle)
+                            @Html.HiddenFor(m => m.Depot.LignesDepot[i].Article.Famille)
+                            @Html.HiddenFor(m => m.Depot.LignesDepot[i].Article.Fournisseur)*@
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].libpv)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].lieustock)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].sousfamille)
+                        @Html.HiddenFor(m => m.Depot.LignesDepot[i].qtereap)
+
+
+
+
+
+
+                    </tr>
+
+                }
+
+
+            </tbody>
+
+
+
+
+        </table>
+
+        <div class="col-6 form-group text-left p-2">
+            <input type="submit" value="Ajouter les articles" class="btn btn-default" />
+        </div>
+
+    }
+
+
+
+    @section Scripts {
+        <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+        <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#ExpTabl').DataTable({
+                    "order": [[0, 'asc'], [1, 'asc']],
+                    "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
+                    "pageLength": 10,
+
+
+                });
+            });
+        </script>
+        // -----------------------------Nombre articles selectionnés à l ouverture ---------------------------- 
+        <script type="text/javascript">
+
+            window.onload = function () {
+                var nbtotal = document.getElementById("nbTotalArticles").value;
+                var nbre_check = 0;
+                for (i = 0; i < nbtotal; i++) {
+                    ch = "Checkbox_" + i;
+                    if (document.getElementById(ch).checked == true) {
+                        nbre_check = nbre_check + 1;
+                    }
+                }
+                document.getElementById("nombre_selectionne").value = nbre_check;
+            }
+
+            // -----------------------------Nombre articles selectionnés ---------------------------- //
+            function check() {
+                var nbtotal = document.getElementById("nbTotalArticles").value;
+
+                ch = "";
+                s = "";
+                j = 0;
+                nbre_check = 0;
+
+                for (i = 0; i < nbtotal; i++) {
+                    ch = "Checkbox_" + i;
+                    s = "selected_" + i;
+
+                    if (document.getElementById(ch).checked == true) {
+                        j++;
+                        nbre_check++;
+                        document.getElementById(s).value = "1";
+
+                    }
+                    else {
+                        j--;
+                        document.getElementById("checkboxAll").checked = false;
+                        document.getElementById(s).value = "0";
+
+
+                    }
+                    if (j == nbtotal - 1) {
+                        document.getElementById("checkboxAll").checked = true;
+                    }
+                    document.getElementById("nombre_selectionne").value = nbre_check;
+
+                }
+            }
+            ////////// Check All checkboxes ////////////////////////////////////////
+            function checkAll() {
+                var nbtotal = document.getElementById("nbTotalArticles").value;
+                ch = "";
+                s = "";
+
+                for (i = 0; i < nbtotal; i++) {
+                    ch = "Checkbox_" + i;
+                    s = "selected_" + i;
+                    if (document.getElementById("checkboxAll").checked == true) {
+                        document.getElementById(ch).checked = true;
+                        document.getElementById(s).value = "1";
+                        document.getElementById("nombre_selectionne").value = nbtotal;
+
+                    }
+                    else {
+                        document.getElementById(ch).checked = false;
+                        document.getElementById(s).value = "0";
+                        document.getElementById("nombre_selectionne").value = 0;
+                    }
+                }
+            }
+
+
+            ////////// Check All checkboxes ////////////////////////////////////////
+
+
+
+
+            /////////////////////// Radio buttons /////////////////////////////////
+
+            function Disable() {
+                document.getElementById("des").disabled = true;
+                document.getElementById("des").value = "";
+                document.getElementById("TriDes").value = "";
+
+            }
+            function EnableByFamille() {
+                document.getElementById("des").disabled = false;
+                document.getElementById("TriDes").value = "Famille";
+
+
+            }
+            function EnableByFournisseur() {
+                document.getElementById("des").disabled = false;
+                document.getElementById("TriDes").value = "Fournisseur";
+
+            }
+            /////////////////////// Radio buttons /////////////////////////////////
+            function filtrer() {
+                var filtre, tableau, ligne, cellule, i, texte, j
+                filtre = document.getElementById("des").value.toUpperCase();
+                tableau = document.getElementById("ExpTable");
+                ligne = tableau.getElementsByTagName("tr");
+                for (i = 0; i < ligne.length; i++) {
+                    if (document.getElementById("btn_selection_fournisseur").checked == true) {
+
+                        j = 4;
+                    }
+                    if (document.getElementById("btn_selection_famille").checked == true) {
+
+                        j = 0;
+                    }
+                    cellule = ligne[i].getElementsByTagName("td")[j];
+                    if (cellule) {
+                        texte = cellule.innerHTML;
+                        if (texte.indexOf(filtre) > -1) {
+                            ligne[i].style.display = "";
+                        }
+                        else {
+                            ligne[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+            /////////////////////// Radio buttons /////////////////////////////////
+            //Filtrage par code article
+            function filtrercodeart() {
+                var filtre, tableau, ligne, cellule, i, texte
+                filtre = document.getElementById("codeart").value.toUpperCase();
+                tableau = document.getElementById("ExpTable");
+                ligne = tableau.getElementsByTagName("tr");
+                for (i = 0; i < ligne.length; i++) {
+
+                    cellule = ligne[i].getElementsByTagName("td")[1];
+                    if (cellule) {
+                        texte = cellule.innerHTML;
+                        if (texte.indexOf(filtre) > -1) {
+                            ligne[i].style.display = "";
+                        }
+                        else {
+                            ligne[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+            //Filtrage par désignation d'article
+            function filtrerdesart() {
+                var filtre, tableau, ligne, cellule, i, texte
+                filtre = document.getElementById("desart").value.toUpperCase();
+                tableau = document.getElementById("ExpTable");
+                ligne = tableau.getElementsByTagName("tr");
+                for (i = 0; i < ligne.length; i++) {
+
+                    cellule = ligne[i].getElementsByTagName("td")[2];
+                    if (cellule) {
+                        texte = cellule.innerHTML;
+                        if (texte.indexOf(filtre) > -1) {
+                            ligne[i].style.display = "";
+                        }
+                        else {
+                            ligne[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+
+
+
+        </script>
+    }
+
+</body>
+</html>
