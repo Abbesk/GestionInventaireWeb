@@ -1,0 +1,1301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="usererpModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="societe">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="synchronisation" Type="varchar" MaxLength="1" />
+          <Property Name="sel" Type="varchar" MaxLength="1" />
+          <Property Name="rsoc" Type="varchar" MaxLength="50" />
+          <Property Name="dat" Type="varchar" MaxLength="4" />
+          <Property Name="e1" Type="varchar" MaxLength="50" />
+          <Property Name="e2" Type="varchar" MaxLength="50" />
+          <Property Name="e3" Type="varchar" MaxLength="50" />
+          <Property Name="e4" Type="varchar" MaxLength="50" />
+          <Property Name="e5" Type="varchar" MaxLength="50" />
+          <Property Name="e6" Type="varchar" MaxLength="50" />
+          <Property Name="e7" Type="varchar" MaxLength="50" />
+          <Property Name="e8" Type="varchar" MaxLength="50" />
+          <Property Name="PRIXUNIT" Type="varchar" MaxLength="1" />
+          <Property Name="REMGLOBAL" Type="varchar" MaxLength="1" />
+          <Property Name="PRIXART" Type="varchar" MaxLength="1" />
+          <Property Name="CONTTREMISE" Type="varchar" MaxLength="1" />
+          <Property Name="REMART" Type="varchar" MaxLength="1" />
+          <Property Name="MONTTTC" Type="varchar" MaxLength="1" />
+          <Property Name="SEUILCREDIT" Type="varchar" MaxLength="1" />
+          <Property Name="MARGEPRIXVENTE" Type="varchar" MaxLength="1" />
+          <Property Name="VTMAJO" Type="float" />
+          <Property Name="TMAJO" Type="varchar" MaxLength="1" />
+          <Property Name="TIMBREF" Type="float" />
+          <Property Name="SAISIEQTENEG" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="ACCTABREM" Type="varchar" MaxLength="1" />
+          <Property Name="VALOBL" Type="varchar" MaxLength="1" />
+          <Property Name="CONFIGART" Type="varchar" MaxLength="1" />
+          <Property Name="IMPREMART" Type="varchar" MaxLength="1" />
+          <Property Name="ACCTVABE" Type="varchar" MaxLength="1" />
+          <Property Name="directeur" Type="varchar" MaxLength="30" />
+          <Property Name="PFACTT" Type="varchar" MaxLength="2" />
+          <Property Name="PBL" Type="varchar" MaxLength="2" />
+          <Property Name="PBE" Type="varchar" MaxLength="2" />
+          <Property Name="SFACTT" Type="varchar" MaxLength="9" />
+          <Property Name="SBL" Type="varchar" MaxLength="9" />
+          <Property Name="SBE" Type="varchar" MaxLength="9" />
+          <Property Name="AFACTT" Type="varchar" MaxLength="1" />
+          <Property Name="ABL" Type="varchar" MaxLength="1" />
+          <Property Name="ABE" Type="varchar" MaxLength="1" />
+          <Property Name="RSOURCE" Type="float" />
+          <Property Name="FODEC" Type="float" />
+          <Property Name="BRG" Type="varchar" MaxLength="1" />
+          <Property Name="VRG" Type="float" />
+          <Property Name="accee" Type="tinyint" />
+          <Property Name="marge" Type="varchar" MaxLength="1" />
+          <Property Name="PV" Type="varchar" MaxLength="1" />
+          <Property Name="Clipass" Type="varchar" MaxLength="8" />
+          <Property Name="chemin" Type="varchar" MaxLength="250" />
+          <Property Name="adr" Type="varchar" MaxLength="50" />
+          <Property Name="mf" Type="varchar" MaxLength="17" />
+          <Property Name="acceedesigna" Type="varchar" MaxLength="1" />
+          <Property Name="PBS" Type="varchar" MaxLength="2" />
+          <Property Name="SBS" Type="varchar" MaxLength="9" />
+          <Property Name="affliste" Type="varchar" MaxLength="1" />
+          <Property Name="retenueaut" Type="varchar" MaxLength="1" />
+          <Property Name="gfamille" Type="varchar" MaxLength="1" />
+          <Property Name="caisseprix" Type="varchar" MaxLength="1" />
+          <Property Name="caisserem" Type="varchar" MaxLength="1" />
+          <Property Name="caissepwd" Type="varchar" MaxLength="8" />
+          <Property Name="stockalert" Type="varchar" MaxLength="1" />
+          <Property Name="TARFR" Type="varchar" MaxLength="1" />
+          <Property Name="caissettc" Type="varchar" MaxLength="1" />
+          <Property Name="M1" Type="varchar" MaxLength="1" />
+          <Property Name="M2" Type="varchar" MaxLength="1" />
+          <Property Name="M3" Type="varchar" MaxLength="1" />
+          <Property Name="ttcbl" Type="varchar" MaxLength="1" />
+          <Property Name="ttcbl1" Type="varchar" MaxLength="1" />
+          <Property Name="prixz" Type="varchar" MaxLength="1" />
+          <Property Name="securite" Type="varchar" MaxLength="1" />
+          <Property Name="decimalq" Type="int" />
+          <Property Name="puttc" Type="varchar" MaxLength="1" />
+          <Property Name="dateaccee" Type="datetime" Precision="0" />
+          <Property Name="codebar" Type="varchar" MaxLength="1" />
+          <Property Name="entticket1" Type="varchar" MaxLength="50" />
+          <Property Name="entticket2" Type="varchar" MaxLength="30" />
+          <Property Name="editiontc" Type="varchar" MaxLength="1" />
+          <Property Name="decimalp" Type="int" />
+          <Property Name="nomenclature" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="gestionbcf" Type="varchar" MaxLength="1" />
+          <Property Name="gestiontc" Type="varchar" MaxLength="1" />
+          <Property Name="gestionc" Type="varchar" MaxLength="1" />
+          <Property Name="gestioneff" Type="varchar" MaxLength="1" />
+          <Property Name="UniArt" Type="varchar" MaxLength="1" />
+          <Property Name="ValAutArt" Type="varchar" MaxLength="1" />
+          <Property Name="UnArtCaisse" Type="varchar" MaxLength="1" />
+          <Property Name="SaisVend" Type="varchar" MaxLength="1" />
+          <Property Name="PramBS" Type="varchar" MaxLength="1" />
+          <Property Name="gestionbcC" Type="varchar" MaxLength="1" />
+          <Property Name="gestionAcc" Type="varchar" MaxLength="1" />
+          <Property Name="e9" Type="varchar" MaxLength="100" />
+          <Property Name="RemCl" Type="varchar" MaxLength="50" />
+          <Property Name="BaseCom" Type="varchar" MaxLength="1" />
+          <Property Name="RemFExp" Type="varchar" MaxLength="1" />
+          <Property Name="ValAutTC" Type="varchar" MaxLength="1" />
+          <Property Name="gestionlot" Type="varchar" MaxLength="1" />
+          <Property Name="DefSoc" Type="varchar" MaxLength="1" />
+          <Property Name="GBois" Type="varchar" MaxLength="1" />
+          <Property Name="CheminCaisse" Type="varchar" MaxLength="250" />
+          <Property Name="GREP" Type="varchar" MaxLength="1" />
+          <Property Name="gestionretenu" Type="varchar" MaxLength="1" />
+          <Property Name="impbarre" Type="varchar" MaxLength="1" />
+          <Property Name="ean13" Type="varchar" MaxLength="1" />
+          <Property Name="code128" Type="varchar" MaxLength="1" />
+          <Property Name="prix" Type="varchar" MaxLength="1" />
+          <Property Name="validauto" Type="varchar" MaxLength="1" />
+          <Property Name="ventedev" Type="varchar" MaxLength="1" />
+          <Property Name="passauttick" Type="varchar" MaxLength="1" />
+          <Property Name="mvtdivers" Type="varchar" MaxLength="1" />
+          <Property Name="devise" Type="varchar" MaxLength="1" />
+          <Property Name="rechcli" Type="varchar" MaxLength="1" />
+          <Property Name="SEUILRISQUE" Type="varchar" MaxLength="1" />
+          <Property Name="numserie" Type="varchar" MaxLength="1" />
+          <Property Name="PMP" Type="varchar" MaxLength="1" />
+          <Property Name="reglcli" Type="varchar" MaxLength="1" />
+          <Property Name="paiefrs" Type="varchar" MaxLength="1" />
+          <Property Name="transfertfond" Type="varchar" MaxLength="1" />
+          <Property Name="encregl" Type="varchar" MaxLength="1" />
+          <Property Name="GTAILLECOUL" Type="varchar" MaxLength="1" />
+          <Property Name="ARTCAD" Type="varchar" MaxLength="1" />
+          <Property Name="modelebois" Type="varchar" MaxLength="1" />
+          <Property Name="contpxvente" Type="varchar" MaxLength="1" />
+          <Property Name="saisvendeur" Type="varchar" MaxLength="1" />
+          <Property Name="marbre" Type="varchar" MaxLength="1" />
+          <Property Name="socdest" Type="varchar" MaxLength="1" />
+          <Property Name="nomsocdest" Type="varchar" MaxLength="8" />
+          <Property Name="PFACTC" Type="varchar" MaxLength="2" />
+          <Property Name="SFACTC" Type="varchar" MaxLength="9" />
+          <Property Name="AFACTC" Type="varchar" MaxLength="1" />
+          <Property Name="liaisonfact" Type="varchar" MaxLength="1" />
+          <Property Name="factcomptant" Type="varchar" MaxLength="1" />
+          <Property Name="typeimp" Type="varchar" MaxLength="2" />
+          <Property Name="ecranimp" Type="varchar" MaxLength="1" />
+          <Property Name="piece" Type="varchar" MaxLength="1" />
+          <Property Name="liaisonstock" Type="varchar" MaxLength="1" />
+          <Property Name="nomsocstock" Type="varchar" MaxLength="8" />
+          <Property Name="defalcation" Type="varchar" MaxLength="1" />
+          <Property Name="regltresor" Type="varchar" MaxLength="1" />
+          <Property Name="caisstresor" Type="varchar" MaxLength="1" />
+          <Property Name="FideliteBL" Type="varchar" MaxLength="1" />
+          <Property Name="marbreglob" Type="varchar" MaxLength="1" />
+          <Property Name="marbredet" Type="varchar" MaxLength="1" />
+          <Property Name="activite" Type="varchar" MaxLength="40" />
+          <Property Name="rue" Type="varchar" MaxLength="72" />
+          <Property Name="numero" Type="varchar" MaxLength="4" />
+          <Property Name="codePostal" Type="varchar" MaxLength="4" />
+          <Property Name="mtminrecouv" Type="double" />
+          <Property Name="auto" Type="varchar" MaxLength="1" />
+          <Property Name="equiart" Type="varchar" MaxLength="1" />
+          <Property Name="nordre" Type="varchar" MaxLength="1" />
+          <Property Name="integbr" Type="varchar" MaxLength="1" />
+          <Property Name="pxc" Type="varchar" MaxLength="1" />
+          <Property Name="pxa" Type="varchar" MaxLength="1" />
+          <Property Name="trifam" Type="varchar" MaxLength="1" />
+          <Property Name="tricode" Type="varchar" MaxLength="1" />
+          <Property Name="trides" Type="varchar" MaxLength="1" />
+          <Property Name="trisaisie" Type="varchar" MaxLength="1" />
+          <Property Name="factsusp" Type="varchar" MaxLength="1" />
+          <Property Name="avance" Type="varchar" MaxLength="1" />
+          <Property Name="tauxavance" Type="float" />
+          <Property Name="nbrunite" Type="varchar" MaxLength="1" />
+          <Property Name="VPA" Type="varchar" MaxLength="1" />
+          <Property Name="depot" Type="varchar" MaxLength="1" />
+          <Property Name="PBC" Type="varchar" MaxLength="1" />
+          <Property Name="STECOM" Type="varchar" MaxLength="10" />
+          <Property Name="LIAISONCOM" Type="varchar" MaxLength="1" />
+          <Property Name="PFBE" Type="varchar" MaxLength="2" />
+          <Property Name="SFBE" Type="varchar" MaxLength="9" />
+          <Property Name="AFBE" Type="varchar" MaxLength="1" />
+          <Property Name="demandeachat" Type="varchar" MaxLength="1" />
+          <Property Name="moisvalidation" Type="int" />
+          <Property Name="anneevalidation" Type="int" />
+          <Property Name="douane" Type="varchar" MaxLength="1" />
+          <Property Name="PBCF" Type="varchar" MaxLength="2" />
+          <Property Name="SBCF" Type="varchar" MaxLength="7" />
+          <Property Name="ABCF" Type="varchar" MaxLength="1" />
+          <Property Name="pointvente" Type="varchar" MaxLength="1" />
+          <Property Name="fidelite" Type="varchar" MaxLength="1" />
+          <Property Name="Nbureau" Type="varchar" MaxLength="30" />
+          <Property Name="impchq" Type="varchar" MaxLength="1" />
+          <Property Name="socimport" Type="varchar" MaxLength="8" />
+          <Property Name="factbrbe" Type="varchar" MaxLength="1" />
+          <Property Name="gestionmarge" Type="varchar" MaxLength="1" />
+          <Property Name="seqdev" Type="varchar" MaxLength="10" />
+          <Property Name="GUTIL" Type="varchar" MaxLength="1" />
+          <Property Name="integao" Type="varchar" MaxLength="1" />
+          <Property Name="selectart" Type="varchar" MaxLength="1" />
+          <Property Name="codebureau" Type="varchar" MaxLength="2" />
+          <Property Name="desbureau" Type="varchar" MaxLength="20" />
+          <Property Name="regdouanedec" Type="varchar" MaxLength="3" />
+          <Property Name="regdouanetr" Type="varchar" MaxLength="3" />
+          <Property Name="regdouanepre" Type="varchar" MaxLength="3" />
+          <Property Name="codedouane" Type="varchar" MaxLength="10" />
+          <Property Name="codecomp" Type="varchar" MaxLength="2" />
+          <Property Name="memeseq" Type="varchar" MaxLength="1" />
+          <Property Name="betotpar" Type="varchar" MaxLength="1" />
+          <Property Name="pbcc" Type="varchar" MaxLength="2" />
+          <Property Name="sbcc" Type="varchar" MaxLength="7" />
+          <Property Name="memeseqbcc" Type="varchar" MaxLength="1" />
+          <Property Name="memeseqbcf" Type="varchar" MaxLength="1" />
+          <Property Name="ctrcl" Type="varchar" MaxLength="1" />
+          <Property Name="PBR" Type="varchar" MaxLength="2" />
+          <Property Name="SBR" Type="varchar" MaxLength="7" />
+          <Property Name="memeseqbr" Type="varchar" MaxLength="1" />
+          <Property Name="alertdatelim" Type="varchar" MaxLength="1" />
+          <Property Name="intervalprix" Type="varchar" MaxLength="1" />
+          <Property Name="gestionGPAO" Type="varchar" MaxLength="1" />
+          <Property Name="gestionimport" Type="varchar" MaxLength="1" />
+          <Property Name="avectache" Type="varchar" MaxLength="1" />
+          <Property Name="gmarche" Type="varchar" MaxLength="1" />
+          <Property Name="EXER" Type="varchar" MaxLength="4" />
+          <Property Name="CP" Type="varchar" MaxLength="4" />
+          <Property Name="BANQUE" Type="varchar" MaxLength="4" />
+          <Property Name="CODETVA" Type="varchar" MaxLength="20" />
+          <Property Name="TEL1" Type="varchar" MaxLength="15" />
+          <Property Name="TEL2" Type="varchar" MaxLength="15" />
+          <Property Name="FAX" Type="varchar" MaxLength="15" />
+          <Property Name="TELEX" Type="varchar" MaxLength="15" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="ANP" Type="char" MaxLength="1" />
+          <Property Name="DEDITION" Type="char" MaxLength="1" />
+          <Property Name="DDCA" Type="date" />
+          <Property Name="DDCM" Type="date" />
+          <Property Name="Dateo" Type="date" />
+          <Property Name="style" Type="varchar" MaxLength="1" />
+          <Property Name="taux" Type="double" />
+          <Property Name="passage" Type="varchar" MaxLength="1" />
+          <Property Name="gimmo" Type="varchar" MaxLength="1" />
+          <Property Name="ginteg" Type="varchar" MaxLength="1" />
+          <Property Name="socinteg" Type="varchar" MaxLength="8" />
+          <Property Name="integpaie" Type="varchar" MaxLength="1" />
+          <Property Name="socintpaie" Type="varchar" MaxLength="12" />
+          <Property Name="SPV" Type="varchar" MaxLength="1" />
+          <Property Name="affremcli" Type="varchar" MaxLength="1" />
+          <Property Name="pdevise" Type="varchar" MaxLength="1" />
+          <Property Name="ctrart" Type="varchar" MaxLength="1" />
+          <Property Name="modcodebarre" Type="varchar" MaxLength="1" />
+          <Property Name="PED" Type="varchar" MaxLength="2" />
+          <Property Name="SED" Type="varchar" MaxLength="7" />
+          <Property Name="AED" Type="varchar" MaxLength="1" />
+          <Property Name="memeseqed" Type="varchar" MaxLength="1" />
+          <Property Name="gprod" Type="varchar" MaxLength="1" />
+          <Property Name="valid_dem_achat" Type="varchar" MaxLength="1" />
+          <Property Name="integvente" Type="varchar" MaxLength="1" />
+          <Property Name="integachat" Type="varchar" MaxLength="1" />
+          <Property Name="integreglcli" Type="varchar" MaxLength="1" />
+          <Property Name="integpaifrs" Type="varchar" MaxLength="1" />
+          <Property Name="integmdc" Type="varchar" MaxLength="1" />
+          <Property Name="integfraisb" Type="varchar" MaxLength="1" />
+          <Property Name="integbord" Type="varchar" MaxLength="1" />
+          <Property Name="compteattente" Type="varchar" MaxLength="8" />
+          <Property Name="G_fact_EXP" Type="varchar" MaxLength="1" />
+          <Property Name="bord_client" Type="varchar" MaxLength="1" />
+          <Property Name="nbr_j_alerte" Type="varchar" MaxLength="2" />
+          <Property Name="margeimport" Type="varchar" MaxLength="1" />
+          <Property Name="pmpimport" Type="varchar" MaxLength="1" />
+          <Property Name="PFRC" Type="varchar" MaxLength="2" />
+          <Property Name="SFRC" Type="varchar" MaxLength="7" />
+          <Property Name="AFRC" Type="varchar" MaxLength="1" />
+          <Property Name="blntchstk" Type="varchar" MaxLength="1" />
+          <Property Name="servaprven" Type="varchar" MaxLength="1" />
+          <Property Name="ordliv" Type="varchar" MaxLength="1" />
+          <Property Name="prjbe" Type="varchar" MaxLength="1" />
+          <Property Name="prjbs" Type="varchar" MaxLength="1" />
+          <Property Name="transstk" Type="varchar" MaxLength="1" />
+          <Property Name="prixcalcmarge" Type="varchar" MaxLength="1" />
+          <Property Name="PDV" Type="varchar" MaxLength="2" />
+          <Property Name="SDV" Type="varchar" MaxLength="7" />
+          <Property Name="typecaisse" Type="varchar" MaxLength="5" />
+          <Property Name="suiviglob" Type="varchar" MaxLength="1" />
+          <Property Name="factachat" Type="varchar" MaxLength="1" />
+          <Property Name="gkiosque" Type="varchar" MaxLength="1" />
+          <Property Name="impsoc" Type="varchar" MaxLength="1" />
+          <Property Name="impdate" Type="date" />
+          <Property Name="comtc" Type="varchar" MaxLength="1" />
+          <Property Name="decimala" Type="int" />
+          <Property Name="intbord" Type="varchar" MaxLength="1" />
+          <Property Name="ajoutfact" Type="varchar" MaxLength="1" />
+          <Property Name="genGPAO" Type="varchar" MaxLength="1" />
+          <Property Name="gestionchantier" Type="varchar" MaxLength="1" />
+          <Property Name="Ipdest" Type="varchar" MaxLength="20" />
+          <Property Name="Verifstock" Type="varchar" MaxLength="1" />
+          <Property Name="sav" Type="varchar" MaxLength="1" />
+          <Property Name="integsocmult" Type="varchar" MaxLength="1" />
+          <Property Name="versB" Type="varchar" MaxLength="1" />
+          <Property Name="chkrest" Type="varchar" MaxLength="1" />
+          <Property Name="socrest" Type="varchar" MaxLength="8" />
+          <Property Name="RCA" Type="varchar" MaxLength="1" />
+          <Property Name="tauxRCA" Type="double" />
+          <Property Name="synchroftp" Type="varchar" MaxLength="1" />
+          <Property Name="codepvftp" Type="varchar" MaxLength="2" />
+          <Property Name="piedsvente" Type="varchar" MaxLength="250" />
+          <Property Name="EXONTVA" Type="varchar" MaxLength="1" />
+          <Property Name="integfamille" Type="varchar" MaxLength="1" />
+          <Property Name="ventart" Type="char" MaxLength="50" />
+          <Property Name="validelbe" Type="varchar" MaxLength="1" />
+          <Property Name="VPABS" Type="varchar" MaxLength="1" />
+          <Property Name="envoiepc" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="comptinteg" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="validcaisseobligatoire" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="gestionTrace" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="virenc" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="fichepv" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="bord" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="nbrcopie" Type="int" Nullable="false" />
+          <Property Name="ipsoc" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="rubspe" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="cons" Type="varchar" MaxLength="1" />
+          <Property Name="tauxcons" Type="varchar" MaxLength="2" />
+          <Property Name="gemail" Type="varchar" MaxLength="2" />
+          <Property Name="password" Type="varchar" MaxLength="20" />
+          <Property Name="servmail" Type="varchar" MaxLength="20" />
+          <Property Name="portmail" Type="varchar" MaxLength="5" />
+          <Property Name="emaildest" Type="varchar" MaxLength="50" />
+          <Property Name="NumCnss" Type="varchar" MaxLength="11" />
+          <Property Name="Ville" Type="varchar" MaxLength="50" />
+          <Property Name="reglsd" Type="varchar" MaxLength="2" />
+          <Property Name="DecMensCpt" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="validcpt" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="seqfactmois" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="OptRetenue" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Caissbord" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="RBvalid" Type="varchar" MaxLength="1" />
+          <Property Name="ImportationExcel" Type="varchar" MaxLength="1" />
+          <Property Name="artBE" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Comptanalytique" Type="varchar" MaxLength="1" />
+          <Property Name="majdepot" Type="varchar" MaxLength="1" />
+          <Property Name="ctrmat" Type="varchar" MaxLength="1" />
+          <Property Name="rapautobl" Type="varchar" MaxLength="1" />
+          <Property Name="CalculNGP" Type="varchar" MaxLength="1" />
+          <Property Name="sysinf" Type="varchar" MaxLength="1" />
+          <Property Name="locationVoiture" Type="varchar" MaxLength="1" />
+          <Property Name="cnam" Type="varchar" MaxLength="1" />
+          <Property Name="Socintgr" Type="varchar" MaxLength="100" />
+          <Property Name="Integgr" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="usersoc">
+          <Key>
+            <PropertyRef Name="CODEUSER" />
+            <PropertyRef Name="societe" />
+            <PropertyRef Name="Projet" />
+          </Key>
+          <Property Name="CODEUSER" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="societe" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="accee" Type="varchar" MaxLength="1" />
+          <Property Name="ecriture" Type="varchar" MaxLength="1" />
+          <Property Name="Projet" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="seltmp" Type="varchar" MaxLength="1" />
+          <Property Name="acceclot" Type="varchar" MaxLength="1" />
+          <Property Name="rsoc" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ip" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="utilisateur">
+          <Key>
+            <PropertyRef Name="codeuser" />
+          </Key>
+          <Property Name="codeuser" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="30" />
+          <Property Name="motpasse" Type="varchar" MaxLength="16" />
+          <Property Name="type" Type="varchar" MaxLength="20" />
+          <Property Name="jnlactif" Type="varchar" MaxLength="1" />
+          <Property Name="prog1" Type="varchar" MaxLength="1" />
+          <Property Name="prog2" Type="varchar" MaxLength="1" />
+          <Property Name="prog3" Type="varchar" MaxLength="1" />
+          <Property Name="prog4" Type="varchar" MaxLength="1" />
+          <Property Name="bloque" Type="varchar" MaxLength="1" />
+          <Property Name="actif" Type="varchar" MaxLength="1" />
+          <Property Name="numvol" Type="varchar" MaxLength="12" />
+          <Property Name="socutil" Type="varchar" MaxLength="8" />
+          <Property Name="etatbcf" Type="varchar" MaxLength="1" />
+          <Property Name="etatbcc" Type="varchar" MaxLength="1" />
+          <Property Name="etatcl" Type="varchar" MaxLength="1" />
+          <Property Name="etatfr" Type="varchar" MaxLength="1" />
+          <Property Name="etatbe" Type="varchar" MaxLength="1" />
+          <Property Name="etatvente" Type="varchar" MaxLength="1" />
+          <Property Name="etatdemachat" Type="varchar" MaxLength="1" />
+          <Property Name="vente" Type="varchar" MaxLength="1" />
+          <Property Name="achat" Type="varchar" MaxLength="1" />
+          <Property Name="client" Type="varchar" MaxLength="1" />
+          <Property Name="frs" Type="varchar" MaxLength="1" />
+          <Property Name="bcc" Type="varchar" MaxLength="1" />
+          <Property Name="bcf" Type="varchar" MaxLength="1" />
+          <Property Name="stat" Type="varchar" MaxLength="1" />
+          <Property Name="acces" Type="varchar" MaxLength="1" />
+          <Property Name="afftot" Type="varchar" MaxLength="1" />
+          <Property Name="socutilclot" Type="varchar" MaxLength="8" />
+          <Property Name="directeur" Type="varchar" MaxLength="2" />
+          <Property Name="etatmarge" Type="varchar" MaxLength="1" />
+          <Property Name="exercice" Type="varchar" MaxLength="4" />
+          <Property Name="etatimport" Type="varchar" MaxLength="1" />
+          <Property Name="etatbestk" Type="varchar" MaxLength="1" />
+          <Property Name="Etatbcfstk" Type="varchar" MaxLength="1" />
+          <Property Name="etatfrstk" Type="varchar" MaxLength="1" />
+          <Property Name="etatimportstk" Type="varchar" MaxLength="1" />
+          <Property Name="etatbccstk" Type="varchar" MaxLength="1" />
+          <Property Name="etatimmo" Type="varchar" MaxLength="1" />
+          <Property Name="acceclot" Type="varchar" MaxLength="1" />
+          <Property Name="BL" Type="varchar" MaxLength="1" />
+          <Property Name="FC" Type="varchar" MaxLength="1" />
+          <Property Name="TICKCAIS" Type="varchar" MaxLength="1" />
+          <Property Name="GESTBE" Type="varchar" MaxLength="1" />
+          <Property Name="impbarre" Type="varchar" MaxLength="1" />
+          <Property Name="PARAM" Type="varchar" MaxLength="1" />
+          <Property Name="mp1" Type="varchar" MaxLength="16" />
+          <Property Name="mp2" Type="varchar" MaxLength="16" />
+          <Property Name="mp3" Type="varchar" MaxLength="16" />
+          <Property Name="mp4" Type="varchar" MaxLength="16" />
+          <Property Name="mp5" Type="varchar" MaxLength="16" />
+          <Property Name="dernacce" Type="date" />
+          <Property Name="nbrjr" Type="int" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="usererpModelStoreContainer">
+          <EntitySet Name="societe" EntityType="Self.societe" Schema="usererp" store:Type="Tables" />
+          <EntitySet Name="usersoc" EntityType="Self.usersoc" Schema="usererp" store:Type="Tables" />
+          <EntitySet Name="utilisateur" EntityType="Self.utilisateur" Schema="usererp" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="usererpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="societe">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="synchronisation" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="sel" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="rsoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dat" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="e1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="e2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="e3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="e4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="e5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="e6" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="e7" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="e8" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRIXUNIT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="REMGLOBAL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PRIXART" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CONTTREMISE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="REMART" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="MONTTTC" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SEUILCREDIT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="MARGEPRIXVENTE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="VTMAJO" Type="Single" />
+          <Property Name="TMAJO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="TIMBREF" Type="Single" />
+          <Property Name="SAISIEQTENEG" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACCTABREM" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="VALOBL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CONFIGART" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="IMPREMART" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ACCTVABE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="directeur" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PFACTT" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="PBL" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="PBE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="SFACTT" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="SBL" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="SBE" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="AFACTT" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ABL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ABE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="RSOURCE" Type="Single" />
+          <Property Name="FODEC" Type="Single" />
+          <Property Name="BRG" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="VRG" Type="Single" />
+          <Property Name="accee" Type="SByte" />
+          <Property Name="marge" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PV" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Clipass" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="chemin" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="adr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mf" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="acceedesigna" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PBS" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="SBS" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="affliste" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="retenueaut" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gfamille" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="caisseprix" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="caisserem" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="caissepwd" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="stockalert" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="TARFR" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="caissettc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="M1" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="M2" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="M3" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ttcbl" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ttcbl1" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="prixz" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="securite" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="decimalq" Type="Int32" />
+          <Property Name="puttc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="dateaccee" Type="DateTime" />
+          <Property Name="codebar" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="entticket1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="entticket2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="editiontc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="decimalp" Type="Int32" />
+          <Property Name="nomenclature" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gestionbcf" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gestiontc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gestionc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gestioneff" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="UniArt" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ValAutArt" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="UnArtCaisse" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SaisVend" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PramBS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gestionbcC" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gestionAcc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="e9" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RemCl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BaseCom" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="RemFExp" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ValAutTC" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gestionlot" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DefSoc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="GBois" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CheminCaisse" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="GREP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gestionretenu" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="impbarre" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ean13" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="code128" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="prix" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="validauto" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ventedev" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="passauttick" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="mvtdivers" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="devise" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="rechcli" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SEUILRISQUE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="numserie" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PMP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="reglcli" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="paiefrs" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="transfertfond" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="encregl" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="GTAILLECOUL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ARTCAD" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="modelebois" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="contpxvente" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="saisvendeur" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="marbre" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="socdest" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="nomsocdest" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="PFACTC" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="SFACTC" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="AFACTC" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="liaisonfact" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="factcomptant" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="typeimp" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ecranimp" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="piece" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="liaisonstock" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="nomsocstock" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="defalcation" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="regltresor" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="caisstresor" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="FideliteBL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="marbreglob" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="marbredet" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="activite" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="rue" Type="String" MaxLength="72" FixedLength="false" Unicode="false" />
+          <Property Name="numero" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="codePostal" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="mtminrecouv" Type="Double" />
+          <Property Name="auto" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="equiart" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="nordre" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="integbr" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="pxc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="pxa" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="trifam" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="tricode" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="trides" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="trisaisie" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="factsusp" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="avance" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="tauxavance" Type="Single" />
+          <Property Name="nbrunite" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="VPA" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="depot" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PBC" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="STECOM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LIAISONCOM" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PFBE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="SFBE" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="AFBE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="demandeachat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="moisvalidation" Type="Int32" />
+          <Property Name="anneevalidation" Type="Int32" />
+          <Property Name="douane" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PBCF" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="SBCF" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="ABCF" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="pointvente" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="fidelite" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Nbureau" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="impchq" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="socimport" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="factbrbe" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gestionmarge" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="seqdev" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GUTIL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="integao" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="selectart" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="codebureau" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="desbureau" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="regdouanedec" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="regdouanetr" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="regdouanepre" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="codedouane" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="codecomp" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="memeseq" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="betotpar" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="pbcc" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="sbcc" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="memeseqbcc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="memeseqbcf" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ctrcl" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PBR" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="SBR" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="memeseqbr" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="alertdatelim" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="intervalprix" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gestionGPAO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gestionimport" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="avectache" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gmarche" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EXER" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="CP" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="BANQUE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="CODETVA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TEL1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TEL2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FAX" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TELEX" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ANP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DEDITION" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DDCA" Type="DateTime" />
+          <Property Name="DDCM" Type="DateTime" />
+          <Property Name="Dateo" Type="DateTime" />
+          <Property Name="style" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="taux" Type="Double" />
+          <Property Name="passage" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gimmo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ginteg" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="socinteg" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="integpaie" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="socintpaie" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="SPV" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="affremcli" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="pdevise" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ctrart" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="modcodebarre" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PED" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="SED" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="AED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="memeseqed" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gprod" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="valid_dem_achat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="integvente" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="integachat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="integreglcli" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="integpaifrs" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="integmdc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="integfraisb" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="integbord" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="compteattente" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="G_fact_EXP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="bord_client" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="nbr_j_alerte" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="margeimport" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="pmpimport" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PFRC" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="SFRC" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="AFRC" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="blntchstk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="servaprven" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ordliv" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="prjbe" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="prjbs" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="transstk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="prixcalcmarge" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PDV" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="SDV" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="typecaisse" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="suiviglob" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="factachat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gkiosque" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="impsoc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="impdate" Type="DateTime" />
+          <Property Name="comtc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="decimala" Type="Int32" />
+          <Property Name="intbord" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ajoutfact" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="genGPAO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gestionchantier" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Ipdest" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Verifstock" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="sav" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="integsocmult" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="versB" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="chkrest" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="socrest" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="RCA" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="tauxRCA" Type="Double" />
+          <Property Name="synchroftp" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="codepvftp" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="piedsvente" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EXONTVA" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="integfamille" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ventart" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="validelbe" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="VPABS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="envoiepc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="comptinteg" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="validcaisseobligatoire" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gestionTrace" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="virenc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fichepv" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bord" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nbrcopie" Type="Int32" Nullable="false" />
+          <Property Name="ipsoc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rubspe" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cons" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="tauxcons" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="gemail" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="servmail" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="portmail" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="emaildest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NumCnss" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reglsd" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="DecMensCpt" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="validcpt" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="seqfactmois" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OptRetenue" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Caissbord" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RBvalid" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ImportationExcel" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="artBE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comptanalytique" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="majdepot" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ctrmat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="rapautobl" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CalculNGP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="sysinf" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="locationVoiture" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="cnam" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Socintgr" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Integgr" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="usersoc">
+          <Key>
+            <PropertyRef Name="CODEUSER" />
+            <PropertyRef Name="societe" />
+            <PropertyRef Name="Projet" />
+          </Key>
+          <Property Name="CODEUSER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="societe" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="accee" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ecriture" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Projet" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="seltmp" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="acceclot" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="rsoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="utilisateur">
+          <Key>
+            <PropertyRef Name="codeuser" />
+          </Key>
+          <Property Name="codeuser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="motpasse" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="jnlactif" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="prog1" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="prog2" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="prog3" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="prog4" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="bloque" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="actif" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="numvol" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="socutil" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="etatbcf" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatbcc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatcl" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatfr" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatbe" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatvente" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatdemachat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="vente" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="achat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="client" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="frs" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="bcc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="bcf" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="stat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="acces" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="afftot" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="socutilclot" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="directeur" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="etatmarge" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="exercice" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="etatimport" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatbestk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Etatbcfstk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatfrstk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatimportstk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatbccstk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatimmo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="acceclot" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="BL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="FC" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="TICKCAIS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="GESTBE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="impbarre" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PARAM" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="mp1" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="mp2" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="mp3" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="mp4" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="mp5" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="dernacce" Type="DateTime" />
+          <Property Name="nbrjr" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="usererpEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="societe" EntityType="Self.societe" />
+          <EntitySet Name="usersoc" EntityType="Self.usersoc" />
+          <EntitySet Name="utilisateur" EntityType="Self.utilisateur" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="usererpModelStoreContainer" CdmEntityContainer="usererpEntities">
+          <EntitySetMapping Name="societe">
+            <EntityTypeMapping TypeName="usererpModel.societe">
+              <MappingFragment StoreEntitySet="societe">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="synchronisation" ColumnName="synchronisation" />
+                <ScalarProperty Name="sel" ColumnName="sel" />
+                <ScalarProperty Name="rsoc" ColumnName="rsoc" />
+                <ScalarProperty Name="dat" ColumnName="dat" />
+                <ScalarProperty Name="e1" ColumnName="e1" />
+                <ScalarProperty Name="e2" ColumnName="e2" />
+                <ScalarProperty Name="e3" ColumnName="e3" />
+                <ScalarProperty Name="e4" ColumnName="e4" />
+                <ScalarProperty Name="e5" ColumnName="e5" />
+                <ScalarProperty Name="e6" ColumnName="e6" />
+                <ScalarProperty Name="e7" ColumnName="e7" />
+                <ScalarProperty Name="e8" ColumnName="e8" />
+                <ScalarProperty Name="PRIXUNIT" ColumnName="PRIXUNIT" />
+                <ScalarProperty Name="REMGLOBAL" ColumnName="REMGLOBAL" />
+                <ScalarProperty Name="PRIXART" ColumnName="PRIXART" />
+                <ScalarProperty Name="CONTTREMISE" ColumnName="CONTTREMISE" />
+                <ScalarProperty Name="REMART" ColumnName="REMART" />
+                <ScalarProperty Name="MONTTTC" ColumnName="MONTTTC" />
+                <ScalarProperty Name="SEUILCREDIT" ColumnName="SEUILCREDIT" />
+                <ScalarProperty Name="MARGEPRIXVENTE" ColumnName="MARGEPRIXVENTE" />
+                <ScalarProperty Name="VTMAJO" ColumnName="VTMAJO" />
+                <ScalarProperty Name="TMAJO" ColumnName="TMAJO" />
+                <ScalarProperty Name="TIMBREF" ColumnName="TIMBREF" />
+                <ScalarProperty Name="SAISIEQTENEG" ColumnName="SAISIEQTENEG" />
+                <ScalarProperty Name="ACCTABREM" ColumnName="ACCTABREM" />
+                <ScalarProperty Name="VALOBL" ColumnName="VALOBL" />
+                <ScalarProperty Name="CONFIGART" ColumnName="CONFIGART" />
+                <ScalarProperty Name="IMPREMART" ColumnName="IMPREMART" />
+                <ScalarProperty Name="ACCTVABE" ColumnName="ACCTVABE" />
+                <ScalarProperty Name="directeur" ColumnName="directeur" />
+                <ScalarProperty Name="PFACTT" ColumnName="PFACTT" />
+                <ScalarProperty Name="PBL" ColumnName="PBL" />
+                <ScalarProperty Name="PBE" ColumnName="PBE" />
+                <ScalarProperty Name="SFACTT" ColumnName="SFACTT" />
+                <ScalarProperty Name="SBL" ColumnName="SBL" />
+                <ScalarProperty Name="SBE" ColumnName="SBE" />
+                <ScalarProperty Name="AFACTT" ColumnName="AFACTT" />
+                <ScalarProperty Name="ABL" ColumnName="ABL" />
+                <ScalarProperty Name="ABE" ColumnName="ABE" />
+                <ScalarProperty Name="RSOURCE" ColumnName="RSOURCE" />
+                <ScalarProperty Name="FODEC" ColumnName="FODEC" />
+                <ScalarProperty Name="BRG" ColumnName="BRG" />
+                <ScalarProperty Name="VRG" ColumnName="VRG" />
+                <ScalarProperty Name="accee" ColumnName="accee" />
+                <ScalarProperty Name="marge" ColumnName="marge" />
+                <ScalarProperty Name="PV" ColumnName="PV" />
+                <ScalarProperty Name="Clipass" ColumnName="Clipass" />
+                <ScalarProperty Name="chemin" ColumnName="chemin" />
+                <ScalarProperty Name="adr" ColumnName="adr" />
+                <ScalarProperty Name="mf" ColumnName="mf" />
+                <ScalarProperty Name="acceedesigna" ColumnName="acceedesigna" />
+                <ScalarProperty Name="PBS" ColumnName="PBS" />
+                <ScalarProperty Name="SBS" ColumnName="SBS" />
+                <ScalarProperty Name="affliste" ColumnName="affliste" />
+                <ScalarProperty Name="retenueaut" ColumnName="retenueaut" />
+                <ScalarProperty Name="gfamille" ColumnName="gfamille" />
+                <ScalarProperty Name="caisseprix" ColumnName="caisseprix" />
+                <ScalarProperty Name="caisserem" ColumnName="caisserem" />
+                <ScalarProperty Name="caissepwd" ColumnName="caissepwd" />
+                <ScalarProperty Name="stockalert" ColumnName="stockalert" />
+                <ScalarProperty Name="TARFR" ColumnName="TARFR" />
+                <ScalarProperty Name="caissettc" ColumnName="caissettc" />
+                <ScalarProperty Name="M1" ColumnName="M1" />
+                <ScalarProperty Name="M2" ColumnName="M2" />
+                <ScalarProperty Name="M3" ColumnName="M3" />
+                <ScalarProperty Name="ttcbl" ColumnName="ttcbl" />
+                <ScalarProperty Name="ttcbl1" ColumnName="ttcbl1" />
+                <ScalarProperty Name="prixz" ColumnName="prixz" />
+                <ScalarProperty Name="securite" ColumnName="securite" />
+                <ScalarProperty Name="decimalq" ColumnName="decimalq" />
+                <ScalarProperty Name="puttc" ColumnName="puttc" />
+                <ScalarProperty Name="dateaccee" ColumnName="dateaccee" />
+                <ScalarProperty Name="codebar" ColumnName="codebar" />
+                <ScalarProperty Name="entticket1" ColumnName="entticket1" />
+                <ScalarProperty Name="entticket2" ColumnName="entticket2" />
+                <ScalarProperty Name="editiontc" ColumnName="editiontc" />
+                <ScalarProperty Name="decimalp" ColumnName="decimalp" />
+                <ScalarProperty Name="nomenclature" ColumnName="nomenclature" />
+                <ScalarProperty Name="gestionbcf" ColumnName="gestionbcf" />
+                <ScalarProperty Name="gestiontc" ColumnName="gestiontc" />
+                <ScalarProperty Name="gestionc" ColumnName="gestionc" />
+                <ScalarProperty Name="gestioneff" ColumnName="gestioneff" />
+                <ScalarProperty Name="UniArt" ColumnName="UniArt" />
+                <ScalarProperty Name="ValAutArt" ColumnName="ValAutArt" />
+                <ScalarProperty Name="UnArtCaisse" ColumnName="UnArtCaisse" />
+                <ScalarProperty Name="SaisVend" ColumnName="SaisVend" />
+                <ScalarProperty Name="PramBS" ColumnName="PramBS" />
+                <ScalarProperty Name="gestionbcC" ColumnName="gestionbcC" />
+                <ScalarProperty Name="gestionAcc" ColumnName="gestionAcc" />
+                <ScalarProperty Name="e9" ColumnName="e9" />
+                <ScalarProperty Name="RemCl" ColumnName="RemCl" />
+                <ScalarProperty Name="BaseCom" ColumnName="BaseCom" />
+                <ScalarProperty Name="RemFExp" ColumnName="RemFExp" />
+                <ScalarProperty Name="ValAutTC" ColumnName="ValAutTC" />
+                <ScalarProperty Name="gestionlot" ColumnName="gestionlot" />
+                <ScalarProperty Name="DefSoc" ColumnName="DefSoc" />
+                <ScalarProperty Name="GBois" ColumnName="GBois" />
+                <ScalarProperty Name="CheminCaisse" ColumnName="CheminCaisse" />
+                <ScalarProperty Name="GREP" ColumnName="GREP" />
+                <ScalarProperty Name="gestionretenu" ColumnName="gestionretenu" />
+                <ScalarProperty Name="impbarre" ColumnName="impbarre" />
+                <ScalarProperty Name="ean13" ColumnName="ean13" />
+                <ScalarProperty Name="code128" ColumnName="code128" />
+                <ScalarProperty Name="prix" ColumnName="prix" />
+                <ScalarProperty Name="validauto" ColumnName="validauto" />
+                <ScalarProperty Name="ventedev" ColumnName="ventedev" />
+                <ScalarProperty Name="passauttick" ColumnName="passauttick" />
+                <ScalarProperty Name="mvtdivers" ColumnName="mvtdivers" />
+                <ScalarProperty Name="devise" ColumnName="devise" />
+                <ScalarProperty Name="rechcli" ColumnName="rechcli" />
+                <ScalarProperty Name="SEUILRISQUE" ColumnName="SEUILRISQUE" />
+                <ScalarProperty Name="numserie" ColumnName="numserie" />
+                <ScalarProperty Name="PMP" ColumnName="PMP" />
+                <ScalarProperty Name="reglcli" ColumnName="reglcli" />
+                <ScalarProperty Name="paiefrs" ColumnName="paiefrs" />
+                <ScalarProperty Name="transfertfond" ColumnName="transfertfond" />
+                <ScalarProperty Name="encregl" ColumnName="encregl" />
+                <ScalarProperty Name="GTAILLECOUL" ColumnName="GTAILLECOUL" />
+                <ScalarProperty Name="ARTCAD" ColumnName="ARTCAD" />
+                <ScalarProperty Name="modelebois" ColumnName="modelebois" />
+                <ScalarProperty Name="contpxvente" ColumnName="contpxvente" />
+                <ScalarProperty Name="saisvendeur" ColumnName="saisvendeur" />
+                <ScalarProperty Name="marbre" ColumnName="marbre" />
+                <ScalarProperty Name="socdest" ColumnName="socdest" />
+                <ScalarProperty Name="nomsocdest" ColumnName="nomsocdest" />
+                <ScalarProperty Name="PFACTC" ColumnName="PFACTC" />
+                <ScalarProperty Name="SFACTC" ColumnName="SFACTC" />
+                <ScalarProperty Name="AFACTC" ColumnName="AFACTC" />
+                <ScalarProperty Name="liaisonfact" ColumnName="liaisonfact" />
+                <ScalarProperty Name="factcomptant" ColumnName="factcomptant" />
+                <ScalarProperty Name="typeimp" ColumnName="typeimp" />
+                <ScalarProperty Name="ecranimp" ColumnName="ecranimp" />
+                <ScalarProperty Name="piece" ColumnName="piece" />
+                <ScalarProperty Name="liaisonstock" ColumnName="liaisonstock" />
+                <ScalarProperty Name="nomsocstock" ColumnName="nomsocstock" />
+                <ScalarProperty Name="defalcation" ColumnName="defalcation" />
+                <ScalarProperty Name="regltresor" ColumnName="regltresor" />
+                <ScalarProperty Name="caisstresor" ColumnName="caisstresor" />
+                <ScalarProperty Name="FideliteBL" ColumnName="FideliteBL" />
+                <ScalarProperty Name="marbreglob" ColumnName="marbreglob" />
+                <ScalarProperty Name="marbredet" ColumnName="marbredet" />
+                <ScalarProperty Name="activite" ColumnName="activite" />
+                <ScalarProperty Name="rue" ColumnName="rue" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="codePostal" ColumnName="codePostal" />
+                <ScalarProperty Name="mtminrecouv" ColumnName="mtminrecouv" />
+                <ScalarProperty Name="auto" ColumnName="auto" />
+                <ScalarProperty Name="equiart" ColumnName="equiart" />
+                <ScalarProperty Name="nordre" ColumnName="nordre" />
+                <ScalarProperty Name="integbr" ColumnName="integbr" />
+                <ScalarProperty Name="pxc" ColumnName="pxc" />
+                <ScalarProperty Name="pxa" ColumnName="pxa" />
+                <ScalarProperty Name="trifam" ColumnName="trifam" />
+                <ScalarProperty Name="tricode" ColumnName="tricode" />
+                <ScalarProperty Name="trides" ColumnName="trides" />
+                <ScalarProperty Name="trisaisie" ColumnName="trisaisie" />
+                <ScalarProperty Name="factsusp" ColumnName="factsusp" />
+                <ScalarProperty Name="avance" ColumnName="avance" />
+                <ScalarProperty Name="tauxavance" ColumnName="tauxavance" />
+                <ScalarProperty Name="nbrunite" ColumnName="nbrunite" />
+                <ScalarProperty Name="VPA" ColumnName="VPA" />
+                <ScalarProperty Name="depot" ColumnName="depot" />
+                <ScalarProperty Name="PBC" ColumnName="PBC" />
+                <ScalarProperty Name="STECOM" ColumnName="STECOM" />
+                <ScalarProperty Name="LIAISONCOM" ColumnName="LIAISONCOM" />
+                <ScalarProperty Name="PFBE" ColumnName="PFBE" />
+                <ScalarProperty Name="SFBE" ColumnName="SFBE" />
+                <ScalarProperty Name="AFBE" ColumnName="AFBE" />
+                <ScalarProperty Name="demandeachat" ColumnName="demandeachat" />
+                <ScalarProperty Name="moisvalidation" ColumnName="moisvalidation" />
+                <ScalarProperty Name="anneevalidation" ColumnName="anneevalidation" />
+                <ScalarProperty Name="douane" ColumnName="douane" />
+                <ScalarProperty Name="PBCF" ColumnName="PBCF" />
+                <ScalarProperty Name="SBCF" ColumnName="SBCF" />
+                <ScalarProperty Name="ABCF" ColumnName="ABCF" />
+                <ScalarProperty Name="pointvente" ColumnName="pointvente" />
+                <ScalarProperty Name="fidelite" ColumnName="fidelite" />
+                <ScalarProperty Name="Nbureau" ColumnName="Nbureau" />
+                <ScalarProperty Name="impchq" ColumnName="impchq" />
+                <ScalarProperty Name="socimport" ColumnName="socimport" />
+                <ScalarProperty Name="factbrbe" ColumnName="factbrbe" />
+                <ScalarProperty Name="gestionmarge" ColumnName="gestionmarge" />
+                <ScalarProperty Name="seqdev" ColumnName="seqdev" />
+                <ScalarProperty Name="GUTIL" ColumnName="GUTIL" />
+                <ScalarProperty Name="integao" ColumnName="integao" />
+                <ScalarProperty Name="selectart" ColumnName="selectart" />
+                <ScalarProperty Name="codebureau" ColumnName="codebureau" />
+                <ScalarProperty Name="desbureau" ColumnName="desbureau" />
+                <ScalarProperty Name="regdouanedec" ColumnName="regdouanedec" />
+                <ScalarProperty Name="regdouanetr" ColumnName="regdouanetr" />
+                <ScalarProperty Name="regdouanepre" ColumnName="regdouanepre" />
+                <ScalarProperty Name="codedouane" ColumnName="codedouane" />
+                <ScalarProperty Name="codecomp" ColumnName="codecomp" />
+                <ScalarProperty Name="memeseq" ColumnName="memeseq" />
+                <ScalarProperty Name="betotpar" ColumnName="betotpar" />
+                <ScalarProperty Name="pbcc" ColumnName="pbcc" />
+                <ScalarProperty Name="sbcc" ColumnName="sbcc" />
+                <ScalarProperty Name="memeseqbcc" ColumnName="memeseqbcc" />
+                <ScalarProperty Name="memeseqbcf" ColumnName="memeseqbcf" />
+                <ScalarProperty Name="ctrcl" ColumnName="ctrcl" />
+                <ScalarProperty Name="PBR" ColumnName="PBR" />
+                <ScalarProperty Name="SBR" ColumnName="SBR" />
+                <ScalarProperty Name="memeseqbr" ColumnName="memeseqbr" />
+                <ScalarProperty Name="alertdatelim" ColumnName="alertdatelim" />
+                <ScalarProperty Name="intervalprix" ColumnName="intervalprix" />
+                <ScalarProperty Name="gestionGPAO" ColumnName="gestionGPAO" />
+                <ScalarProperty Name="gestionimport" ColumnName="gestionimport" />
+                <ScalarProperty Name="avectache" ColumnName="avectache" />
+                <ScalarProperty Name="gmarche" ColumnName="gmarche" />
+                <ScalarProperty Name="EXER" ColumnName="EXER" />
+                <ScalarProperty Name="CP" ColumnName="CP" />
+                <ScalarProperty Name="BANQUE" ColumnName="BANQUE" />
+                <ScalarProperty Name="CODETVA" ColumnName="CODETVA" />
+                <ScalarProperty Name="TEL1" ColumnName="TEL1" />
+                <ScalarProperty Name="TEL2" ColumnName="TEL2" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="TELEX" ColumnName="TELEX" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="ANP" ColumnName="ANP" />
+                <ScalarProperty Name="DEDITION" ColumnName="DEDITION" />
+                <ScalarProperty Name="DDCA" ColumnName="DDCA" />
+                <ScalarProperty Name="DDCM" ColumnName="DDCM" />
+                <ScalarProperty Name="Dateo" ColumnName="Dateo" />
+                <ScalarProperty Name="style" ColumnName="style" />
+                <ScalarProperty Name="taux" ColumnName="taux" />
+                <ScalarProperty Name="passage" ColumnName="passage" />
+                <ScalarProperty Name="gimmo" ColumnName="gimmo" />
+                <ScalarProperty Name="ginteg" ColumnName="ginteg" />
+                <ScalarProperty Name="socinteg" ColumnName="socinteg" />
+                <ScalarProperty Name="integpaie" ColumnName="integpaie" />
+                <ScalarProperty Name="socintpaie" ColumnName="socintpaie" />
+                <ScalarProperty Name="SPV" ColumnName="SPV" />
+                <ScalarProperty Name="affremcli" ColumnName="affremcli" />
+                <ScalarProperty Name="pdevise" ColumnName="pdevise" />
+                <ScalarProperty Name="ctrart" ColumnName="ctrart" />
+                <ScalarProperty Name="modcodebarre" ColumnName="modcodebarre" />
+                <ScalarProperty Name="PED" ColumnName="PED" />
+                <ScalarProperty Name="SED" ColumnName="SED" />
+                <ScalarProperty Name="AED" ColumnName="AED" />
+                <ScalarProperty Name="memeseqed" ColumnName="memeseqed" />
+                <ScalarProperty Name="gprod" ColumnName="gprod" />
+                <ScalarProperty Name="valid_dem_achat" ColumnName="valid_dem_achat" />
+                <ScalarProperty Name="integvente" ColumnName="integvente" />
+                <ScalarProperty Name="integachat" ColumnName="integachat" />
+                <ScalarProperty Name="integreglcli" ColumnName="integreglcli" />
+                <ScalarProperty Name="integpaifrs" ColumnName="integpaifrs" />
+                <ScalarProperty Name="integmdc" ColumnName="integmdc" />
+                <ScalarProperty Name="integfraisb" ColumnName="integfraisb" />
+                <ScalarProperty Name="integbord" ColumnName="integbord" />
+                <ScalarProperty Name="compteattente" ColumnName="compteattente" />
+                <ScalarProperty Name="G_fact_EXP" ColumnName="G_fact_EXP" />
+                <ScalarProperty Name="bord_client" ColumnName="bord_client" />
+                <ScalarProperty Name="nbr_j_alerte" ColumnName="nbr_j_alerte" />
+                <ScalarProperty Name="margeimport" ColumnName="margeimport" />
+                <ScalarProperty Name="pmpimport" ColumnName="pmpimport" />
+                <ScalarProperty Name="PFRC" ColumnName="PFRC" />
+                <ScalarProperty Name="SFRC" ColumnName="SFRC" />
+                <ScalarProperty Name="AFRC" ColumnName="AFRC" />
+                <ScalarProperty Name="blntchstk" ColumnName="blntchstk" />
+                <ScalarProperty Name="servaprven" ColumnName="servaprven" />
+                <ScalarProperty Name="ordliv" ColumnName="ordliv" />
+                <ScalarProperty Name="prjbe" ColumnName="prjbe" />
+                <ScalarProperty Name="prjbs" ColumnName="prjbs" />
+                <ScalarProperty Name="transstk" ColumnName="transstk" />
+                <ScalarProperty Name="prixcalcmarge" ColumnName="prixcalcmarge" />
+                <ScalarProperty Name="PDV" ColumnName="PDV" />
+                <ScalarProperty Name="SDV" ColumnName="SDV" />
+                <ScalarProperty Name="typecaisse" ColumnName="typecaisse" />
+                <ScalarProperty Name="suiviglob" ColumnName="suiviglob" />
+                <ScalarProperty Name="factachat" ColumnName="factachat" />
+                <ScalarProperty Name="gkiosque" ColumnName="gkiosque" />
+                <ScalarProperty Name="impsoc" ColumnName="impsoc" />
+                <ScalarProperty Name="impdate" ColumnName="impdate" />
+                <ScalarProperty Name="comtc" ColumnName="comtc" />
+                <ScalarProperty Name="decimala" ColumnName="decimala" />
+                <ScalarProperty Name="intbord" ColumnName="intbord" />
+                <ScalarProperty Name="ajoutfact" ColumnName="ajoutfact" />
+                <ScalarProperty Name="genGPAO" ColumnName="genGPAO" />
+                <ScalarProperty Name="gestionchantier" ColumnName="gestionchantier" />
+                <ScalarProperty Name="Ipdest" ColumnName="Ipdest" />
+                <ScalarProperty Name="Verifstock" ColumnName="Verifstock" />
+                <ScalarProperty Name="sav" ColumnName="sav" />
+                <ScalarProperty Name="integsocmult" ColumnName="integsocmult" />
+                <ScalarProperty Name="versB" ColumnName="versB" />
+                <ScalarProperty Name="chkrest" ColumnName="chkrest" />
+                <ScalarProperty Name="socrest" ColumnName="socrest" />
+                <ScalarProperty Name="RCA" ColumnName="RCA" />
+                <ScalarProperty Name="tauxRCA" ColumnName="tauxRCA" />
+                <ScalarProperty Name="synchroftp" ColumnName="synchroftp" />
+                <ScalarProperty Name="codepvftp" ColumnName="codepvftp" />
+                <ScalarProperty Name="piedsvente" ColumnName="piedsvente" />
+                <ScalarProperty Name="EXONTVA" ColumnName="EXONTVA" />
+                <ScalarProperty Name="integfamille" ColumnName="integfamille" />
+                <ScalarProperty Name="ventart" ColumnName="ventart" />
+                <ScalarProperty Name="validelbe" ColumnName="validelbe" />
+                <ScalarProperty Name="VPABS" ColumnName="VPABS" />
+                <ScalarProperty Name="envoiepc" ColumnName="envoiepc" />
+                <ScalarProperty Name="comptinteg" ColumnName="comptinteg" />
+                <ScalarProperty Name="validcaisseobligatoire" ColumnName="validcaisseobligatoire" />
+                <ScalarProperty Name="gestionTrace" ColumnName="gestionTrace" />
+                <ScalarProperty Name="virenc" ColumnName="virenc" />
+                <ScalarProperty Name="fichepv" ColumnName="fichepv" />
+                <ScalarProperty Name="bord" ColumnName="bord" />
+                <ScalarProperty Name="nbrcopie" ColumnName="nbrcopie" />
+                <ScalarProperty Name="ipsoc" ColumnName="ipsoc" />
+                <ScalarProperty Name="rubspe" ColumnName="rubspe" />
+                <ScalarProperty Name="cons" ColumnName="cons" />
+                <ScalarProperty Name="tauxcons" ColumnName="tauxcons" />
+                <ScalarProperty Name="gemail" ColumnName="gemail" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="servmail" ColumnName="servmail" />
+                <ScalarProperty Name="portmail" ColumnName="portmail" />
+                <ScalarProperty Name="emaildest" ColumnName="emaildest" />
+                <ScalarProperty Name="NumCnss" ColumnName="NumCnss" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="reglsd" ColumnName="reglsd" />
+                <ScalarProperty Name="DecMensCpt" ColumnName="DecMensCpt" />
+                <ScalarProperty Name="validcpt" ColumnName="validcpt" />
+                <ScalarProperty Name="seqfactmois" ColumnName="seqfactmois" />
+                <ScalarProperty Name="OptRetenue" ColumnName="OptRetenue" />
+                <ScalarProperty Name="Caissbord" ColumnName="Caissbord" />
+                <ScalarProperty Name="RBvalid" ColumnName="RBvalid" />
+                <ScalarProperty Name="ImportationExcel" ColumnName="ImportationExcel" />
+                <ScalarProperty Name="artBE" ColumnName="artBE" />
+                <ScalarProperty Name="Comptanalytique" ColumnName="Comptanalytique" />
+                <ScalarProperty Name="majdepot" ColumnName="majdepot" />
+                <ScalarProperty Name="ctrmat" ColumnName="ctrmat" />
+                <ScalarProperty Name="rapautobl" ColumnName="rapautobl" />
+                <ScalarProperty Name="CalculNGP" ColumnName="CalculNGP" />
+                <ScalarProperty Name="sysinf" ColumnName="sysinf" />
+                <ScalarProperty Name="locationVoiture" ColumnName="locationVoiture" />
+                <ScalarProperty Name="cnam" ColumnName="cnam" />
+                <ScalarProperty Name="Socintgr" ColumnName="Socintgr" />
+                <ScalarProperty Name="Integgr" ColumnName="Integgr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usersoc">
+            <EntityTypeMapping TypeName="usererpModel.usersoc">
+              <MappingFragment StoreEntitySet="usersoc">
+                <ScalarProperty Name="CODEUSER" ColumnName="CODEUSER" />
+                <ScalarProperty Name="societe" ColumnName="societe" />
+                <ScalarProperty Name="accee" ColumnName="accee" />
+                <ScalarProperty Name="ecriture" ColumnName="ecriture" />
+                <ScalarProperty Name="Projet" ColumnName="Projet" />
+                <ScalarProperty Name="seltmp" ColumnName="seltmp" />
+                <ScalarProperty Name="acceclot" ColumnName="acceclot" />
+                <ScalarProperty Name="rsoc" ColumnName="rsoc" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="utilisateur">
+            <EntityTypeMapping TypeName="usererpModel.utilisateur">
+              <MappingFragment StoreEntitySet="utilisateur">
+                <ScalarProperty Name="codeuser" ColumnName="codeuser" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="motpasse" ColumnName="motpasse" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="jnlactif" ColumnName="jnlactif" />
+                <ScalarProperty Name="prog1" ColumnName="prog1" />
+                <ScalarProperty Name="prog2" ColumnName="prog2" />
+                <ScalarProperty Name="prog3" ColumnName="prog3" />
+                <ScalarProperty Name="prog4" ColumnName="prog4" />
+                <ScalarProperty Name="bloque" ColumnName="bloque" />
+                <ScalarProperty Name="actif" ColumnName="actif" />
+                <ScalarProperty Name="numvol" ColumnName="numvol" />
+                <ScalarProperty Name="socutil" ColumnName="socutil" />
+                <ScalarProperty Name="etatbcf" ColumnName="etatbcf" />
+                <ScalarProperty Name="etatbcc" ColumnName="etatbcc" />
+                <ScalarProperty Name="etatcl" ColumnName="etatcl" />
+                <ScalarProperty Name="etatfr" ColumnName="etatfr" />
+                <ScalarProperty Name="etatbe" ColumnName="etatbe" />
+                <ScalarProperty Name="etatvente" ColumnName="etatvente" />
+                <ScalarProperty Name="etatdemachat" ColumnName="etatdemachat" />
+                <ScalarProperty Name="vente" ColumnName="vente" />
+                <ScalarProperty Name="achat" ColumnName="achat" />
+                <ScalarProperty Name="client" ColumnName="client" />
+                <ScalarProperty Name="frs" ColumnName="frs" />
+                <ScalarProperty Name="bcc" ColumnName="bcc" />
+                <ScalarProperty Name="bcf" ColumnName="bcf" />
+                <ScalarProperty Name="stat" ColumnName="stat" />
+                <ScalarProperty Name="acces" ColumnName="acces" />
+                <ScalarProperty Name="afftot" ColumnName="afftot" />
+                <ScalarProperty Name="socutilclot" ColumnName="socutilclot" />
+                <ScalarProperty Name="directeur" ColumnName="directeur" />
+                <ScalarProperty Name="etatmarge" ColumnName="etatmarge" />
+                <ScalarProperty Name="exercice" ColumnName="exercice" />
+                <ScalarProperty Name="etatimport" ColumnName="etatimport" />
+                <ScalarProperty Name="etatbestk" ColumnName="etatbestk" />
+                <ScalarProperty Name="Etatbcfstk" ColumnName="Etatbcfstk" />
+                <ScalarProperty Name="etatfrstk" ColumnName="etatfrstk" />
+                <ScalarProperty Name="etatimportstk" ColumnName="etatimportstk" />
+                <ScalarProperty Name="etatbccstk" ColumnName="etatbccstk" />
+                <ScalarProperty Name="etatimmo" ColumnName="etatimmo" />
+                <ScalarProperty Name="acceclot" ColumnName="acceclot" />
+                <ScalarProperty Name="BL" ColumnName="BL" />
+                <ScalarProperty Name="FC" ColumnName="FC" />
+                <ScalarProperty Name="TICKCAIS" ColumnName="TICKCAIS" />
+                <ScalarProperty Name="GESTBE" ColumnName="GESTBE" />
+                <ScalarProperty Name="impbarre" ColumnName="impbarre" />
+                <ScalarProperty Name="PARAM" ColumnName="PARAM" />
+                <ScalarProperty Name="mp1" ColumnName="mp1" />
+                <ScalarProperty Name="mp2" ColumnName="mp2" />
+                <ScalarProperty Name="mp3" ColumnName="mp3" />
+                <ScalarProperty Name="mp4" ColumnName="mp4" />
+                <ScalarProperty Name="mp5" ColumnName="mp5" />
+                <ScalarProperty Name="dernacce" ColumnName="dernacce" />
+                <ScalarProperty Name="nbrjr" ColumnName="nbrjr" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -12,45 +12,60 @@ using Inventaire_BackEnd.Models;
 
 namespace Inventaire_BackEnd.Controllers
 {
-    public class SocieteController : ApiController
+    public class SocieteUserController : ApiController
     {
         private usererpEntities db = new usererpEntities();
 
-        // GET: api/Societe
-        [Authorize]
-        public IQueryable<societe> Getsociete()
+        public IQueryable<usersoc> Getusersoc()
         {
-            return db.societe;
+
+            return db.usersoc;
+        }
+        [Authorize]
+        [Route("api/SocieteUser/GetusersocParUser")]
+        [HttpGet]
+        public List<usersoc> GetusersocParUser(string codeuser)
+        {
+            List<usersoc> ListesUserSoc = db.usersoc.ToList();
+            List<usersoc> ListeSocieteParUser = new List<usersoc>();
+            foreach (usersoc u in ListesUserSoc)
+            {
+                if (u.CODEUSER == codeuser)
+                {
+                    ListeSocieteParUser.Add(u);
+                }
+            }
+            return ListeSocieteParUser;
         }
 
-        [Authorize]
-        [ResponseType(typeof(societe))]
-        public IHttpActionResult Getsociete(string id)
+        // GET: api/SocieteUser/5
+        [ResponseType(typeof(usersoc))]
+        public IHttpActionResult Getusersoc(string id)
         {
-            societe societe = db.societe.Find(id);
-            if (societe == null)
+            usersoc usersoc = db.usersoc.Find(id);
+            if (usersoc == null)
             {
                 return NotFound();
             }
 
-            return Ok(societe);
+            return Ok(usersoc);
         }
 
-        [Authorize]
+        // PUT: api/SocieteUser/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putsociete(string id, societe societe)
+        public IHttpActionResult Putusersoc(string id, usersoc usersoc)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != societe.code)
+            if (id != usersoc.CODEUSER)
             {
                 return BadRequest();
             }
 
-            db.Entry(societe).State = EntityState.Modified;
+            db.Entry(usersoc).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +73,7 @@ namespace Inventaire_BackEnd.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!societeExists(id))
+                if (!usersocExists(id))
                 {
                     return NotFound();
                 }
@@ -71,16 +86,16 @@ namespace Inventaire_BackEnd.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        [Authorize]
-        [ResponseType(typeof(societe))]
-        public IHttpActionResult Postsociete(societe societe)
+        // POST: api/SocieteUser
+        [ResponseType(typeof(usersoc))]
+        public IHttpActionResult Postusersoc(usersoc usersoc)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.societe.Add(societe);
+            db.usersoc.Add(usersoc);
 
             try
             {
@@ -88,7 +103,7 @@ namespace Inventaire_BackEnd.Controllers
             }
             catch (DbUpdateException)
             {
-                if (societeExists(societe.code))
+                if (usersocExists(usersoc.CODEUSER))
                 {
                     return Conflict();
                 }
@@ -98,25 +113,25 @@ namespace Inventaire_BackEnd.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = societe.code }, societe);
+            return CreatedAtRoute("DefaultApi", new { id = usersoc.CODEUSER }, usersoc);
         }
 
-        [Authorize]
-        [ResponseType(typeof(societe))]
-        public IHttpActionResult Deletesociete(string id)
+        // DELETE: api/SocieteUser/5
+        [ResponseType(typeof(usersoc))]
+        public IHttpActionResult Deleteusersoc(string id)
         {
-            societe societe = db.societe.Find(id);
-            if (societe == null)
+            usersoc usersoc = db.usersoc.Find(id);
+            if (usersoc == null)
             {
                 return NotFound();
             }
 
-            db.societe.Remove(societe);
+            db.usersoc.Remove(usersoc);
             db.SaveChanges();
 
-            return Ok(societe);
+            return Ok(usersoc);
         }
-        [Authorize]
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -125,10 +140,10 @@ namespace Inventaire_BackEnd.Controllers
             }
             base.Dispose(disposing);
         }
-        [Authorize]
-        private bool societeExists(string id)
+
+        private bool usersocExists(string id)
         {
-            return db.societe.Count(e => e.code == id) > 0;
+            return db.usersoc.Count(e => e.CODEUSER == id) > 0;
         }
     }
 }
