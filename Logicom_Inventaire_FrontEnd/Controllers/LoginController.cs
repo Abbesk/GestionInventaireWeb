@@ -16,7 +16,7 @@ namespace Logicom_Inventaire_FrontEnd.Controllers
     public class LoginController : Controller
     {
         // GET: Login
-        public async Task<ActionResult> Index(Utilisateur user)
+        public async Task<ActionResult> Authentifier(Utilisateur user)
         {
             if (user.codeuser != null && user.motpasse != null)
             {
@@ -54,6 +54,7 @@ namespace Logicom_Inventaire_FrontEnd.Controllers
                         Session["code"] = id;
                         Session["name"] = name;
                         Session["societe"] = Societe;
+                        Session["role"] = Role;
                         return RedirectToAction("ChoisirSociete", "Login");
                         //return RedirectToAction("Index", "Devis");
                     }
@@ -80,6 +81,10 @@ namespace Logicom_Inventaire_FrontEnd.Controllers
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                     HttpResponseMessage getData = await client.GetAsync("http://localhost:44328/Api/SocieteUser/GetusersocParUser?codeuser=" + Session["code"]);
+                    if ((int)getData.StatusCode == 401)
+                    {
+                        return RedirectToAction("Authentifier", "Login");
+                    }
                     if (getData.IsSuccessStatusCode)
                     {
                         string results = getData.Content.ReadAsStringAsync().Result;
@@ -106,9 +111,14 @@ namespace Logicom_Inventaire_FrontEnd.Controllers
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var content = new StringContent(JsonConvert.SerializeObject(soc), Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsync("http://localhost:44328/Api/Utilisateur/ChoisirSociete?soc=+" + soc, null);
+                if ((int)response.StatusCode == 401)
+                {
+                    return RedirectToAction("Authentifier", "Login");
+                }
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index", "Devis");
+
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                     return View();
@@ -122,22 +132,24 @@ namespace Logicom_Inventaire_FrontEnd.Controllers
 
         public async Task<ActionResult> Logout()
         {
-            // Get the token from the cookie
             var token = Request.Cookies["token"]?.Value;
 
-            // Create an HTTP client
             using (var client = new HttpClient())
             {
-
-
                 Session["token"] = token;
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var response = await client.PostAsync("http://localhost:44328/Api/Utilisateur/Logout", null);
+                if ((int)response.StatusCode == 401)
+                {
+                    return RedirectToAction("Authentifier", "Login");
+                }
                 if (response.IsSuccessStatusCode)
                 {
-                    Response.Cookies.Remove("token");
-
-                    return RedirectToAction("Index", "Login");
+                    var cookie = new HttpCookie("token");
+                    cookie.Expires = DateTime.Now.AddDays(-1);
+                    Response.Cookies.Add(cookie);
+                    Session["token"] = "";
+                    return RedirectToAction("Authentifier", "Login");
                 }
                 else
                 {

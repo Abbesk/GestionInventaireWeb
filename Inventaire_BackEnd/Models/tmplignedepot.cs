@@ -37,7 +37,6 @@ namespace Inventaire_BackEnd.Models
         public Nullable<double> qteInventaire { get; set; }
         public string commentaire { get; set; }
     
-        public virtual depot Depot { get; set; }
         public virtual article Article { get; set; }
     }
 }

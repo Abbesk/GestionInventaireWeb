@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Logicom_Inventaire_FrontEnd.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Logicom_Inventaire_FrontEnd.Models;
 
 namespace Logicom_Inventaire_FrontEnd.Controllers
 {
@@ -32,9 +31,9 @@ namespace Logicom_Inventaire_FrontEnd.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -333,7 +332,7 @@ namespace Logicom_Inventaire_FrontEnd.Controllers
             base.Dispose(disposing);
         }
 
-#region Programmes d'assistance
+        #region Programmes d'assistance
         // Utilisé pour la protection XSRF lors de l'ajout de connexions externes
         private const string XsrfKey = "XsrfId";
 
@@ -384,6 +383,6 @@ namespace Logicom_Inventaire_FrontEnd.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

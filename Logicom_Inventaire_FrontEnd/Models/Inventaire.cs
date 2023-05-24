@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Logicom_Inventaire_FrontEnd.Models
 {
     public class Inventaire
     {
         public string numinv { get; set; }
-        
+
         public Nullable<System.DateTime> dateinv { get; set; }
         public Nullable<int> nbrcomptage { get; set; }
         public string commentaire { get; set; }
@@ -33,7 +30,7 @@ namespace Logicom_Inventaire_FrontEnd.Models
         public string typeapp { get; set; }
         public string zone { get; set; }
         public virtual Depot Depot { get; set; }
-        public  virtual PointVente PointVente { get; set; }
+        public virtual PointVente PointVente { get; set; }
 
         public List<LigneInventaire> LignesInventaire { get; set; }
 

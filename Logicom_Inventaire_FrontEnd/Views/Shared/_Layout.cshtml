@@ -23,14 +23,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink(Session["SelectedSoc"] + " DEVIS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink(Session["SelectedSoc"] + " Inventaire", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                    <li>@Html.ActionLink("À propos de", "About", "Home")</li>
+                    <li>@Html.ActionLink("Choisir société", "Choisir", "Login")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                   
+
 
 
 
@@ -41,12 +41,16 @@
                         </a>
                         <ul class="dropdown-menu">
 
+                            @if ((string)Session["role"].ToString().ToLower() == "superviseur" || (string)Session["role"].ToString().ToLower() == "admin")
+                            {
+                                <li>@Html.ActionLink("Liste des inventaires", "Index", "Inventaire")</li>
+                                <li>@Html.ActionLink("Créer un inventaire", "Create", "Inventaire")</li>
+                                <li>@Html.ActionLink("Historiques inventaire", "HistoriqueInventaire", "Inventaire")</li>
+                            }
 
-                            <li>@Html.ActionLink("Liste Inventaires", "Index", "Inventaire")</li>
-                            <li>@Html.ActionLink("Créer Inventaire", "Create", "Inventaire")</li>
+
                             <li>@Html.ActionLink("Inventaires Non Cloturés", "InventairesNonClotures", "Inventaire")</li>
 
-                           
                         </ul>
                     </li>
 
@@ -61,7 +65,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Logicom Inventaire</p>
+            <p>&copy; @DateTime.Now.Year - @Session["SelectedSoc"] </p>
         </footer>
     </div>
 

@@ -1,112 +1,270 @@
 ﻿
 @model IEnumerable<Logicom_Inventaire_FrontEnd.Models.Inventaire>
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Inventaires non clôturés";
 }
-<!DOCTYPE html>
-
-<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ListeInventairesNonCloturés</title>
-</head>
-<body>
-   
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayName("Numéro")
-            </th>
-            <th>
-                @Html.DisplayName("Date")
-            </th>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-            <th>
-                @Html.DisplayName("Commentaire")
-            </th>
-            
-           
-            <th>
-                @Html.DisplayName("Utilisateur")
-            </th>
-
-            <th>
-                @Html.DisplayName("DATEDMAJ")
-            </th>
-            <th>
-                @Html.DisplayName("CodePV")
-            </th>
-            <th>
-                @Html.DisplayName("NomPV")
-            </th>
-            <th>
-                @Html.DisplayName("CodeDepot")
-            </th>
-            <th>
-                @Html.DisplayName("NomDepot")
-            </th>
-
-
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            if (item.cloture == "0")
-            {
-                <tr>
-                    <td>
-                        @item.numinv
-                    </td>
-                    <td>
-                        @item.dateinv
-                    </td>
-
-                    
-                    <td>
-                        @item.commentaire
-                    </td>
-                    
-                   
-                    <td>
-                        @item.utilisateur
-                    </td>
-
-                    <td>
-                        @item.DATEDMAJ
-                    </td>
-                    <td>
-                        @item.codepv
-                    </td>
-                    <td>
-                        @item.libpv
-                    </td>
-                    <td>
-                        @item.codedep
-                    </td>
-                    <td>
-                        @item.libdep
-                    </td>
-                   
-
-                    <td>
-                        <table>
-                            
-                                <tr>  <td>@Html.ActionLink("Selectionner Articles", "SelectionnerArticles", new { id = item.numinv })</td></tr>
-                                <tr>   <td>   @Html.ActionLink("Saisir Comptage", "SaisirComptagePhysique", new { id = item.numinv }) </td></tr>
-                                <tr>  <td> @Html.ActionLink("Cloturer", "CloturerInventaire", new { id = item.numinv }) </td></tr>
-                            
-                        </table>
-                    </td>
-
-                </tr>
-            }
-
+    <style>
+        .btn-SlctArt:hover::after,
+        .btn-Comptage:hover::after,
+        .btn-Cloture:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 5px;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+            font-size: 14px;
+            white-space: nowrap;
         }
 
-    </table>
-</body>
-</html>
+        #scrollToTopButton {
+            position: fixed;
+            right: 0;
+            top: 45%;
+            transform: translate(0, -50%);
+            z-index: 9999;
+        }
+
+        #scrollToBottomButton {
+            position: fixed;
+            right: 0;
+            top: 55%;
+            transform: translate(0, -50%);
+            z-index: 9999;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin-top: 10px;
+            background-image: linear-gradient( #d4dcdc, #dfe4e6, #eaedef, #f5f6f7, #ffffff);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        hr {
+            border: 1px solid #000;
+        }
+
+        .tableInventaires {
+            border-collapse: collapse;
+        }
+        /*.tableInventaires, .tableInventaires td,.tableInventaires th {
+            border: 1px solid black;
+        }*/
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListeInventaires</title>
+</head>
+<button id="scrollToBottomButton"> <i class="fa fa-chevron-down"></i> </button>
+<button id="scrollToTopButton" onclick="scrollToTop()"> <i class="fa fa-chevron-up"></i> </button>
+<table class="table" style="margin: 12px;">
+    <tr>
+        <td style="vertical-align: middle; padding-right: 10px;">
+            <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #9269c3;"></i>
+            <strong>Rechercher par numéro: </strong>
+        </td>
+        <td style="vertical-align: middle;">
+            <input class="form-control" type="text" placeholder="Chercher.." id="num_inv" size="10" onkeyup="filtrerNumInv()" />
+        </td>
+        <td>
+        </td>
+        <td style="vertical-align: middle; padding-right: 10px;">
+
+            <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #9269c3;"></i>
+            <strong>Point de vente:</strong>
+        </td>
+        <td style="vertical-align: middle;">
+            <select class="form-control" id="codepv" name="codepv" onchange="filterCodePv()">
+                <option value="">Chercher..</option>
+                @foreach (var pv in ViewBag.pvs)
+                {
+                    <option value="@pv.Libelle">@pv.Libelle</option>
+                }
+            </select>
+        </td>
+        <td style="vertical-align: middle; padding-right: 10px;">
+            <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #9269c3;"></i>
+            <strong>Dépôt:</strong>
+        </td>
+        <td>
+            <select class="form-control" id="codedep" name="codedep" onchange="filterCodeDep()">
+                <option value="">Chercher..</option>
+                @foreach (var pv in ViewBag.deps)
+                {
+                    <option value="@pv.Libelle">@pv.Libelle</option>
+                }
+            </select>
+        </td>
+        <td>
+        </td>
+
+
+    </tr>
+</table>
+<hr />
+<br />
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Numéro")
+        </th>
+        <th>
+            @Html.DisplayName("Date")
+        </th>
+
+        <th>
+            @Html.DisplayName("Commentaire")
+        </th>
+
+        <th>
+            @Html.DisplayName("DATEDMAJ")
+        </th>
+        <th>
+            @Html.DisplayName("Code PV")
+        </th>
+        <th>
+            @Html.DisplayName("Libellé PV")
+        </th>
+        <th>
+            @Html.DisplayName("Code dépôt")
+        </th>
+        <th>
+            @Html.DisplayName("Libellé dépôt")
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.cloture == "0")
+        {
+            <tr>
+                <td>
+                    @item.numinv
+                </td>
+                <td>
+                    @item.dateinv
+                </td>
+                <td>
+                    @item.commentaire
+                </td>
+                <td>
+                    @item.DATEDMAJ
+                </td>
+                <td>
+                    @item.codepv
+                </td>
+                <td>
+                    @item.libpv
+                </td>
+                <td>
+                    @item.codedep
+                </td>
+                <td>
+                    @item.libdep
+                </td>
+                <td style="white-space: nowrap;" width="110px">
+
+                    @if ((string)Session["role"] == "Superviseur" || (string)Session["role"] == "admin")
+                    {
+                    <a href="@Url.Action("SelectionnerArticles", new { id =item.numinv})" class="btn btn-default btn-SlctArt" title="Sélectionner les articles">
+                        <i class="fa-solid fa-list"></i>
+                    </a>
+                    }
+                <a href="@Url.Action("SaisirComptagePhysique", new { id =item.numinv})" class="btn btn-default btn-Comptage" title="Comptage physique ">
+
+                    <i class="fas fa-regular fa-calculator"></i>
+                </a>
+                    @if ((string)Session["role"] == "Superviseur" || (string)Session["role"] == "admin")
+                    {
+
+                        <a href="@Url.Action("CloturerInventaire", new { id =item.numinv})" class="btn btn-default">
+
+                            <i class="fa-solid fa-clipboard-check"></i>
+                        </a>
+
+
+                    }
+
+                </td>
+            </tr>
+        }
+
+    }
+
+</table>
+<script>
+    $(function () {
+        $('#scrollToBottomButton').click(function () {
+            $('html, body').animate({ scrollTop: $(document).height() }, 'slow');
+            return false;
+        });
+    });
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function filtrerNumInv() {
+        var filtre, tableau, ligne, cellule, i, texte
+        filtre = document.getElementById("num_inv").value.toUpperCase();
+        tableau = document.getElementById("tableInventaires");
+        ligne = tableau.getElementsByTagName("tr");
+        for (i = 0; i < ligne.length; i++) {
+            cellule = ligne[i].getElementsByTagName("td")[0];
+            if (cellule) {
+                texte = cellule.innerHTML.toUpperCase();
+                if (texte.indexOf(filtre) > -1) {
+                    ligne[i].style.display = "";
+                }
+                else {
+                    ligne[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function filterCodeDep() {
+        var selectedOption = $("#codedep").val().toUpperCase();
+        var tableRows = $("#tableInventaires").find("tr");
+        tableRows.each(function (index, row) {
+            if (index > 0) {
+                var cells = $(row).find("td");
+                var libpv = cells.eq(10).text().toUpperCase();
+
+                if (libpv.indexOf(selectedOption) > -1) {
+                    $(row).show();
+                } else {
+                    $(row).hide();
+                }
+            }
+        });
+    }
+    function filterCodePv() {
+        var selectedOption = $("#codepv").val().toUpperCase();
+        var tableRows = $("#tableInventaires").find("tr");
+        tableRows.each(function (index, row) {
+            if (index > 0) {
+                var cells = $(row).find("td");
+                var libpv = cells.eq(8).text().toUpperCase();
+
+                if (libpv.indexOf(selectedOption) > -1) {
+                    $(row).show();
+                } else {
+                    $(row).hide();
+                }
+            }
+        });
+    }
+</script>
 
 
 

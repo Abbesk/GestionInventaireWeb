@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Logicom_Inventaire_FrontEnd.Models
 {
@@ -17,6 +15,6 @@ namespace Logicom_Inventaire_FrontEnd.Models
         public string EMAIL { get; set; }
         public string typepv { get; set; }
         public string multidepot { get; set; }
-        public ICollection<Depot> Depots { get; set; } 
+        
     }
 }

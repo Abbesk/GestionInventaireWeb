@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Logicom_Inventaire_FrontEnd.Models
 {
     public class Depot
     {
-        
+
         public string Code { get; set; }
         public string Libelle { get; set; }
         public string Adresse { get; set; }
@@ -23,10 +21,10 @@ namespace Logicom_Inventaire_FrontEnd.Models
         public int? sel { get; set; }
         public string SAISIQTENEG { get; set; }
 
-        public  List <LigneDepot> LignesDepot { get; set; }
-        public  List<tmpLigneDepot> TMPLignesDepot { get; set; }
-        public List<Inventaire> InventaireCourant { get; set; }
+        public List<LigneDepot> LignesDepot { get; set; }
+        public List<tmpLigneDepot> TMPLignesDepot { get; set; }
+       
 
-        
+
     }
 }

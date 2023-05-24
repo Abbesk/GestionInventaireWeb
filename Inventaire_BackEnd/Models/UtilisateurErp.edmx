@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="usererpModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="usererpModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="societe">
           <Key>
             <PropertyRef Name="code" />
@@ -426,20 +426,99 @@
           <EntitySet Name="usersoc" EntityType="Self.usersoc" Schema="usererp" store:Type="Tables" />
           <EntitySet Name="utilisateur" EntityType="Self.utilisateur" Schema="usererp" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="usererpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="usersoc">
+          <Key>
+            <PropertyRef Name="CODEUSER" />
+            <PropertyRef Name="societe" />
+            <PropertyRef Name="Projet" />
+          </Key>
+          <Property Name="CODEUSER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="societe" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="accee" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ecriture" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Projet" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="seltmp" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="acceclot" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="rsoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="utilisateur">
+          <Key>
+            <PropertyRef Name="codeuser" />
+          </Key>
+          <Property Name="codeuser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="motpasse" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="jnlactif" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="prog1" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="prog2" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="prog3" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="prog4" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="bloque" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="actif" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="numvol" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="socutil" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="etatbcf" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatbcc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatcl" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatfr" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatbe" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatvente" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatdemachat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="vente" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="achat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="client" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="frs" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="bcc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="bcf" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="stat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="acces" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="afftot" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="socutilclot" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="directeur" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="etatmarge" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="exercice" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="etatimport" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatbestk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Etatbcfstk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatfrstk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatimportstk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatbccstk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="etatimmo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="acceclot" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="BL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="FC" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="TICKCAIS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="GESTBE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="impbarre" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PARAM" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="mp1" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="mp2" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="mp3" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="mp4" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="mp5" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="dernacce" Type="DateTime" />
+          <Property Name="nbrjr" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="usererpEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="usersoc" EntityType="Self.usersoc" />
+          <EntitySet Name="utilisateur" EntityType="Self.utilisateur" />
+          <EntitySet Name="societe" EntityType="usererpModel.societe" />
+        </EntityContainer>
         <EntityType Name="societe">
           <Key>
             <PropertyRef Name="code" />
           </Key>
-          <Property Name="code" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="synchronisation" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="sel" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="rsoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="dat" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="e1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="e2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="e3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -459,7 +538,7 @@
           <Property Name="VTMAJO" Type="Single" />
           <Property Name="TMAJO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="TIMBREF" Type="Single" />
-          <Property Name="SAISIEQTENEG" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SAISIEQTENEG" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="ACCTABREM" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="VALOBL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="CONFIGART" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
@@ -513,7 +592,7 @@
           <Property Name="entticket2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="editiontc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="decimalp" Type="Int32" />
-          <Property Name="nomenclature" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nomenclature" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="gestionbcf" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="gestiontc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="gestionc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
@@ -732,16 +811,16 @@
           <Property Name="ventart" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="validelbe" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="VPABS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="envoiepc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="comptinteg" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="validcaisseobligatoire" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="gestionTrace" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="virenc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fichepv" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="bord" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="envoiepc" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="comptinteg" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="validcaisseobligatoire" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="gestionTrace" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="virenc" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="fichepv" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="bord" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="nbrcopie" Type="Int32" Nullable="false" />
-          <Property Name="ipsoc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="rubspe" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ipsoc" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="rubspe" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="cons" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="tauxcons" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="gemail" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
@@ -752,14 +831,14 @@
           <Property Name="NumCnss" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="reglsd" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="DecMensCpt" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="validcpt" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="seqfactmois" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OptRetenue" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Caissbord" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DecMensCpt" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="validcpt" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="seqfactmois" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="OptRetenue" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Caissbord" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="RBvalid" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="ImportationExcel" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="artBE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="artBE" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="Comptanalytique" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="majdepot" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="ctrmat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
@@ -771,434 +850,12 @@
           <Property Name="Socintgr" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Integgr" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="usersoc">
-          <Key>
-            <PropertyRef Name="CODEUSER" />
-            <PropertyRef Name="societe" />
-            <PropertyRef Name="Projet" />
-          </Key>
-          <Property Name="CODEUSER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="societe" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="accee" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="ecriture" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="Projet" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="seltmp" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="acceclot" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="rsoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="utilisateur">
-          <Key>
-            <PropertyRef Name="codeuser" />
-          </Key>
-          <Property Name="codeuser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="motpasse" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="jnlactif" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="prog1" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="prog2" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="prog3" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="prog4" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="bloque" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="actif" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="numvol" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="socutil" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="etatbcf" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="etatbcc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="etatcl" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="etatfr" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="etatbe" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="etatvente" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="etatdemachat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="vente" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="achat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="client" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="frs" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="bcc" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="bcf" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="stat" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="acces" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="afftot" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="socutilclot" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="directeur" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="etatmarge" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="exercice" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="etatimport" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="etatbestk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="Etatbcfstk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="etatfrstk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="etatimportstk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="etatbccstk" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="etatimmo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="acceclot" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="BL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="FC" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="TICKCAIS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="GESTBE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="impbarre" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="PARAM" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="mp1" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="mp2" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="mp3" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="mp4" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="mp5" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="dernacce" Type="DateTime" />
-          <Property Name="nbrjr" Type="Int32" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityContainer Name="usererpEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="societe" EntityType="Self.societe" />
-          <EntitySet Name="usersoc" EntityType="Self.usersoc" />
-          <EntitySet Name="utilisateur" EntityType="Self.utilisateur" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="usererpModelStoreContainer" CdmEntityContainer="usererpEntities">
-          <EntitySetMapping Name="societe">
-            <EntityTypeMapping TypeName="usererpModel.societe">
-              <MappingFragment StoreEntitySet="societe">
-                <ScalarProperty Name="code" ColumnName="code" />
-                <ScalarProperty Name="synchronisation" ColumnName="synchronisation" />
-                <ScalarProperty Name="sel" ColumnName="sel" />
-                <ScalarProperty Name="rsoc" ColumnName="rsoc" />
-                <ScalarProperty Name="dat" ColumnName="dat" />
-                <ScalarProperty Name="e1" ColumnName="e1" />
-                <ScalarProperty Name="e2" ColumnName="e2" />
-                <ScalarProperty Name="e3" ColumnName="e3" />
-                <ScalarProperty Name="e4" ColumnName="e4" />
-                <ScalarProperty Name="e5" ColumnName="e5" />
-                <ScalarProperty Name="e6" ColumnName="e6" />
-                <ScalarProperty Name="e7" ColumnName="e7" />
-                <ScalarProperty Name="e8" ColumnName="e8" />
-                <ScalarProperty Name="PRIXUNIT" ColumnName="PRIXUNIT" />
-                <ScalarProperty Name="REMGLOBAL" ColumnName="REMGLOBAL" />
-                <ScalarProperty Name="PRIXART" ColumnName="PRIXART" />
-                <ScalarProperty Name="CONTTREMISE" ColumnName="CONTTREMISE" />
-                <ScalarProperty Name="REMART" ColumnName="REMART" />
-                <ScalarProperty Name="MONTTTC" ColumnName="MONTTTC" />
-                <ScalarProperty Name="SEUILCREDIT" ColumnName="SEUILCREDIT" />
-                <ScalarProperty Name="MARGEPRIXVENTE" ColumnName="MARGEPRIXVENTE" />
-                <ScalarProperty Name="VTMAJO" ColumnName="VTMAJO" />
-                <ScalarProperty Name="TMAJO" ColumnName="TMAJO" />
-                <ScalarProperty Name="TIMBREF" ColumnName="TIMBREF" />
-                <ScalarProperty Name="SAISIEQTENEG" ColumnName="SAISIEQTENEG" />
-                <ScalarProperty Name="ACCTABREM" ColumnName="ACCTABREM" />
-                <ScalarProperty Name="VALOBL" ColumnName="VALOBL" />
-                <ScalarProperty Name="CONFIGART" ColumnName="CONFIGART" />
-                <ScalarProperty Name="IMPREMART" ColumnName="IMPREMART" />
-                <ScalarProperty Name="ACCTVABE" ColumnName="ACCTVABE" />
-                <ScalarProperty Name="directeur" ColumnName="directeur" />
-                <ScalarProperty Name="PFACTT" ColumnName="PFACTT" />
-                <ScalarProperty Name="PBL" ColumnName="PBL" />
-                <ScalarProperty Name="PBE" ColumnName="PBE" />
-                <ScalarProperty Name="SFACTT" ColumnName="SFACTT" />
-                <ScalarProperty Name="SBL" ColumnName="SBL" />
-                <ScalarProperty Name="SBE" ColumnName="SBE" />
-                <ScalarProperty Name="AFACTT" ColumnName="AFACTT" />
-                <ScalarProperty Name="ABL" ColumnName="ABL" />
-                <ScalarProperty Name="ABE" ColumnName="ABE" />
-                <ScalarProperty Name="RSOURCE" ColumnName="RSOURCE" />
-                <ScalarProperty Name="FODEC" ColumnName="FODEC" />
-                <ScalarProperty Name="BRG" ColumnName="BRG" />
-                <ScalarProperty Name="VRG" ColumnName="VRG" />
-                <ScalarProperty Name="accee" ColumnName="accee" />
-                <ScalarProperty Name="marge" ColumnName="marge" />
-                <ScalarProperty Name="PV" ColumnName="PV" />
-                <ScalarProperty Name="Clipass" ColumnName="Clipass" />
-                <ScalarProperty Name="chemin" ColumnName="chemin" />
-                <ScalarProperty Name="adr" ColumnName="adr" />
-                <ScalarProperty Name="mf" ColumnName="mf" />
-                <ScalarProperty Name="acceedesigna" ColumnName="acceedesigna" />
-                <ScalarProperty Name="PBS" ColumnName="PBS" />
-                <ScalarProperty Name="SBS" ColumnName="SBS" />
-                <ScalarProperty Name="affliste" ColumnName="affliste" />
-                <ScalarProperty Name="retenueaut" ColumnName="retenueaut" />
-                <ScalarProperty Name="gfamille" ColumnName="gfamille" />
-                <ScalarProperty Name="caisseprix" ColumnName="caisseprix" />
-                <ScalarProperty Name="caisserem" ColumnName="caisserem" />
-                <ScalarProperty Name="caissepwd" ColumnName="caissepwd" />
-                <ScalarProperty Name="stockalert" ColumnName="stockalert" />
-                <ScalarProperty Name="TARFR" ColumnName="TARFR" />
-                <ScalarProperty Name="caissettc" ColumnName="caissettc" />
-                <ScalarProperty Name="M1" ColumnName="M1" />
-                <ScalarProperty Name="M2" ColumnName="M2" />
-                <ScalarProperty Name="M3" ColumnName="M3" />
-                <ScalarProperty Name="ttcbl" ColumnName="ttcbl" />
-                <ScalarProperty Name="ttcbl1" ColumnName="ttcbl1" />
-                <ScalarProperty Name="prixz" ColumnName="prixz" />
-                <ScalarProperty Name="securite" ColumnName="securite" />
-                <ScalarProperty Name="decimalq" ColumnName="decimalq" />
-                <ScalarProperty Name="puttc" ColumnName="puttc" />
-                <ScalarProperty Name="dateaccee" ColumnName="dateaccee" />
-                <ScalarProperty Name="codebar" ColumnName="codebar" />
-                <ScalarProperty Name="entticket1" ColumnName="entticket1" />
-                <ScalarProperty Name="entticket2" ColumnName="entticket2" />
-                <ScalarProperty Name="editiontc" ColumnName="editiontc" />
-                <ScalarProperty Name="decimalp" ColumnName="decimalp" />
-                <ScalarProperty Name="nomenclature" ColumnName="nomenclature" />
-                <ScalarProperty Name="gestionbcf" ColumnName="gestionbcf" />
-                <ScalarProperty Name="gestiontc" ColumnName="gestiontc" />
-                <ScalarProperty Name="gestionc" ColumnName="gestionc" />
-                <ScalarProperty Name="gestioneff" ColumnName="gestioneff" />
-                <ScalarProperty Name="UniArt" ColumnName="UniArt" />
-                <ScalarProperty Name="ValAutArt" ColumnName="ValAutArt" />
-                <ScalarProperty Name="UnArtCaisse" ColumnName="UnArtCaisse" />
-                <ScalarProperty Name="SaisVend" ColumnName="SaisVend" />
-                <ScalarProperty Name="PramBS" ColumnName="PramBS" />
-                <ScalarProperty Name="gestionbcC" ColumnName="gestionbcC" />
-                <ScalarProperty Name="gestionAcc" ColumnName="gestionAcc" />
-                <ScalarProperty Name="e9" ColumnName="e9" />
-                <ScalarProperty Name="RemCl" ColumnName="RemCl" />
-                <ScalarProperty Name="BaseCom" ColumnName="BaseCom" />
-                <ScalarProperty Name="RemFExp" ColumnName="RemFExp" />
-                <ScalarProperty Name="ValAutTC" ColumnName="ValAutTC" />
-                <ScalarProperty Name="gestionlot" ColumnName="gestionlot" />
-                <ScalarProperty Name="DefSoc" ColumnName="DefSoc" />
-                <ScalarProperty Name="GBois" ColumnName="GBois" />
-                <ScalarProperty Name="CheminCaisse" ColumnName="CheminCaisse" />
-                <ScalarProperty Name="GREP" ColumnName="GREP" />
-                <ScalarProperty Name="gestionretenu" ColumnName="gestionretenu" />
-                <ScalarProperty Name="impbarre" ColumnName="impbarre" />
-                <ScalarProperty Name="ean13" ColumnName="ean13" />
-                <ScalarProperty Name="code128" ColumnName="code128" />
-                <ScalarProperty Name="prix" ColumnName="prix" />
-                <ScalarProperty Name="validauto" ColumnName="validauto" />
-                <ScalarProperty Name="ventedev" ColumnName="ventedev" />
-                <ScalarProperty Name="passauttick" ColumnName="passauttick" />
-                <ScalarProperty Name="mvtdivers" ColumnName="mvtdivers" />
-                <ScalarProperty Name="devise" ColumnName="devise" />
-                <ScalarProperty Name="rechcli" ColumnName="rechcli" />
-                <ScalarProperty Name="SEUILRISQUE" ColumnName="SEUILRISQUE" />
-                <ScalarProperty Name="numserie" ColumnName="numserie" />
-                <ScalarProperty Name="PMP" ColumnName="PMP" />
-                <ScalarProperty Name="reglcli" ColumnName="reglcli" />
-                <ScalarProperty Name="paiefrs" ColumnName="paiefrs" />
-                <ScalarProperty Name="transfertfond" ColumnName="transfertfond" />
-                <ScalarProperty Name="encregl" ColumnName="encregl" />
-                <ScalarProperty Name="GTAILLECOUL" ColumnName="GTAILLECOUL" />
-                <ScalarProperty Name="ARTCAD" ColumnName="ARTCAD" />
-                <ScalarProperty Name="modelebois" ColumnName="modelebois" />
-                <ScalarProperty Name="contpxvente" ColumnName="contpxvente" />
-                <ScalarProperty Name="saisvendeur" ColumnName="saisvendeur" />
-                <ScalarProperty Name="marbre" ColumnName="marbre" />
-                <ScalarProperty Name="socdest" ColumnName="socdest" />
-                <ScalarProperty Name="nomsocdest" ColumnName="nomsocdest" />
-                <ScalarProperty Name="PFACTC" ColumnName="PFACTC" />
-                <ScalarProperty Name="SFACTC" ColumnName="SFACTC" />
-                <ScalarProperty Name="AFACTC" ColumnName="AFACTC" />
-                <ScalarProperty Name="liaisonfact" ColumnName="liaisonfact" />
-                <ScalarProperty Name="factcomptant" ColumnName="factcomptant" />
-                <ScalarProperty Name="typeimp" ColumnName="typeimp" />
-                <ScalarProperty Name="ecranimp" ColumnName="ecranimp" />
-                <ScalarProperty Name="piece" ColumnName="piece" />
-                <ScalarProperty Name="liaisonstock" ColumnName="liaisonstock" />
-                <ScalarProperty Name="nomsocstock" ColumnName="nomsocstock" />
-                <ScalarProperty Name="defalcation" ColumnName="defalcation" />
-                <ScalarProperty Name="regltresor" ColumnName="regltresor" />
-                <ScalarProperty Name="caisstresor" ColumnName="caisstresor" />
-                <ScalarProperty Name="FideliteBL" ColumnName="FideliteBL" />
-                <ScalarProperty Name="marbreglob" ColumnName="marbreglob" />
-                <ScalarProperty Name="marbredet" ColumnName="marbredet" />
-                <ScalarProperty Name="activite" ColumnName="activite" />
-                <ScalarProperty Name="rue" ColumnName="rue" />
-                <ScalarProperty Name="numero" ColumnName="numero" />
-                <ScalarProperty Name="codePostal" ColumnName="codePostal" />
-                <ScalarProperty Name="mtminrecouv" ColumnName="mtminrecouv" />
-                <ScalarProperty Name="auto" ColumnName="auto" />
-                <ScalarProperty Name="equiart" ColumnName="equiart" />
-                <ScalarProperty Name="nordre" ColumnName="nordre" />
-                <ScalarProperty Name="integbr" ColumnName="integbr" />
-                <ScalarProperty Name="pxc" ColumnName="pxc" />
-                <ScalarProperty Name="pxa" ColumnName="pxa" />
-                <ScalarProperty Name="trifam" ColumnName="trifam" />
-                <ScalarProperty Name="tricode" ColumnName="tricode" />
-                <ScalarProperty Name="trides" ColumnName="trides" />
-                <ScalarProperty Name="trisaisie" ColumnName="trisaisie" />
-                <ScalarProperty Name="factsusp" ColumnName="factsusp" />
-                <ScalarProperty Name="avance" ColumnName="avance" />
-                <ScalarProperty Name="tauxavance" ColumnName="tauxavance" />
-                <ScalarProperty Name="nbrunite" ColumnName="nbrunite" />
-                <ScalarProperty Name="VPA" ColumnName="VPA" />
-                <ScalarProperty Name="depot" ColumnName="depot" />
-                <ScalarProperty Name="PBC" ColumnName="PBC" />
-                <ScalarProperty Name="STECOM" ColumnName="STECOM" />
-                <ScalarProperty Name="LIAISONCOM" ColumnName="LIAISONCOM" />
-                <ScalarProperty Name="PFBE" ColumnName="PFBE" />
-                <ScalarProperty Name="SFBE" ColumnName="SFBE" />
-                <ScalarProperty Name="AFBE" ColumnName="AFBE" />
-                <ScalarProperty Name="demandeachat" ColumnName="demandeachat" />
-                <ScalarProperty Name="moisvalidation" ColumnName="moisvalidation" />
-                <ScalarProperty Name="anneevalidation" ColumnName="anneevalidation" />
-                <ScalarProperty Name="douane" ColumnName="douane" />
-                <ScalarProperty Name="PBCF" ColumnName="PBCF" />
-                <ScalarProperty Name="SBCF" ColumnName="SBCF" />
-                <ScalarProperty Name="ABCF" ColumnName="ABCF" />
-                <ScalarProperty Name="pointvente" ColumnName="pointvente" />
-                <ScalarProperty Name="fidelite" ColumnName="fidelite" />
-                <ScalarProperty Name="Nbureau" ColumnName="Nbureau" />
-                <ScalarProperty Name="impchq" ColumnName="impchq" />
-                <ScalarProperty Name="socimport" ColumnName="socimport" />
-                <ScalarProperty Name="factbrbe" ColumnName="factbrbe" />
-                <ScalarProperty Name="gestionmarge" ColumnName="gestionmarge" />
-                <ScalarProperty Name="seqdev" ColumnName="seqdev" />
-                <ScalarProperty Name="GUTIL" ColumnName="GUTIL" />
-                <ScalarProperty Name="integao" ColumnName="integao" />
-                <ScalarProperty Name="selectart" ColumnName="selectart" />
-                <ScalarProperty Name="codebureau" ColumnName="codebureau" />
-                <ScalarProperty Name="desbureau" ColumnName="desbureau" />
-                <ScalarProperty Name="regdouanedec" ColumnName="regdouanedec" />
-                <ScalarProperty Name="regdouanetr" ColumnName="regdouanetr" />
-                <ScalarProperty Name="regdouanepre" ColumnName="regdouanepre" />
-                <ScalarProperty Name="codedouane" ColumnName="codedouane" />
-                <ScalarProperty Name="codecomp" ColumnName="codecomp" />
-                <ScalarProperty Name="memeseq" ColumnName="memeseq" />
-                <ScalarProperty Name="betotpar" ColumnName="betotpar" />
-                <ScalarProperty Name="pbcc" ColumnName="pbcc" />
-                <ScalarProperty Name="sbcc" ColumnName="sbcc" />
-                <ScalarProperty Name="memeseqbcc" ColumnName="memeseqbcc" />
-                <ScalarProperty Name="memeseqbcf" ColumnName="memeseqbcf" />
-                <ScalarProperty Name="ctrcl" ColumnName="ctrcl" />
-                <ScalarProperty Name="PBR" ColumnName="PBR" />
-                <ScalarProperty Name="SBR" ColumnName="SBR" />
-                <ScalarProperty Name="memeseqbr" ColumnName="memeseqbr" />
-                <ScalarProperty Name="alertdatelim" ColumnName="alertdatelim" />
-                <ScalarProperty Name="intervalprix" ColumnName="intervalprix" />
-                <ScalarProperty Name="gestionGPAO" ColumnName="gestionGPAO" />
-                <ScalarProperty Name="gestionimport" ColumnName="gestionimport" />
-                <ScalarProperty Name="avectache" ColumnName="avectache" />
-                <ScalarProperty Name="gmarche" ColumnName="gmarche" />
-                <ScalarProperty Name="EXER" ColumnName="EXER" />
-                <ScalarProperty Name="CP" ColumnName="CP" />
-                <ScalarProperty Name="BANQUE" ColumnName="BANQUE" />
-                <ScalarProperty Name="CODETVA" ColumnName="CODETVA" />
-                <ScalarProperty Name="TEL1" ColumnName="TEL1" />
-                <ScalarProperty Name="TEL2" ColumnName="TEL2" />
-                <ScalarProperty Name="FAX" ColumnName="FAX" />
-                <ScalarProperty Name="TELEX" ColumnName="TELEX" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="ANP" ColumnName="ANP" />
-                <ScalarProperty Name="DEDITION" ColumnName="DEDITION" />
-                <ScalarProperty Name="DDCA" ColumnName="DDCA" />
-                <ScalarProperty Name="DDCM" ColumnName="DDCM" />
-                <ScalarProperty Name="Dateo" ColumnName="Dateo" />
-                <ScalarProperty Name="style" ColumnName="style" />
-                <ScalarProperty Name="taux" ColumnName="taux" />
-                <ScalarProperty Name="passage" ColumnName="passage" />
-                <ScalarProperty Name="gimmo" ColumnName="gimmo" />
-                <ScalarProperty Name="ginteg" ColumnName="ginteg" />
-                <ScalarProperty Name="socinteg" ColumnName="socinteg" />
-                <ScalarProperty Name="integpaie" ColumnName="integpaie" />
-                <ScalarProperty Name="socintpaie" ColumnName="socintpaie" />
-                <ScalarProperty Name="SPV" ColumnName="SPV" />
-                <ScalarProperty Name="affremcli" ColumnName="affremcli" />
-                <ScalarProperty Name="pdevise" ColumnName="pdevise" />
-                <ScalarProperty Name="ctrart" ColumnName="ctrart" />
-                <ScalarProperty Name="modcodebarre" ColumnName="modcodebarre" />
-                <ScalarProperty Name="PED" ColumnName="PED" />
-                <ScalarProperty Name="SED" ColumnName="SED" />
-                <ScalarProperty Name="AED" ColumnName="AED" />
-                <ScalarProperty Name="memeseqed" ColumnName="memeseqed" />
-                <ScalarProperty Name="gprod" ColumnName="gprod" />
-                <ScalarProperty Name="valid_dem_achat" ColumnName="valid_dem_achat" />
-                <ScalarProperty Name="integvente" ColumnName="integvente" />
-                <ScalarProperty Name="integachat" ColumnName="integachat" />
-                <ScalarProperty Name="integreglcli" ColumnName="integreglcli" />
-                <ScalarProperty Name="integpaifrs" ColumnName="integpaifrs" />
-                <ScalarProperty Name="integmdc" ColumnName="integmdc" />
-                <ScalarProperty Name="integfraisb" ColumnName="integfraisb" />
-                <ScalarProperty Name="integbord" ColumnName="integbord" />
-                <ScalarProperty Name="compteattente" ColumnName="compteattente" />
-                <ScalarProperty Name="G_fact_EXP" ColumnName="G_fact_EXP" />
-                <ScalarProperty Name="bord_client" ColumnName="bord_client" />
-                <ScalarProperty Name="nbr_j_alerte" ColumnName="nbr_j_alerte" />
-                <ScalarProperty Name="margeimport" ColumnName="margeimport" />
-                <ScalarProperty Name="pmpimport" ColumnName="pmpimport" />
-                <ScalarProperty Name="PFRC" ColumnName="PFRC" />
-                <ScalarProperty Name="SFRC" ColumnName="SFRC" />
-                <ScalarProperty Name="AFRC" ColumnName="AFRC" />
-                <ScalarProperty Name="blntchstk" ColumnName="blntchstk" />
-                <ScalarProperty Name="servaprven" ColumnName="servaprven" />
-                <ScalarProperty Name="ordliv" ColumnName="ordliv" />
-                <ScalarProperty Name="prjbe" ColumnName="prjbe" />
-                <ScalarProperty Name="prjbs" ColumnName="prjbs" />
-                <ScalarProperty Name="transstk" ColumnName="transstk" />
-                <ScalarProperty Name="prixcalcmarge" ColumnName="prixcalcmarge" />
-                <ScalarProperty Name="PDV" ColumnName="PDV" />
-                <ScalarProperty Name="SDV" ColumnName="SDV" />
-                <ScalarProperty Name="typecaisse" ColumnName="typecaisse" />
-                <ScalarProperty Name="suiviglob" ColumnName="suiviglob" />
-                <ScalarProperty Name="factachat" ColumnName="factachat" />
-                <ScalarProperty Name="gkiosque" ColumnName="gkiosque" />
-                <ScalarProperty Name="impsoc" ColumnName="impsoc" />
-                <ScalarProperty Name="impdate" ColumnName="impdate" />
-                <ScalarProperty Name="comtc" ColumnName="comtc" />
-                <ScalarProperty Name="decimala" ColumnName="decimala" />
-                <ScalarProperty Name="intbord" ColumnName="intbord" />
-                <ScalarProperty Name="ajoutfact" ColumnName="ajoutfact" />
-                <ScalarProperty Name="genGPAO" ColumnName="genGPAO" />
-                <ScalarProperty Name="gestionchantier" ColumnName="gestionchantier" />
-                <ScalarProperty Name="Ipdest" ColumnName="Ipdest" />
-                <ScalarProperty Name="Verifstock" ColumnName="Verifstock" />
-                <ScalarProperty Name="sav" ColumnName="sav" />
-                <ScalarProperty Name="integsocmult" ColumnName="integsocmult" />
-                <ScalarProperty Name="versB" ColumnName="versB" />
-                <ScalarProperty Name="chkrest" ColumnName="chkrest" />
-                <ScalarProperty Name="socrest" ColumnName="socrest" />
-                <ScalarProperty Name="RCA" ColumnName="RCA" />
-                <ScalarProperty Name="tauxRCA" ColumnName="tauxRCA" />
-                <ScalarProperty Name="synchroftp" ColumnName="synchroftp" />
-                <ScalarProperty Name="codepvftp" ColumnName="codepvftp" />
-                <ScalarProperty Name="piedsvente" ColumnName="piedsvente" />
-                <ScalarProperty Name="EXONTVA" ColumnName="EXONTVA" />
-                <ScalarProperty Name="integfamille" ColumnName="integfamille" />
-                <ScalarProperty Name="ventart" ColumnName="ventart" />
-                <ScalarProperty Name="validelbe" ColumnName="validelbe" />
-                <ScalarProperty Name="VPABS" ColumnName="VPABS" />
-                <ScalarProperty Name="envoiepc" ColumnName="envoiepc" />
-                <ScalarProperty Name="comptinteg" ColumnName="comptinteg" />
-                <ScalarProperty Name="validcaisseobligatoire" ColumnName="validcaisseobligatoire" />
-                <ScalarProperty Name="gestionTrace" ColumnName="gestionTrace" />
-                <ScalarProperty Name="virenc" ColumnName="virenc" />
-                <ScalarProperty Name="fichepv" ColumnName="fichepv" />
-                <ScalarProperty Name="bord" ColumnName="bord" />
-                <ScalarProperty Name="nbrcopie" ColumnName="nbrcopie" />
-                <ScalarProperty Name="ipsoc" ColumnName="ipsoc" />
-                <ScalarProperty Name="rubspe" ColumnName="rubspe" />
-                <ScalarProperty Name="cons" ColumnName="cons" />
-                <ScalarProperty Name="tauxcons" ColumnName="tauxcons" />
-                <ScalarProperty Name="gemail" ColumnName="gemail" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="servmail" ColumnName="servmail" />
-                <ScalarProperty Name="portmail" ColumnName="portmail" />
-                <ScalarProperty Name="emaildest" ColumnName="emaildest" />
-                <ScalarProperty Name="NumCnss" ColumnName="NumCnss" />
-                <ScalarProperty Name="Ville" ColumnName="Ville" />
-                <ScalarProperty Name="reglsd" ColumnName="reglsd" />
-                <ScalarProperty Name="DecMensCpt" ColumnName="DecMensCpt" />
-                <ScalarProperty Name="validcpt" ColumnName="validcpt" />
-                <ScalarProperty Name="seqfactmois" ColumnName="seqfactmois" />
-                <ScalarProperty Name="OptRetenue" ColumnName="OptRetenue" />
-                <ScalarProperty Name="Caissbord" ColumnName="Caissbord" />
-                <ScalarProperty Name="RBvalid" ColumnName="RBvalid" />
-                <ScalarProperty Name="ImportationExcel" ColumnName="ImportationExcel" />
-                <ScalarProperty Name="artBE" ColumnName="artBE" />
-                <ScalarProperty Name="Comptanalytique" ColumnName="Comptanalytique" />
-                <ScalarProperty Name="majdepot" ColumnName="majdepot" />
-                <ScalarProperty Name="ctrmat" ColumnName="ctrmat" />
-                <ScalarProperty Name="rapautobl" ColumnName="rapautobl" />
-                <ScalarProperty Name="CalculNGP" ColumnName="CalculNGP" />
-                <ScalarProperty Name="sysinf" ColumnName="sysinf" />
-                <ScalarProperty Name="locationVoiture" ColumnName="locationVoiture" />
-                <ScalarProperty Name="cnam" ColumnName="cnam" />
-                <ScalarProperty Name="Socintgr" ColumnName="Socintgr" />
-                <ScalarProperty Name="Integgr" ColumnName="Integgr" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="usersoc">
             <EntityTypeMapping TypeName="usererpModel.usersoc">
               <MappingFragment StoreEntitySet="usersoc">
@@ -1272,6 +929,346 @@
                 <ScalarProperty Name="dernacce" ColumnName="dernacce" />
                 <ScalarProperty Name="nbrjr" ColumnName="nbrjr" />
                 <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="societe">
+            <EntityTypeMapping TypeName="usererpModel.societe">
+              <MappingFragment StoreEntitySet="societe">
+                <ScalarProperty Name="Integgr" ColumnName="Integgr" />
+                <ScalarProperty Name="Socintgr" ColumnName="Socintgr" />
+                <ScalarProperty Name="cnam" ColumnName="cnam" />
+                <ScalarProperty Name="locationVoiture" ColumnName="locationVoiture" />
+                <ScalarProperty Name="sysinf" ColumnName="sysinf" />
+                <ScalarProperty Name="CalculNGP" ColumnName="CalculNGP" />
+                <ScalarProperty Name="rapautobl" ColumnName="rapautobl" />
+                <ScalarProperty Name="ctrmat" ColumnName="ctrmat" />
+                <ScalarProperty Name="majdepot" ColumnName="majdepot" />
+                <ScalarProperty Name="Comptanalytique" ColumnName="Comptanalytique" />
+                <ScalarProperty Name="artBE" ColumnName="artBE" />
+                <ScalarProperty Name="ImportationExcel" ColumnName="ImportationExcel" />
+                <ScalarProperty Name="RBvalid" ColumnName="RBvalid" />
+                <ScalarProperty Name="Caissbord" ColumnName="Caissbord" />
+                <ScalarProperty Name="OptRetenue" ColumnName="OptRetenue" />
+                <ScalarProperty Name="seqfactmois" ColumnName="seqfactmois" />
+                <ScalarProperty Name="validcpt" ColumnName="validcpt" />
+                <ScalarProperty Name="DecMensCpt" ColumnName="DecMensCpt" />
+                <ScalarProperty Name="reglsd" ColumnName="reglsd" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="NumCnss" ColumnName="NumCnss" />
+                <ScalarProperty Name="emaildest" ColumnName="emaildest" />
+                <ScalarProperty Name="portmail" ColumnName="portmail" />
+                <ScalarProperty Name="servmail" ColumnName="servmail" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="gemail" ColumnName="gemail" />
+                <ScalarProperty Name="tauxcons" ColumnName="tauxcons" />
+                <ScalarProperty Name="cons" ColumnName="cons" />
+                <ScalarProperty Name="rubspe" ColumnName="rubspe" />
+                <ScalarProperty Name="ipsoc" ColumnName="ipsoc" />
+                <ScalarProperty Name="nbrcopie" ColumnName="nbrcopie" />
+                <ScalarProperty Name="bord" ColumnName="bord" />
+                <ScalarProperty Name="fichepv" ColumnName="fichepv" />
+                <ScalarProperty Name="virenc" ColumnName="virenc" />
+                <ScalarProperty Name="gestionTrace" ColumnName="gestionTrace" />
+                <ScalarProperty Name="validcaisseobligatoire" ColumnName="validcaisseobligatoire" />
+                <ScalarProperty Name="comptinteg" ColumnName="comptinteg" />
+                <ScalarProperty Name="envoiepc" ColumnName="envoiepc" />
+                <ScalarProperty Name="VPABS" ColumnName="VPABS" />
+                <ScalarProperty Name="validelbe" ColumnName="validelbe" />
+                <ScalarProperty Name="ventart" ColumnName="ventart" />
+                <ScalarProperty Name="integfamille" ColumnName="integfamille" />
+                <ScalarProperty Name="EXONTVA" ColumnName="EXONTVA" />
+                <ScalarProperty Name="piedsvente" ColumnName="piedsvente" />
+                <ScalarProperty Name="codepvftp" ColumnName="codepvftp" />
+                <ScalarProperty Name="synchroftp" ColumnName="synchroftp" />
+                <ScalarProperty Name="tauxRCA" ColumnName="tauxRCA" />
+                <ScalarProperty Name="RCA" ColumnName="RCA" />
+                <ScalarProperty Name="socrest" ColumnName="socrest" />
+                <ScalarProperty Name="chkrest" ColumnName="chkrest" />
+                <ScalarProperty Name="versB" ColumnName="versB" />
+                <ScalarProperty Name="integsocmult" ColumnName="integsocmult" />
+                <ScalarProperty Name="sav" ColumnName="sav" />
+                <ScalarProperty Name="Verifstock" ColumnName="Verifstock" />
+                <ScalarProperty Name="Ipdest" ColumnName="Ipdest" />
+                <ScalarProperty Name="gestionchantier" ColumnName="gestionchantier" />
+                <ScalarProperty Name="genGPAO" ColumnName="genGPAO" />
+                <ScalarProperty Name="ajoutfact" ColumnName="ajoutfact" />
+                <ScalarProperty Name="intbord" ColumnName="intbord" />
+                <ScalarProperty Name="decimala" ColumnName="decimala" />
+                <ScalarProperty Name="comtc" ColumnName="comtc" />
+                <ScalarProperty Name="impdate" ColumnName="impdate" />
+                <ScalarProperty Name="impsoc" ColumnName="impsoc" />
+                <ScalarProperty Name="gkiosque" ColumnName="gkiosque" />
+                <ScalarProperty Name="factachat" ColumnName="factachat" />
+                <ScalarProperty Name="suiviglob" ColumnName="suiviglob" />
+                <ScalarProperty Name="typecaisse" ColumnName="typecaisse" />
+                <ScalarProperty Name="SDV" ColumnName="SDV" />
+                <ScalarProperty Name="PDV" ColumnName="PDV" />
+                <ScalarProperty Name="prixcalcmarge" ColumnName="prixcalcmarge" />
+                <ScalarProperty Name="transstk" ColumnName="transstk" />
+                <ScalarProperty Name="prjbs" ColumnName="prjbs" />
+                <ScalarProperty Name="prjbe" ColumnName="prjbe" />
+                <ScalarProperty Name="ordliv" ColumnName="ordliv" />
+                <ScalarProperty Name="servaprven" ColumnName="servaprven" />
+                <ScalarProperty Name="blntchstk" ColumnName="blntchstk" />
+                <ScalarProperty Name="AFRC" ColumnName="AFRC" />
+                <ScalarProperty Name="SFRC" ColumnName="SFRC" />
+                <ScalarProperty Name="PFRC" ColumnName="PFRC" />
+                <ScalarProperty Name="pmpimport" ColumnName="pmpimport" />
+                <ScalarProperty Name="margeimport" ColumnName="margeimport" />
+                <ScalarProperty Name="nbr_j_alerte" ColumnName="nbr_j_alerte" />
+                <ScalarProperty Name="bord_client" ColumnName="bord_client" />
+                <ScalarProperty Name="G_fact_EXP" ColumnName="G_fact_EXP" />
+                <ScalarProperty Name="compteattente" ColumnName="compteattente" />
+                <ScalarProperty Name="integbord" ColumnName="integbord" />
+                <ScalarProperty Name="integfraisb" ColumnName="integfraisb" />
+                <ScalarProperty Name="integmdc" ColumnName="integmdc" />
+                <ScalarProperty Name="integpaifrs" ColumnName="integpaifrs" />
+                <ScalarProperty Name="integreglcli" ColumnName="integreglcli" />
+                <ScalarProperty Name="integachat" ColumnName="integachat" />
+                <ScalarProperty Name="integvente" ColumnName="integvente" />
+                <ScalarProperty Name="valid_dem_achat" ColumnName="valid_dem_achat" />
+                <ScalarProperty Name="gprod" ColumnName="gprod" />
+                <ScalarProperty Name="memeseqed" ColumnName="memeseqed" />
+                <ScalarProperty Name="AED" ColumnName="AED" />
+                <ScalarProperty Name="SED" ColumnName="SED" />
+                <ScalarProperty Name="PED" ColumnName="PED" />
+                <ScalarProperty Name="modcodebarre" ColumnName="modcodebarre" />
+                <ScalarProperty Name="ctrart" ColumnName="ctrart" />
+                <ScalarProperty Name="pdevise" ColumnName="pdevise" />
+                <ScalarProperty Name="affremcli" ColumnName="affremcli" />
+                <ScalarProperty Name="SPV" ColumnName="SPV" />
+                <ScalarProperty Name="socintpaie" ColumnName="socintpaie" />
+                <ScalarProperty Name="integpaie" ColumnName="integpaie" />
+                <ScalarProperty Name="socinteg" ColumnName="socinteg" />
+                <ScalarProperty Name="ginteg" ColumnName="ginteg" />
+                <ScalarProperty Name="gimmo" ColumnName="gimmo" />
+                <ScalarProperty Name="passage" ColumnName="passage" />
+                <ScalarProperty Name="taux" ColumnName="taux" />
+                <ScalarProperty Name="style" ColumnName="style" />
+                <ScalarProperty Name="Dateo" ColumnName="Dateo" />
+                <ScalarProperty Name="DDCM" ColumnName="DDCM" />
+                <ScalarProperty Name="DDCA" ColumnName="DDCA" />
+                <ScalarProperty Name="DEDITION" ColumnName="DEDITION" />
+                <ScalarProperty Name="ANP" ColumnName="ANP" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TELEX" ColumnName="TELEX" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="TEL2" ColumnName="TEL2" />
+                <ScalarProperty Name="TEL1" ColumnName="TEL1" />
+                <ScalarProperty Name="CODETVA" ColumnName="CODETVA" />
+                <ScalarProperty Name="BANQUE" ColumnName="BANQUE" />
+                <ScalarProperty Name="CP" ColumnName="CP" />
+                <ScalarProperty Name="EXER" ColumnName="EXER" />
+                <ScalarProperty Name="gmarche" ColumnName="gmarche" />
+                <ScalarProperty Name="avectache" ColumnName="avectache" />
+                <ScalarProperty Name="gestionimport" ColumnName="gestionimport" />
+                <ScalarProperty Name="gestionGPAO" ColumnName="gestionGPAO" />
+                <ScalarProperty Name="intervalprix" ColumnName="intervalprix" />
+                <ScalarProperty Name="alertdatelim" ColumnName="alertdatelim" />
+                <ScalarProperty Name="memeseqbr" ColumnName="memeseqbr" />
+                <ScalarProperty Name="SBR" ColumnName="SBR" />
+                <ScalarProperty Name="PBR" ColumnName="PBR" />
+                <ScalarProperty Name="ctrcl" ColumnName="ctrcl" />
+                <ScalarProperty Name="memeseqbcf" ColumnName="memeseqbcf" />
+                <ScalarProperty Name="memeseqbcc" ColumnName="memeseqbcc" />
+                <ScalarProperty Name="sbcc" ColumnName="sbcc" />
+                <ScalarProperty Name="pbcc" ColumnName="pbcc" />
+                <ScalarProperty Name="betotpar" ColumnName="betotpar" />
+                <ScalarProperty Name="memeseq" ColumnName="memeseq" />
+                <ScalarProperty Name="codecomp" ColumnName="codecomp" />
+                <ScalarProperty Name="codedouane" ColumnName="codedouane" />
+                <ScalarProperty Name="regdouanepre" ColumnName="regdouanepre" />
+                <ScalarProperty Name="regdouanetr" ColumnName="regdouanetr" />
+                <ScalarProperty Name="regdouanedec" ColumnName="regdouanedec" />
+                <ScalarProperty Name="desbureau" ColumnName="desbureau" />
+                <ScalarProperty Name="codebureau" ColumnName="codebureau" />
+                <ScalarProperty Name="selectart" ColumnName="selectart" />
+                <ScalarProperty Name="integao" ColumnName="integao" />
+                <ScalarProperty Name="GUTIL" ColumnName="GUTIL" />
+                <ScalarProperty Name="seqdev" ColumnName="seqdev" />
+                <ScalarProperty Name="gestionmarge" ColumnName="gestionmarge" />
+                <ScalarProperty Name="factbrbe" ColumnName="factbrbe" />
+                <ScalarProperty Name="socimport" ColumnName="socimport" />
+                <ScalarProperty Name="impchq" ColumnName="impchq" />
+                <ScalarProperty Name="Nbureau" ColumnName="Nbureau" />
+                <ScalarProperty Name="fidelite" ColumnName="fidelite" />
+                <ScalarProperty Name="pointvente" ColumnName="pointvente" />
+                <ScalarProperty Name="ABCF" ColumnName="ABCF" />
+                <ScalarProperty Name="SBCF" ColumnName="SBCF" />
+                <ScalarProperty Name="PBCF" ColumnName="PBCF" />
+                <ScalarProperty Name="douane" ColumnName="douane" />
+                <ScalarProperty Name="anneevalidation" ColumnName="anneevalidation" />
+                <ScalarProperty Name="moisvalidation" ColumnName="moisvalidation" />
+                <ScalarProperty Name="demandeachat" ColumnName="demandeachat" />
+                <ScalarProperty Name="AFBE" ColumnName="AFBE" />
+                <ScalarProperty Name="SFBE" ColumnName="SFBE" />
+                <ScalarProperty Name="PFBE" ColumnName="PFBE" />
+                <ScalarProperty Name="LIAISONCOM" ColumnName="LIAISONCOM" />
+                <ScalarProperty Name="STECOM" ColumnName="STECOM" />
+                <ScalarProperty Name="PBC" ColumnName="PBC" />
+                <ScalarProperty Name="depot" ColumnName="depot" />
+                <ScalarProperty Name="VPA" ColumnName="VPA" />
+                <ScalarProperty Name="nbrunite" ColumnName="nbrunite" />
+                <ScalarProperty Name="tauxavance" ColumnName="tauxavance" />
+                <ScalarProperty Name="avance" ColumnName="avance" />
+                <ScalarProperty Name="factsusp" ColumnName="factsusp" />
+                <ScalarProperty Name="trisaisie" ColumnName="trisaisie" />
+                <ScalarProperty Name="trides" ColumnName="trides" />
+                <ScalarProperty Name="tricode" ColumnName="tricode" />
+                <ScalarProperty Name="trifam" ColumnName="trifam" />
+                <ScalarProperty Name="pxa" ColumnName="pxa" />
+                <ScalarProperty Name="pxc" ColumnName="pxc" />
+                <ScalarProperty Name="integbr" ColumnName="integbr" />
+                <ScalarProperty Name="nordre" ColumnName="nordre" />
+                <ScalarProperty Name="equiart" ColumnName="equiart" />
+                <ScalarProperty Name="auto" ColumnName="auto" />
+                <ScalarProperty Name="mtminrecouv" ColumnName="mtminrecouv" />
+                <ScalarProperty Name="codePostal" ColumnName="codePostal" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="rue" ColumnName="rue" />
+                <ScalarProperty Name="activite" ColumnName="activite" />
+                <ScalarProperty Name="marbredet" ColumnName="marbredet" />
+                <ScalarProperty Name="marbreglob" ColumnName="marbreglob" />
+                <ScalarProperty Name="FideliteBL" ColumnName="FideliteBL" />
+                <ScalarProperty Name="caisstresor" ColumnName="caisstresor" />
+                <ScalarProperty Name="regltresor" ColumnName="regltresor" />
+                <ScalarProperty Name="defalcation" ColumnName="defalcation" />
+                <ScalarProperty Name="nomsocstock" ColumnName="nomsocstock" />
+                <ScalarProperty Name="liaisonstock" ColumnName="liaisonstock" />
+                <ScalarProperty Name="piece" ColumnName="piece" />
+                <ScalarProperty Name="ecranimp" ColumnName="ecranimp" />
+                <ScalarProperty Name="typeimp" ColumnName="typeimp" />
+                <ScalarProperty Name="factcomptant" ColumnName="factcomptant" />
+                <ScalarProperty Name="liaisonfact" ColumnName="liaisonfact" />
+                <ScalarProperty Name="AFACTC" ColumnName="AFACTC" />
+                <ScalarProperty Name="SFACTC" ColumnName="SFACTC" />
+                <ScalarProperty Name="PFACTC" ColumnName="PFACTC" />
+                <ScalarProperty Name="nomsocdest" ColumnName="nomsocdest" />
+                <ScalarProperty Name="socdest" ColumnName="socdest" />
+                <ScalarProperty Name="marbre" ColumnName="marbre" />
+                <ScalarProperty Name="saisvendeur" ColumnName="saisvendeur" />
+                <ScalarProperty Name="contpxvente" ColumnName="contpxvente" />
+                <ScalarProperty Name="modelebois" ColumnName="modelebois" />
+                <ScalarProperty Name="ARTCAD" ColumnName="ARTCAD" />
+                <ScalarProperty Name="GTAILLECOUL" ColumnName="GTAILLECOUL" />
+                <ScalarProperty Name="encregl" ColumnName="encregl" />
+                <ScalarProperty Name="transfertfond" ColumnName="transfertfond" />
+                <ScalarProperty Name="paiefrs" ColumnName="paiefrs" />
+                <ScalarProperty Name="reglcli" ColumnName="reglcli" />
+                <ScalarProperty Name="PMP" ColumnName="PMP" />
+                <ScalarProperty Name="numserie" ColumnName="numserie" />
+                <ScalarProperty Name="SEUILRISQUE" ColumnName="SEUILRISQUE" />
+                <ScalarProperty Name="rechcli" ColumnName="rechcli" />
+                <ScalarProperty Name="devise" ColumnName="devise" />
+                <ScalarProperty Name="mvtdivers" ColumnName="mvtdivers" />
+                <ScalarProperty Name="passauttick" ColumnName="passauttick" />
+                <ScalarProperty Name="ventedev" ColumnName="ventedev" />
+                <ScalarProperty Name="validauto" ColumnName="validauto" />
+                <ScalarProperty Name="prix" ColumnName="prix" />
+                <ScalarProperty Name="code128" ColumnName="code128" />
+                <ScalarProperty Name="ean13" ColumnName="ean13" />
+                <ScalarProperty Name="impbarre" ColumnName="impbarre" />
+                <ScalarProperty Name="gestionretenu" ColumnName="gestionretenu" />
+                <ScalarProperty Name="GREP" ColumnName="GREP" />
+                <ScalarProperty Name="CheminCaisse" ColumnName="CheminCaisse" />
+                <ScalarProperty Name="GBois" ColumnName="GBois" />
+                <ScalarProperty Name="DefSoc" ColumnName="DefSoc" />
+                <ScalarProperty Name="gestionlot" ColumnName="gestionlot" />
+                <ScalarProperty Name="ValAutTC" ColumnName="ValAutTC" />
+                <ScalarProperty Name="RemFExp" ColumnName="RemFExp" />
+                <ScalarProperty Name="BaseCom" ColumnName="BaseCom" />
+                <ScalarProperty Name="RemCl" ColumnName="RemCl" />
+                <ScalarProperty Name="e9" ColumnName="e9" />
+                <ScalarProperty Name="gestionAcc" ColumnName="gestionAcc" />
+                <ScalarProperty Name="gestionbcC" ColumnName="gestionbcC" />
+                <ScalarProperty Name="PramBS" ColumnName="PramBS" />
+                <ScalarProperty Name="SaisVend" ColumnName="SaisVend" />
+                <ScalarProperty Name="UnArtCaisse" ColumnName="UnArtCaisse" />
+                <ScalarProperty Name="ValAutArt" ColumnName="ValAutArt" />
+                <ScalarProperty Name="UniArt" ColumnName="UniArt" />
+                <ScalarProperty Name="gestioneff" ColumnName="gestioneff" />
+                <ScalarProperty Name="gestionc" ColumnName="gestionc" />
+                <ScalarProperty Name="gestiontc" ColumnName="gestiontc" />
+                <ScalarProperty Name="gestionbcf" ColumnName="gestionbcf" />
+                <ScalarProperty Name="nomenclature" ColumnName="nomenclature" />
+                <ScalarProperty Name="decimalp" ColumnName="decimalp" />
+                <ScalarProperty Name="editiontc" ColumnName="editiontc" />
+                <ScalarProperty Name="entticket2" ColumnName="entticket2" />
+                <ScalarProperty Name="entticket1" ColumnName="entticket1" />
+                <ScalarProperty Name="codebar" ColumnName="codebar" />
+                <ScalarProperty Name="dateaccee" ColumnName="dateaccee" />
+                <ScalarProperty Name="puttc" ColumnName="puttc" />
+                <ScalarProperty Name="decimalq" ColumnName="decimalq" />
+                <ScalarProperty Name="securite" ColumnName="securite" />
+                <ScalarProperty Name="prixz" ColumnName="prixz" />
+                <ScalarProperty Name="ttcbl1" ColumnName="ttcbl1" />
+                <ScalarProperty Name="ttcbl" ColumnName="ttcbl" />
+                <ScalarProperty Name="M3" ColumnName="M3" />
+                <ScalarProperty Name="M2" ColumnName="M2" />
+                <ScalarProperty Name="M1" ColumnName="M1" />
+                <ScalarProperty Name="caissettc" ColumnName="caissettc" />
+                <ScalarProperty Name="TARFR" ColumnName="TARFR" />
+                <ScalarProperty Name="stockalert" ColumnName="stockalert" />
+                <ScalarProperty Name="caissepwd" ColumnName="caissepwd" />
+                <ScalarProperty Name="caisserem" ColumnName="caisserem" />
+                <ScalarProperty Name="caisseprix" ColumnName="caisseprix" />
+                <ScalarProperty Name="gfamille" ColumnName="gfamille" />
+                <ScalarProperty Name="retenueaut" ColumnName="retenueaut" />
+                <ScalarProperty Name="affliste" ColumnName="affliste" />
+                <ScalarProperty Name="SBS" ColumnName="SBS" />
+                <ScalarProperty Name="PBS" ColumnName="PBS" />
+                <ScalarProperty Name="acceedesigna" ColumnName="acceedesigna" />
+                <ScalarProperty Name="mf" ColumnName="mf" />
+                <ScalarProperty Name="adr" ColumnName="adr" />
+                <ScalarProperty Name="chemin" ColumnName="chemin" />
+                <ScalarProperty Name="Clipass" ColumnName="Clipass" />
+                <ScalarProperty Name="PV" ColumnName="PV" />
+                <ScalarProperty Name="marge" ColumnName="marge" />
+                <ScalarProperty Name="accee" ColumnName="accee" />
+                <ScalarProperty Name="VRG" ColumnName="VRG" />
+                <ScalarProperty Name="BRG" ColumnName="BRG" />
+                <ScalarProperty Name="FODEC" ColumnName="FODEC" />
+                <ScalarProperty Name="RSOURCE" ColumnName="RSOURCE" />
+                <ScalarProperty Name="ABE" ColumnName="ABE" />
+                <ScalarProperty Name="ABL" ColumnName="ABL" />
+                <ScalarProperty Name="AFACTT" ColumnName="AFACTT" />
+                <ScalarProperty Name="SBE" ColumnName="SBE" />
+                <ScalarProperty Name="SBL" ColumnName="SBL" />
+                <ScalarProperty Name="SFACTT" ColumnName="SFACTT" />
+                <ScalarProperty Name="PBE" ColumnName="PBE" />
+                <ScalarProperty Name="PBL" ColumnName="PBL" />
+                <ScalarProperty Name="PFACTT" ColumnName="PFACTT" />
+                <ScalarProperty Name="directeur" ColumnName="directeur" />
+                <ScalarProperty Name="ACCTVABE" ColumnName="ACCTVABE" />
+                <ScalarProperty Name="IMPREMART" ColumnName="IMPREMART" />
+                <ScalarProperty Name="CONFIGART" ColumnName="CONFIGART" />
+                <ScalarProperty Name="VALOBL" ColumnName="VALOBL" />
+                <ScalarProperty Name="ACCTABREM" ColumnName="ACCTABREM" />
+                <ScalarProperty Name="SAISIEQTENEG" ColumnName="SAISIEQTENEG" />
+                <ScalarProperty Name="TIMBREF" ColumnName="TIMBREF" />
+                <ScalarProperty Name="TMAJO" ColumnName="TMAJO" />
+                <ScalarProperty Name="VTMAJO" ColumnName="VTMAJO" />
+                <ScalarProperty Name="MARGEPRIXVENTE" ColumnName="MARGEPRIXVENTE" />
+                <ScalarProperty Name="SEUILCREDIT" ColumnName="SEUILCREDIT" />
+                <ScalarProperty Name="MONTTTC" ColumnName="MONTTTC" />
+                <ScalarProperty Name="REMART" ColumnName="REMART" />
+                <ScalarProperty Name="CONTTREMISE" ColumnName="CONTTREMISE" />
+                <ScalarProperty Name="PRIXART" ColumnName="PRIXART" />
+                <ScalarProperty Name="REMGLOBAL" ColumnName="REMGLOBAL" />
+                <ScalarProperty Name="PRIXUNIT" ColumnName="PRIXUNIT" />
+                <ScalarProperty Name="e8" ColumnName="e8" />
+                <ScalarProperty Name="e7" ColumnName="e7" />
+                <ScalarProperty Name="e6" ColumnName="e6" />
+                <ScalarProperty Name="e5" ColumnName="e5" />
+                <ScalarProperty Name="e4" ColumnName="e4" />
+                <ScalarProperty Name="e3" ColumnName="e3" />
+                <ScalarProperty Name="e2" ColumnName="e2" />
+                <ScalarProperty Name="e1" ColumnName="e1" />
+                <ScalarProperty Name="rsoc" ColumnName="rsoc" />
+                <ScalarProperty Name="sel" ColumnName="sel" />
+                <ScalarProperty Name="synchronisation" ColumnName="synchronisation" />
+                <ScalarProperty Name="code" ColumnName="code" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

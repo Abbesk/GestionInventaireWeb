@@ -1,12 +1,75 @@
 ﻿
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .my-swal {
+            font-size: 16px;
+        }
 
+        .my-swal-content {
+            padding: 20px;
+        }
+
+        .my-swal-content-text {
+            font-size: 20px;
+        }
+
+        .my-swal-confirm,
+        .my-swal-cancel {
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+
+        .my-swal-confirm {
+            background-color: #3085d6;
+        }
+
+        .my-swal-cancel {
+            background-color: #d33;
+        }
+
+    </style>
+
+</head>
 @if (Session["name"] != null)
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>
-        <li>@Html.ActionLink("Bonjour " + @Session["name"] + " !", "Index", "Home", htmlAttributes: new { @disabled = "disabled" })</li>
-        </li>
-        <li>@Html.ActionLink("Se déconnecter", "Logout", "Login", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        
+        <li>@Html.ActionLink("Bonjour " + @Session["name"] + " !", "About", "Home", htmlAttributes: new { @disabled = "disabled" })</li>
+        
+        <li>@Html.ActionLink("Se déconnecter", "Logout", "Login", routeValues: null, htmlAttributes: new { id = "logoutLink", onclick = "return confirmLogout();" })</li>
     </ul>
+    <script>
+        function confirmLogout() {
+            Swal.fire({
+                title: 'Voulez-vous vraiment vous déconnecter?',
+                text: "Vous serez redirigé vers la page de connexion.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Oui, déconnectez-moi',
+                cancelButtonText: 'Annuler',
+                heightAuto: false,
+                height: '300px',
+                customClass: {
+                    container: 'my-swal',
+                    content: 'my-swal-content',
+                    confirmButton: 'my-swal-confirm',
+                    cancelButton: 'my-swal-cancel'
+                },
+                cssClass: {
+                    content: 'my-swal-content-text',
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '../../Inventaire';
+                }
+            });
+            return false; // Prevent the link from being followed immediately
+        }
+
+    </script>
+
 }
 }

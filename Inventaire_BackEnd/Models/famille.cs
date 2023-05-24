@@ -14,12 +14,6 @@ namespace Inventaire_BackEnd.Models
     
     public partial class famille
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public famille()
-        {
-            this.Articles = new HashSet<article>();
-        }
-    
         public string code { get; set; }
         public string libelle { get; set; }
         public string achat { get; set; }
@@ -31,8 +25,5 @@ namespace Inventaire_BackEnd.Models
         public string codepv { get; set; }
         public string libpv { get; set; }
         public string favoris { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<article> Articles { get; set; }
     }
 }

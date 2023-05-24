@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Inventaire_BackEnd.Models;
@@ -14,15 +16,26 @@ namespace Inventaire_BackEnd.Controllers
 {
     public class FamilleController : ApiController
     {
-        private somabeEntities db = new somabeEntities();
+        private  string societyName = (string)HttpContext.Current.Cache["SelectedSoc"];
+        private string connectionString;
+        private SocieteEntities db;
+
+        public FamilleController()
+        {
+            connectionString = string.Format(ConfigurationManager.ConnectionStrings["SocieteEntities"].ConnectionString, societyName);
+            db = new SocieteEntities(connectionString);
+        }
+
 
         // GET: api/Famille
+        [Authorize]
         public IQueryable<famille> Getfamille()
         {
             return db.famille;
         }
 
         // GET: api/Famille/5
+        [Authorize]
         [ResponseType(typeof(famille))]
         public IHttpActionResult Getfamille(string id)
         {
@@ -36,6 +49,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // PUT: api/Famille/5
+        [Authorize]
         [ResponseType(typeof(void))]
         public IHttpActionResult Putfamille(string id, famille famille)
         {
@@ -71,6 +85,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // POST: api/Famille
+        [Authorize]
         [ResponseType(typeof(famille))]
         public IHttpActionResult Postfamille(famille famille)
         {
@@ -101,6 +116,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // DELETE: api/Famille/5
+        [Authorize]
         [ResponseType(typeof(famille))]
         public IHttpActionResult Deletefamille(string id)
         {
@@ -115,7 +131,7 @@ namespace Inventaire_BackEnd.Controllers
 
             return Ok(famille);
         }
-
+        [Authorize]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -124,7 +140,7 @@ namespace Inventaire_BackEnd.Controllers
             }
             base.Dispose(disposing);
         }
-
+        [Authorize]
         private bool familleExists(string id)
         {
             return db.famille.Count(e => e.code == id) > 0;

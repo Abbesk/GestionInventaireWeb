@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Description;
 using Inventaire_BackEnd.Models;
 using Microsoft.IdentityModel.Tokens;
 
@@ -19,9 +14,25 @@ namespace Inventaire_BackEnd.Controllers
 {
     public class UtilisateurController : ApiController
     {
-        private readonly usererpEntities db = new usererpEntities();
+        
+        private usererpEntities db = new usererpEntities();
+        
 
-        [System.Web.Http.HttpPost]
+        [Authorize]
+        [HttpGet]
+        [Route("Api/Utilisateur/getRole")]
+        public IHttpActionResult getRole()
+        {
+            return Ok((string)HttpContext.Current.Cache["role"]);
+        }
+        [HttpGet]
+        public async Task<IEnumerable<utilisateur>> GetUsers()
+        {
+
+            return await db.utilisateur.ToListAsync()  ;
+
+        }
+        [HttpPost]
         public IHttpActionResult Login(utilisateur utilisateur)
         {
             using (var db = new usererpEntities())
@@ -33,17 +44,20 @@ namespace Inventaire_BackEnd.Controllers
                 }
                 else
                 {
+                    HttpContext.Current.Cache.Insert("role", user.type);
+                    HttpContext.Current.Cache.Insert("codeuser", user.codeuser);
+                    HttpContext.Current.Cache.Insert("nomuser", user.nom);
                     var session = Guid.NewGuid().ToString();
-                    var expirationTime = DateTime.UtcNow.AddMinutes(30);
-
+                    var expirationTime = DateTime.UtcNow.AddMinutes(600);
                     // Store the session ID in a cookie
                     var cookie = new HttpCookie("SessionID", session);
                     cookie.Expires = expirationTime;
                     HttpContext.Current.Response.Cookies.Add(cookie);
-
+                    HttpContext.Current.Cache.Remove("SelectedSoc");
                     // Store the session ID and expiration time in a cache
                     HttpContext.Current.Cache[session] = expirationTime;
                     var token = GenerateToken(user);
+                    
                     return Ok(token);
                 }
 
@@ -64,7 +78,7 @@ namespace Inventaire_BackEnd.Controllers
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(30),
+                expires: DateTime.Now.AddMinutes(600),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
@@ -74,58 +88,32 @@ namespace Inventaire_BackEnd.Controllers
         [System.Web.Http.Route("Api/Utilisateur/Logout")]
         public IHttpActionResult Logout()
         {
-            var sessionID = HttpContext.Current.Request.Cookies["SessionID"]?.Value;
-            if (sessionID != null)
+            var tokenCookie = HttpContext.Current.Request.Cookies["token"];
+            if (tokenCookie != null)
             {
-                // Remove the session ID from the cache
-                HttpContext.Current.Cache.Remove(sessionID);
-
-                // Expire the session ID cookie
-                var cookie = new HttpCookie("SessionID");
-                cookie.Expires = DateTime.Now.AddDays(-1);
-                HttpContext.Current.Response.Cookies.Add(cookie);
+                // Expire the token cookie
+                tokenCookie.Expires = DateTime.Now.AddDays(-1);
+                tokenCookie.Value = string.Empty;
+                tokenCookie.HttpOnly = true;
+                tokenCookie.Secure = true;
+                HttpContext.Current.Response.Cookies.Add(tokenCookie);
             }
 
             return Ok();
         }
 
-        /*public static bool ValidateToken(string token)
-                {
-                    var tokenHandler = new JwtSecurityTokenHandler();
-                    var validationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Your_Secret_Key_Here")),
-                        ValidateIssuer = true,
-                        ValidIssuer = "Your_Issuer_Name",
-                        ValidateAudience = true,
-                        ValidAudience = "Your_Audience_Name",
-                        ValidateLifetime = true
-                    };
 
-                    try
-                    {
-                        SecurityToken validatedToken;
-                        var claims = tokenHandler.ValidateToken(token, validationParameters, out validatedToken);
-                        return true;
-                    }
-                    catch (Exception)
-                    {
-                        return false;
-                    }
-                }*/
-
-
-        [System.Web.Http.HttpPost]
-        [System.Web.Http.Route("Api/Utilisateur/ChoisirSociete")]
+        [HttpPost]
+        [Route("Api/Utilisateur/ChoisirSociete")]
         public IHttpActionResult ChoisirSociete(string soc)
         {
-            string s = "";
+
             if (soc != null)
             {
                 soc = soc.ToLower();
+                HttpContext.Current.Cache.Remove("SelectedSoc");
                 HttpContext.Current.Cache.Insert("SelectedSoc", soc);
-                s = (string)HttpContext.Current.Cache["SelectedSoc"];
+
                 return Ok();
             }
             return BadRequest();
@@ -150,4 +138,5 @@ namespace Inventaire_BackEnd.Controllers
             }
         }
     }
+    
 }

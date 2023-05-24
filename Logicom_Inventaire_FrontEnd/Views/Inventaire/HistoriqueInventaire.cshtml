@@ -1,0 +1,221 @@
+﻿
+@model IEnumerable<Logicom_Inventaire_FrontEnd.Models.HistoriqueInventaire>
+@{
+    ViewBag.Title = "Historiques des inventaires";
+}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        .btn-Details {
+            content: attr(title);
+            
+            
+  
+            background-color: #f1f1f1;
+           
+            
+        }
+
+        #scrollToTopButton {
+            position: fixed;
+            right: 0;
+            top: 45%;
+            transform: translate(0, -50%);
+            z-index: 9999;
+        }
+
+        #scrollToBottomButton {
+            position: fixed;
+            right: 0;
+            top: 55%;
+            transform: translate(0, -50%);
+            z-index: 9999;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin-top: 10px;
+            background-image: linear-gradient( #d4dcdc, #dfe4e6, #eaedef, #f5f6f7, #ffffff);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        hr {
+            border: 1px solid #000;
+        }
+
+        
+        
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Hitoriques des inventaires</title>
+</head>
+<button id="scrollToBottomButton"> <i class="fa fa-chevron-down"></i> </button>
+<button id="scrollToTopButton" onclick="scrollToTop()"> <i class="fa fa-chevron-up"></i> </button>
+<table class="table" style="margin: 12px;">
+    <tr>
+        <td style="vertical-align: middle; padding-right: 10px;">
+            <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #9269c3;"></i>
+            <strong>Rechercher libellé: </strong>
+        </td>
+        <td style="vertical-align: middle;">
+            <select class="form-control" id="operation" onchange="filtrerLib()">
+                <option value="" selected></option>
+                <option value="Ajout">Ajout</option>
+                <option value="Sélection">Sélection</option>
+                <option value="Comptage">Comptage</option>
+                <option value="Cloture">Cloture</option>
+            </select>
+        </td>
+        <td>
+        </td>
+        <td style="vertical-align: middle; padding-right: 10px;">
+
+            <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #9269c3;"></i>
+            <strong>Point de vente:</strong>
+        </td>
+        <td style="vertical-align: middle;">
+            <select class="form-control" id="codepv" name="codepv" onchange="filterCodePv()">
+                <option value="">Chercher..</option>
+                @foreach (var pv in ViewBag.pvs)
+                {
+                    <option value="@pv.libpv">@pv.libpv</option>
+                }
+            </select>
+        </td>
+
+
+
+
+    </tr>
+</table>
+<hr />
+<br />
+
+
+<table class="table " id="table_historique">
+    <tr>
+        <th>
+            @Html.DisplayName("Numéro")
+        </th>
+        <th>
+            @Html.DisplayName("Date")
+        </th>
+        <th>
+            @Html.DisplayName("Heure")
+        </th>
+        <th>
+            @Html.DisplayName("Libellé MAJ")
+        </th>
+
+        <th>
+            @Html.DisplayName("Code MVT")
+        </th>
+        <th>
+            @Html.DisplayName("Type MVT")
+        </th>
+        <th>
+            @Html.DisplayName("Date MVT")
+        </th>
+
+        <th>
+            @Html.DisplayName("Code utilisateur")
+        </th>
+        <th>
+            @Html.DisplayName("Nom utilisateur")
+        </th>
+
+
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.typemvt == "Inventaire")
+        {
+<tr>
+    <td>
+        @item.NumMAJ
+    </td>
+    <td>
+        @item.datemaj
+    </td>
+    <td>
+        @item.heuremaj
+    </td>
+    <td>
+        @item.libmaj
+    </td>
+    <td>
+        @item.codemvt
+    </td>
+    <td>
+        @item.typemvt
+    </td>
+    <td>
+        @item.datemvt
+    </td>
+    <td>
+        @item.codeutil
+    </td>
+    <td>
+        @item.nomutil
+    </td>
+    @if (item.libmaj != "Ajout" && item.libmaj != "Cloture")
+    {
+        <td>
+            <a href="@Url.Action("LignesHistorique", new { id = item.NumMAJ})" class="btn btn-default btn-Details" title="Détails">
+                <i class="fa-solid fa-list"></i>
+            </a>
+        </td>
+    }
+    else
+    {
+        <td></td>
+    }
+
+</tr>
+        }
+
+    }
+
+</table>
+<script>
+    $(function () {
+        $('#scrollToBottomButton').click(function () {
+            $('html, body').animate({ scrollTop: $(document).height() }, 'slow');
+            return false;
+        });
+    });
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function filtrerLib() {
+        var tableau, ligne, cellule, i, texte;
+        var selectedOption = document.getElementById("operation").value.toUpperCase();
+        tableau = document.getElementById("table_historique");
+        ligne = tableau.getElementsByTagName("tr");
+        for (i = 0; i < ligne.length; i++) {
+            cellule = ligne[i].getElementsByTagName("td")[3];
+            if (cellule) {
+                texte = cellule.innerHTML.toUpperCase();
+                if (selectedOption === "" || texte.indexOf(selectedOption) > -1) {
+                    ligne[i].style.display = "";
+                } else {
+                    ligne[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    
+    
+</script>
+
+
+
+

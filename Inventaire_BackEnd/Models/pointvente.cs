@@ -14,14 +14,6 @@ namespace Inventaire_BackEnd.Models
     
     public partial class pointvente
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public pointvente()
-        {
-            this.Depots = new HashSet<depot>();
-            this.InventairesPhysiques = new HashSet<invphysique>();
-            this.utilisateur = new HashSet<utilisateurpv>();
-        }
-    
         public string Code { get; set; }
         public string Libelle { get; set; }
         public string Adresse { get; set; }
@@ -89,12 +81,5 @@ namespace Inventaire_BackEnd.Models
         public string Pwd { get; set; }
         public string Port_conn { get; set; }
         public string User { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<depot> Depots { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<invphysique> InventairesPhysiques { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<utilisateurpv> utilisateur { get; set; }
     }
 }

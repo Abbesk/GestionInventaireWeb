@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Inventaire_BackEnd.Models;
@@ -14,15 +16,27 @@ namespace Inventaire_BackEnd.Controllers
 {
     public class FournisseurController : ApiController
     {
-        private somabeEntities db = new somabeEntities();
+        private  string societyName = (string)HttpContext.Current.Cache["SelectedSoc"];
+        private string connectionString;
+        private SocieteEntities db;
+
+        public FournisseurController()
+        {
+            connectionString = string.Format(ConfigurationManager.ConnectionStrings["SocieteEntities"].ConnectionString, societyName);
+            db = new SocieteEntities(connectionString);
+        }
+
+
 
         // GET: api/Fournisseur
+        [Authorize]
         public IQueryable<fournisseur> Getfournisseur()
         {
             return db.fournisseur;
         }
 
         // GET: api/Fournisseur/5
+        [Authorize]
         [ResponseType(typeof(fournisseur))]
         public IHttpActionResult Getfournisseur(string id)
         {
@@ -36,6 +50,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // PUT: api/Fournisseur/5
+        [Authorize]
         [ResponseType(typeof(void))]
         public IHttpActionResult Putfournisseur(string id, fournisseur fournisseur)
         {
@@ -71,6 +86,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // POST: api/Fournisseur
+        [Authorize]
         [ResponseType(typeof(fournisseur))]
         public IHttpActionResult Postfournisseur(fournisseur fournisseur)
         {
@@ -101,6 +117,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // DELETE: api/Fournisseur/5
+        [Authorize]
         [ResponseType(typeof(fournisseur))]
         public IHttpActionResult Deletefournisseur(string id)
         {
@@ -115,7 +132,7 @@ namespace Inventaire_BackEnd.Controllers
 
             return Ok(fournisseur);
         }
-
+        [Authorize]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -124,7 +141,7 @@ namespace Inventaire_BackEnd.Controllers
             }
             base.Dispose(disposing);
         }
-
+        [Authorize]
         private bool fournisseurExists(string id)
         {
             return db.fournisseur.Count(e => e.code == id) > 0;

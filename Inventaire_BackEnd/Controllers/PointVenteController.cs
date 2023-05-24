@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Inventaire_BackEnd.Models;
@@ -15,19 +17,30 @@ namespace Inventaire_BackEnd.Controllers
 {
     public class PointVenteController : ApiController
     {
-        private somabeEntities db = new somabeEntities();
+        private  string societyName = (string)HttpContext.Current.Cache["SelectedSoc"];
+        private string connectionString;
+        private SocieteEntities db;
+
+        public PointVenteController()
+        {
+            connectionString = string.Format(ConfigurationManager.ConnectionStrings["SocieteEntities"].ConnectionString, societyName);
+            db = new SocieteEntities(connectionString);
+        }
+
 
         // GET: api/PointVente
+        [System.Web.Http.Authorize]
         public async Task<IEnumerable<pointvente>> GetInventaires()
         {
             return await db.pointvente.ToListAsync();
 
         }
         // GET: api/PointVente/5
+        [System.Web.Http.Authorize]
         [ResponseType(typeof(pointvente))]
         public IHttpActionResult Getpointvente(string id)
         {
-            pointvente pointvente = db.pointvente.Include(f=>f.Depots).Where(f => f.Code == id).FirstOrDefault() ;
+            pointvente pointvente = db.pointvente.Where(f => f.Code == id).FirstOrDefault() ;
             if (pointvente == null)
             {
                 return NotFound();
@@ -37,6 +50,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // PUT: api/PointVente/5
+        [System.Web.Http.Authorize]
         [ResponseType(typeof(void))]
         public IHttpActionResult Putpointvente(string id, pointvente pointvente)
         {
@@ -72,6 +86,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // POST: api/PointVente
+        [System.Web.Http.Authorize]
         [ResponseType(typeof(pointvente))]
         public IHttpActionResult Postpointvente(pointvente pointvente)
         {
@@ -102,6 +117,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // DELETE: api/PointVente/5
+        [System.Web.Http.Authorize]
         [ResponseType(typeof(pointvente))]
         public IHttpActionResult Deletepointvente(string id)
         {
@@ -116,7 +132,7 @@ namespace Inventaire_BackEnd.Controllers
 
             return Ok(pointvente);
         }
-
+        [System.Web.Http.Authorize]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -125,7 +141,7 @@ namespace Inventaire_BackEnd.Controllers
             }
             base.Dispose(disposing);
         }
-
+        [System.Web.Http.Authorize]
         private bool pointventeExists(string id)
         {
             return db.pointvente.Count(e => e.Code == id) > 0;

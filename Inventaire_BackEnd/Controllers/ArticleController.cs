@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Inventaire_BackEnd.Models;
@@ -14,15 +16,25 @@ namespace Inventaire_BackEnd.Controllers
 {
     public class ArticleController : ApiController
     {
-        private somabeEntities db = new somabeEntities();
+        private  string societyName = (string)HttpContext.Current.Cache["SelectedSoc"];
+        private string connectionString;
+        private SocieteEntities db;
+
+        public ArticleController()
+        {
+            connectionString = string.Format(ConfigurationManager.ConnectionStrings["SocieteEntities"].ConnectionString, societyName);
+            db = new SocieteEntities(connectionString);
+        }
 
         // GET: api/Article
+        [Authorize]
         public IQueryable<article> Getarticle()
         {
             return db.article;
         }
 
         // GET: api/Article/5
+        [Authorize]
         [ResponseType(typeof(article))]
         public IHttpActionResult Getarticle(string code , string fam)
         {
@@ -36,6 +48,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // PUT: api/Article/5
+        [Authorize]
         [ResponseType(typeof(void))]
         public IHttpActionResult Putarticle(string id, article article)
         {
@@ -71,6 +84,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // POST: api/Article
+        [Authorize]
         [ResponseType(typeof(article))]
         public IHttpActionResult Postarticle(article article)
         {
@@ -101,6 +115,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // DELETE: api/Article/5
+        [Authorize]
         [ResponseType(typeof(article))]
         public IHttpActionResult Deletearticle(string id)
         {
@@ -115,7 +130,7 @@ namespace Inventaire_BackEnd.Controllers
 
             return Ok(article);
         }
-
+        [Authorize]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -124,7 +139,7 @@ namespace Inventaire_BackEnd.Controllers
             }
             base.Dispose(disposing);
         }
-
+        [Authorize]
         private bool articleExists(string id)
         {
             return db.article.Count(e => e.code == id) > 0;

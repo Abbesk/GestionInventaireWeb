@@ -39,7 +39,6 @@ namespace Inventaire_BackEnd.Models
         public Nullable<byte> isSelected { get; set; }
         public string numInventaireCourant { get; set; }
     
-        public virtual depot Depot { get; set; }
         public virtual article Article { get; set; }
     }
 }

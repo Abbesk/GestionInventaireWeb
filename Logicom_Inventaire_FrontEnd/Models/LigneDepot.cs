@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Logicom_Inventaire_FrontEnd.Models
 {
@@ -31,7 +28,7 @@ namespace Logicom_Inventaire_FrontEnd.Models
         public double qtereap { get; set; }
         public byte isSelected { get; set; }
         public string numInventaireCourant { get; set; }
-        public Article article; 
-        
+        public Article article;
+
     }
 }

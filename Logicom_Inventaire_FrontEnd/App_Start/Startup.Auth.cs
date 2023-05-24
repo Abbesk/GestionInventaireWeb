@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Logicom_Inventaire_FrontEnd.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using Logicom_Inventaire_FrontEnd.Models;
+using System;
 
 namespace Logicom_Inventaire_FrontEnd
 {
@@ -34,7 +33,7 @@ namespace Logicom_Inventaire_FrontEnd
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Permet à l'application de stocker temporairement les informations utilisateur lors de la vérification du second facteur dans le processus d'authentification à 2 facteurs.

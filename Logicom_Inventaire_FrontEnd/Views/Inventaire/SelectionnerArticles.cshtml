@@ -4,6 +4,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "SélectionnerInvN°" + Model.numinv;
 }
 
 
@@ -11,9 +12,58 @@
 
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <meta name="viewport" content="width=device-width" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Selection des Articles</title>
     <style>
+        #scrollToTopButton {
+            position: fixed;
+            right: 0;
+            top: 45%;
+            transform: translate(0, -50%);
+            z-index: 9999;
+        }
+
+        #scrollToBottomButton {
+            position: fixed;
+            right: 0;
+            top: 55%;
+            transform: translate(0, -50%);
+            z-index: 9999;
+        }
+        .btn-default {
+            margin: 5px;
+        }
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin-top: 10px;
+            background-image: linear-gradient( #d4dcdc, #dfe4e6, #eaedef, #f5f6f7, #ffffff);
+            
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .col-6.form-group.text-left.p-2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .tableDonnes {
+            width: 100%;
+        }
+
+            .tableDonnes th, .tableDonnes td {
+                padding: 5px;
+            }
+
+        hr {
+            border: 1px solid #000;
+        }
+
         .input-bordered {
             border-top-width: 1px;
             border-right-width: 1px;
@@ -35,10 +85,14 @@
         }
     </style>
 </head>
+
 <body>
     <center>
-        <h2>Sélectionner les articles de l'inventaire </h2>
+        <h2>Sélectionner les articles de l'inventaire N° @Model.numinv </h2>
     </center>
+    <button id="scrollToBottomButton"> <i class="fa fa-chevron-down"></i> </button>
+    <button id="scrollToTopButton" onclick="scrollToTop()"> <i class="fa fa-chevron-up"></i> </button>
+    <br />
     @using (Html.BeginForm())
     {
 
@@ -74,22 +128,22 @@
         <table class="table">
             <tr>
                 <th>
-                    Numero de l'inventaire
+                    N° Inventaire
                 </th>
                 <th>
                     Date de l'inventaire
                 </th>
                 <th>
-                    Code depot
+                    Code point de vente
                 </th>
                 <th>
-                    Nom depot
+                    Libellé point de vente
                 </th>
                 <th>
-                    Code point vente
+                    Code dépôt
                 </th>
                 <th>
-                    Nom point vente
+                    Libellé dépôt
                 </th>
 
 
@@ -116,113 +170,112 @@
                 </td>
             </tr>
 
-        </table><hr />
+        </table>
+        <hr />
 
 
-        <table>
+        <table class="tableDonnes">
             <tr>
                 <th>
                     <label>Filtrage:</label>
                 </th>
             </tr>
             <tr>
-
-                <th>
+                <td>
                     <label for="selection_globale">Globale</label>
-                </th>
-                <th>
+                </td>
+                <td>
                     <input type="radio" class="form-check-input" id="selectionglobale" name="selection" value="Globale" onclick="Disable()" checked="checked">
-                </th>
-                <th></th>
-                <th></th>
-                <th>
-                    <input class="form-control" type="text" id="TriDes" disabled="disabled"
-                           minlength="4" maxlength="8" size="10">
-                </th>
-                <th>
-                    <input class="form-control" type="text" id="des" name="designation" disabled="disabled"
-                           size="10" onkeyup="filtrer()">
-                </th>
-                <th>
-                    Nombre Total Articles :
-                </th>
-                <th>
-                    <input class="form-control" id="nbTotalArticles" size="5" value=@Model.Depot.LignesDepot.Count() disabled="disabled" />
-                </th>
+                </td>
 
-
-
+                <td>
+                    <input class="form-control" type="text" id="TriDes" disabled="disabled" minlength="4" maxlength="8" size="10">
+                </td>
+                <td>
+                    <input class="form-control" type="text" id="des" name="designation" disabled="disabled" size="10" onkeyup="filtrer()">
+                </td>
             </tr>
             <tr>
                 <th>
-                    <label for="selection_famille">Par Famille</label>
+                    <label for="selection_famille">Par famille</label>
                 </th>
-                <th>
+                <td>
                     <input type="radio" class="form-check-input" id="btn_selection_famille" name="selection" value="Famille" onclick="EnableByFamille()">
-                </th>
+                </td>
+                <td></td>
+
             </tr>
             <tr>
                 <th>
-                    <label for="selection_fournisseur">Par Fournisseur</label>
+                    <label for="selection_fournisseur">Par fournisseur</label>
                 </th>
-                <th>
+                <td>
                     <input type="radio" class="form-check-input" id="btn_selection_fournisseur" name="selection" value="Fournisseur" onclick="EnableByFournisseur()">
-                </th>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
+            <tr>
+                <td>
+                    <strong>Code article</strong>
+                </td>
+                <td>
+                    <input class="form-control" type="text" id="codeart" name="codeart" size="10" onkeyup="filtrercodeart()">
+                </td>
+
+                <td>
+                    <strong>Désignation article</strong>
+                </td>
+                <td>
+                    <input class="form-control" type="text" id="desart" name="desart" size="10" onkeyup="filtrerdesart()">
+                </td>
+            </tr>
+        </table>
+        <hr />
+        <table class="tableDonnes">
             <tr>
                 <td>
                     <strong>Nombre d'articles sélectionnés</strong>
                 </td>
                 <td>
-                    <input class="form-control" id="nombre_selectionne" size="5" type="number" value="0" disabled="disabled" />
+                    <input class="form-control" id="nombre_selectionne" size="5" style="width:100px; text-align:center;" type="number" value="0" disabled="disabled" />
+
                 </td>
                 <td>
+                    <strong>Nombre total d'articles</strong>
                 </td>
                 <td>
-                    <strong>Code Article</strong>
+                    <input class="form-control" id="nbTotalArticles" size="5" style="width: 100px; text-align: center;" value="@Model.Depot.LignesDepot.Count()" disabled>
                 </td>
-                <td>
-                    <input class="form-control" type="text" id="codeart" name="codeart"
-                           size="10" onkeyup="filtrercodeart()">
-                </td>
-                <td>
-                </td>
-                <td>
-                    <strong>Désignation Article</strong>
-                </td>
-                <td>
-                    <input class="form-control" type="text" id="desart" name="desart"
-                           size="10" onkeyup="filtrerdesart()">
-                </td>
+
 
             </tr>
-
-
-
-
         </table>
-
-
-
-
-
-
-        <table id="ExpTable" class="table table-striped table-sm">
+        <br />
+        <hr />
+        <table id="ExpTable" class="table">
             <thead>
                 <tr>
 
                     <th>
-                        Nom de Famille
+                        Nom de famille
                     </th>
                     <th>
-                        Code Article
+                        Code article
                     </th>
                     <th>
-                        Designation
+                        Désignation article
                     </th>
-                    <th>
-                        Quantité en stock
-                    </th>
+                    @if ((string)Session["role"] == "Superviseur" || (string)Session["role"] == "admin")
+                    {
+                        <th>
+                            Quantité en stock
+                        </th>
+                    }
                     <th>
                         Libellé du fournisseur
                     </th>
@@ -240,40 +293,23 @@
                     string checkboxId = "Checkbox_" + i;
                     string selectedId = "selected_" + i;
                     <tr>
-
-
-
-
-
-
-
                         <td>
-
                             @Html.EditorFor(m => m.Depot.LignesDepot[i].famille, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-
-
                         </td>
-
-
                         <td>
                             @Html.EditorFor(m => m.Depot.LignesDepot[i].codeart, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-
-
                         </td>
-                        <td>
+                        <td style="width:300px;">
                             @Html.EditorFor(m => m.Depot.LignesDepot[i].desart, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-
-
                         </td>
-                        <td>
-                            @Html.EditorFor(m => m.Depot.LignesDepot[i].qteart, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-
-
-                        </td>
-                        <td>
+                        @if ((string)Session["role"] == "Superviseur" || (string)Session["role"] == "admin")
+                        {
+                            <td style="width:150px;">
+                                @Html.EditorFor(m => m.Depot.LignesDepot[i].qteart, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            </td>
+                        }
+                        <td style="width:250px;">
                             @Html.EditorFor(m => m.Depot.LignesDepot[i].article.libellefourn, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-
-
                         </td>
                         <td>
                             @if (Model.Depot.LignesDepot[i].isSelected == 1)
@@ -284,15 +320,8 @@
                             {
                                 <input type="checkbox" id=@checkboxId onclick="check()" name="attr_var">
                             }
-
                             @Html.EditorFor(m => m.Depot.LignesDepot[i].isSelected, new { HtmlAttributes = new { @class = "form-control", @id = selectedId, style = "display:none " } })
-                            @*<input asp-for=@Model.Depot.LignesDepot[i].isSelected type="number" id="@selectedId" />*@
-
-
                         </td>
-
-
-
                         @Html.HiddenFor(m => m.Depot.LignesDepot[i].codedep)
                         @Html.HiddenFor(m => m.Depot.LignesDepot[i].codeart)
                         @Html.HiddenFor(m => m.Depot.LignesDepot[i].libelle)
@@ -310,45 +339,24 @@
                         @Html.HiddenFor(m => m.Depot.LignesDepot[i].type)
                         @Html.HiddenFor(m => m.Depot.LignesDepot[i].artmouv)
                         @Html.HiddenFor(m => m.Depot.LignesDepot[i].lot)
-                        @*Html.HiddenFor(m => m.Depot.LignesDepot[i].Article.code)
-                            @Html.HiddenFor(m => m.Depot.LignesDepot[i].Article.fam)
-                            @Html.HiddenFor(m => m.Depot.LignesDepot[i].Article.libelle)
-                            @Html.HiddenFor(m => m.Depot.LignesDepot[i].Article.Famille)
-                            @Html.HiddenFor(m => m.Depot.LignesDepot[i].Article.Fournisseur)*@
                         @Html.HiddenFor(m => m.Depot.LignesDepot[i].libpv)
                         @Html.HiddenFor(m => m.Depot.LignesDepot[i].lieustock)
                         @Html.HiddenFor(m => m.Depot.LignesDepot[i].sousfamille)
                         @Html.HiddenFor(m => m.Depot.LignesDepot[i].qtereap)
-
-
-
-
-
-
                     </tr>
-
                 }
 
-
             </tbody>
-
-
-
-
         </table>
 
         <div class="col-6 form-group text-left p-2">
             <input type="submit" value="Ajouter les articles" class="btn btn-default" />
+
         </div>
 
+
     }
-
-
-
     @section Scripts {
-        <script src="~/Content/vendor/jquery/jquery.min.js"></script>
-        <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
@@ -362,10 +370,18 @@
 
                 });
             });
+            $(function () {
+                $('#scrollToBottomButton').click(function () {
+                    $('html, body').animate({ scrollTop: $(document).height() }, 'slow');
+                    return false;
+                });
+            });
+            function scrollToTop() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         </script>
-        // -----------------------------Nombre articles selectionnés à l ouverture ---------------------------- 
         <script type="text/javascript">
-
+            // -----------------------------Nombre articles selectionnés à l ouverture ----------------------------
             window.onload = function () {
                 var nbtotal = document.getElementById("nbTotalArticles").value;
                 var nbre_check = 0;
@@ -377,8 +393,7 @@
                 }
                 document.getElementById("nombre_selectionne").value = nbre_check;
             }
-
-            // -----------------------------Nombre articles selectionnés ---------------------------- //
+            // -----------------------------Nombre articles selectionnés ----------------------------
             function check() {
                 var nbtotal = document.getElementById("nbTotalArticles").value;
 
@@ -433,13 +448,6 @@
                     }
                 }
             }
-
-
-            ////////// Check All checkboxes ////////////////////////////////////////
-
-
-
-
             /////////////////////// Radio buttons /////////////////////////////////
 
             function Disable() {
@@ -450,13 +458,13 @@
             }
             function EnableByFamille() {
                 document.getElementById("des").disabled = false;
-                document.getElementById("TriDes").value = "Famille";
+                document.getElementById("TriDes").value = "Recherche par famille:";
 
 
             }
             function EnableByFournisseur() {
                 document.getElementById("des").disabled = false;
-                document.getElementById("TriDes").value = "Fournisseur";
+                document.getElementById("TriDes").value = "Recherche par fournisseur:";
 
             }
             /////////////////////// Radio buttons /////////////////////////////////
@@ -476,7 +484,7 @@
                     }
                     cellule = ligne[i].getElementsByTagName("td")[j];
                     if (cellule) {
-                        texte = cellule.innerHTML;
+                        texte = cellule.innerHTML.toUpperCase();
                         if (texte.indexOf(filtre) > -1) {
                             ligne[i].style.display = "";
                         }
@@ -497,7 +505,7 @@
 
                     cellule = ligne[i].getElementsByTagName("td")[1];
                     if (cellule) {
-                        texte = cellule.innerHTML;
+                        texte = cellule.innerHTML.toUpperCase();
                         if (texte.indexOf(filtre) > -1) {
                             ligne[i].style.display = "";
                         }
@@ -517,7 +525,7 @@
 
                     cellule = ligne[i].getElementsByTagName("td")[2];
                     if (cellule) {
-                        texte = cellule.innerHTML;
+                        texte = cellule.innerHTML.toUpperCase();
                         if (texte.indexOf(filtre) > -1) {
                             ligne[i].style.display = "";
                         }
@@ -527,12 +535,7 @@
                     }
                 }
             }
-
-
-
-
         </script>
     }
-
 </body>
 </html>

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Logicom_Inventaire_FrontEnd.Startup))]
+[assembly: OwinStartup(typeof(Logicom_Inventaire_FrontEnd.Startup))]
 namespace Logicom_Inventaire_FrontEnd
 {
     public partial class Startup

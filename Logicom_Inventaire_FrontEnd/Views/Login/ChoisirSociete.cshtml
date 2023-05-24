@@ -1,29 +1,334 @@
-﻿
-@{
-    ViewBag.Title = "Choisir société";
-    Layout = null;
-}
-
-<h2>@ViewBag.Title</h2>
-<html>
-
+﻿@{ Layout = null; }
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choisir société</title>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Google Fonts - Poppins */
+        @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
-</head>
-<body>
-    <form>
-        <div class="society-list">
-            @foreach (var society in ViewBag.lstSoc)
-            {
-                <div class="d-grid gap-2">
-                    <button class="btn btn-primary" value="@society.societe" type="submit" name="soc">@society.societe</button>
-                </div>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(to right top, #ab4fd4, #8b54ce, #6b56c4, #4c55b7, #2d53a8);
+        }
+
+        .slide-container {
+            max-width: 1120px;
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        .slide-content {
+            margin: 0 40px;
+            overflow: hidden;
+            border-radius: 25px;
+        }
+
+        .card {
+            border-radius: 25px;
+            background-color: #FFF;
+            width: 300px; /* ajustez la valeur en fonction de votre mise en page */
+            height: 400px;
+        }
+
+        .image-content,
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 14px;
+        }
+
+        .image-content {
+            position: relative;
+            row-gap: 5px;
+            padding: 25px 0;
+        }
+
+        .overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #5CA4B3;
+            border-radius: 25px 25px 0 25px;
+        }
+
+            .overlay::before,
+            .overlay::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                bottom: -40px;
+                height: 40px;
+                width: 40px;
+                background-color: #5CA4B3;
             }
+
+            .overlay::after {
+                border-radius: 0 25px 0 0;
+                background-color: #FFF;
+            }
+
+        .card-image {
+            position: relative;
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            background: #FFF;
+            padding: 3px;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .card-image .card-img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 4px solid #4070F4;
+            }
+
+        .name {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #707070;
+            text-align: center;
+        }
+
+        .button {
+            border: none;
+            font-size: 16px;
+            color: #FFF;
+            padding: 8px 16px;
+            background-color: #5CA4B3;
+            border-radius: 6px;
+            margin: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .button:hover {
+                background: #265DF2;
+            }
+
+        .swiper-navBtn {
+            color: #6E93f7;
+            transition: color 0.3s ease;
+        }
+
+            .swiper-navBtn:hover {
+                color: #5CA4B3;
+            }
+
+            .swiper-navBtn::before,
+            .swiper-navBtn::after {
+                font-size: 35px;
+            }
+
+        .swiper-button-next {
+            right: 0;
+        }
+
+        .swiper-button-prev {
+            left: 0;
+        }
+
+        .swiper-pagination-bullet {
+            background-color: #6E93f7;
+            opacity: 1;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #5CA4B3;
+        }
+
+        @@media screen and (max-width: 768px) {
+            .slide-content {
+                margin: 0 10px;
+            }
+
+            .swiper-navBtn {
+                display: none;
+            }
+        }
+
+        .card-image img {
+            max-width: 90%;
+            max-height: 100px;
+        }
+
+        .form-group input {
+            padding: 5px 12px;
+            font-size: 14px;
+            line-height: 20px;
+            color: #24292e;
+            vertical-align: middle;
+            background-color: #ffffff;
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            outline: none;
+        }
+
+            .form-group input:focus {
+                border-color: #0366d6;
+                outline: none;
+            }
+
+
+        .form-group {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #searchInput {
+            margin-bottom: 20px;
+            margin-top: 40px;
+            width: 300px;
+            height: 40px
+        }
+
+        .hide {
+            display: none;
+        }
+
+
+        :focus {
+            border-color: #0366d6;
+            outline: none;
+            box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-group">
+        <input type="text" class="form-control" id="searchInput" placeholder="Chercher...">
+    </div>
+    <form>
+        <div class="slide-container swiper">
+            <div class="slide-content">
+                <div class="card-wrapper swiper-wrapper">
+                    @foreach (var society in ViewBag.lstSoc)
+                    {
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <span class="overlay"></span>
+                                <div class="card-image">
+                                    <img src="~/Content/entreprise (3).png" />
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h2 class="name">@society.societe</h2>
+                                <button class="button" value="@society.societe" name="soc" type="submit">Entrer</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="swiper-button-next swiper-navBtn"></div>
+            <div class="swiper-button-prev swiper-navBtn"></div>
+            <div class="swiper-pagination"></div>
         </div>
+
+        <script>
+
+            var swiper = new Swiper(".slide-content", {
+                slidesPerView: 3,
+                spaceBetween: 25,
+                loop: true,
+                centerSlide: 'true',
+                fade: 'true',
+                grabCursor: 'true',
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+
+                breakpoints: {
+                    0: {
+                        slidesPerView: 1,
+                    },
+                    520: {
+                        slidesPerView: 2,
+                    },
+                    950: {
+                        slidesPerView: 3,
+                    },
+                },
+            });
+
+        </script>
+        <script>
+            let input = document.getElementById("searchInput");
+            input.addEventListener("input", filterCards);
+
+            function filterCards() {
+                let value = input.value.toLowerCase();
+                let cards = document.getElementsByClassName("card");
+                for (let i = 0; i < cards.length; i++) {
+                    let card = cards[i];
+                    let name = card.querySelector(".name").textContent.toLowerCase();
+                    if (name.includes(value)) {
+                        card.classList.remove("hide");
+                    } else {
+                        card.classList.add("hide");
+                    }
+                }
+                swiper.update(); // Mise à jour de Swiper
+            }
+
+
+
+            // Masquer toutes les cartes au début
+            filterCards();
+        </script>
+
+
     </form>
-
 </body>
-</html>
 
+
+
+
+
+
+
+
+
+
+</html>

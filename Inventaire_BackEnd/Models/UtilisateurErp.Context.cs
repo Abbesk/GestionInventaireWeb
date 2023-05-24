@@ -25,8 +25,8 @@ namespace Inventaire_BackEnd.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<societe> societe { get; set; }
         public virtual DbSet<usersoc> usersoc { get; set; }
         public virtual DbSet<utilisateur> utilisateur { get; set; }
+        public virtual DbSet<societe> societe { get; set; }
     }
 }

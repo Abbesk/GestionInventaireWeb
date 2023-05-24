@@ -14,22 +14,63 @@
     <meta name="viewport" content="width=device-width" />
     <title>Détails inventaire</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.css" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <style>
 
-    <script>
-        function generatePdf() {
-            var pdf = new jsPDF();
-            var options = {
-                pagesplit: true
-            };
-            pdf.addHTML(document.body, options, function () {
-                pdf.save('inventaire.pdf');
-            });
+        #scrollToTopButton {
+            position: fixed;
+            right: 0;
+            top: 45%;
+            transform: translate(0, -50%);
+            z-index: 9999;
         }
-    </script>
+
+        #scrollToBottomButton {
+            position: fixed;
+            right: 0;
+            top: 55%;
+            transform: translate(0, -50%);
+            z-index: 9999;
+        }
+        .input-bordered {
+            border-top-width: 1px;
+            border-right-width: 1px;
+            border-bottom-width: 1px;
+            border-left-width: 1px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            border-top-color: rgb(4, 0, 253);
+            border-right-color: rgb(4, 0, 253);
+            border-bottom-color: rgb(4, 0, 253);
+            border-left-color: rgb(4, 0, 253);
+            border-image-source: initial;
+            border-image-slice: initial;
+            border-image-width: initial;
+            border-image-outset: initial;
+            border-image-repeat: initial;
+        }
+        
+        hr {
+            border: 1px solid #000;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin-top: 10px;
+            background-image: linear-gradient( #d4dcdc, #dfe4e6, #eaedef, #f5f6f7, #ffffff);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+    
 </head>
 <body>
 
@@ -49,157 +90,112 @@
         }
     </div>
 
-
+    <button id="scrollToBottomButton"> <i class="fa fa-chevron-down"></i> </button>
+    <button id="scrollToTopButton" onclick="scrollToTop()"> <i class="fa fa-chevron-up"></i> </button>
 
 
     <table class="table">
         <tr>
             <th>
-                Numéroo de l'inventaire
+                N° Inventaire
             </th>
             <th>
                 Date de l'inventaire
             </th>
             <th>
-                Code depot
+                Date de clôture
             </th>
             <th>
-                Nom depot
+                Code point de vente
             </th>
             <th>
-                Code point vente
+                Libellé point de vente
             </th>
             <th>
-                Nom point vente
+                Code dépôt
             </th>
-
-
+            <th>
+                Libellé dépôt
+            </th>
         </tr>
-
         <tr>
-
             <td>
-                @Html.EditorFor(model => model.numinv, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.numinv, new { htmlAttributes = new { @class = "form-control input-bordered", @readonly = "readonly" } })
             </td>
             <td>
-                @Html.EditorFor(model => model.dateinv, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.dateinv, new { htmlAttributes = new { @class = "form-control input-bordered ", @readonly = "readonly" } })
             </td>
             <td>
-                @Html.EditorFor(model => model.Depot.Code, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.datecloture, new { htmlAttributes = new { @class = "form-control input-bordered", @readonly = "readonly" } })
             </td>
             <td>
-                @Html.EditorFor(model => model.Depot.Libelle, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.codedep, new { htmlAttributes = new { @class = "form-control input-bordered", @readonly = "readonly" } })
             </td>
             <td>
-                @Html.EditorFor(model => model.PointVente.Code, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.libdep, new { htmlAttributes = new { @class = "form-control input-bordered", @readonly = "readonly" } })
             </td>
             <td>
-                @Html.EditorFor(model => model.PointVente.Libelle, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.codepv, new { htmlAttributes = new { @class = "form-control input-bordered", @readonly = "readonly" } })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.libpv, new { htmlAttributes = new { @class = "form-control input-bordered", @readonly = "readonly" } })
             </td>
         </tr>
     </table><hr />
-
-    <table>
-        <tr>
-
-            <td>
-                <strong>Code Article</strong>
-            </td>
-            <td>
-                <input class="form-control" type="text" id="codeart" name="codeart"
-                       size="10" onkeyup="filtrercodeart()">
-            </td>
-
-
-        </tr>
-    </table>
+    <br /><br />
+        
 
 
 
-   
 
 
-    <table id="ExpTable" class="table table-striped table-sm">
+
+    <table id="ExpTable" class="table">
         <thead class="sortable">
             <tr>
-                <th data-sort="famille">Nom de Famille</th>
-                <th data-sort="codeart">Code Article</th>
-                <th data-sort="desart">Designation</th>
-                <th data-sort="qtes">Quantité en Stock</th>
-                <th data-sort="ecartinv">Ecart Inventaire</th>
+                <th data-sort="famille">Famille</th>
+                <th data-sort="codeart">Code article</th>
+                <th data-sort="desart">Désignation</th>
+                <th data-sort="qtes">Quantité en stock</th>
+                <th data-sort="qtes">Quantité</th>
+                <th data-sort="ecartinv">Ecart inventaire</th>
             </tr>
         </thead>
         <tbody class="sortable">
             @for (int i = 0; i < Model.LignesInventaire.Count; i++)
             {
-                <tr>
-                    <td data-order="@Model.LignesInventaire[i].famille">
-                        @Html.EditorFor(m => m.LignesInventaire[i].famille, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    </td>
-                    <td data-order="@Model.LignesInventaire[i].codeart">
-                        @Html.EditorFor(m => m.LignesInventaire[i].codeart, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    </td>
-                    <td data-order="@Model.LignesInventaire[i].desart">
-                        @Html.EditorFor(m => m.LignesInventaire[i].desart, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    </td>
-                    <td data-order="@Model.LignesInventaire[i].qtes">
-                        @Html.EditorFor(m => m.LignesInventaire[i].qtes, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    </td>
-                    <td data-order="@Model.LignesInventaire[i].ecartinv">
-                        @Html.EditorFor(m => m.LignesInventaire[i].ecartinv, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    </td>
-                </tr>
+            <tr>
+                <td data-order="@Model.LignesInventaire[i].famille">
+                    @Html.EditorFor(m => m.LignesInventaire[i].famille, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </td>
+                <td data-order="@Model.LignesInventaire[i].codeart">
+                    @Html.EditorFor(m => m.LignesInventaire[i].codeart, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </td>
+                <td data-order="@Model.LignesInventaire[i].desart" style="width:250px;">
+                    @Html.EditorFor(m => m.LignesInventaire[i].desart, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </td>
+                <td data-order="@Model.LignesInventaire[i].qtes">
+                    @Html.EditorFor(m => m.LignesInventaire[i].qtes, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </td>
+                
+                <td>
+                    <input type="text" class="form-control" readonly="readonly" value="@(Model.LignesInventaire[i].qtes - Model.LignesInventaire[i].ecartinv)" />
+                </td>
+
+                <td data-order="@Model.LignesInventaire[i].ecartinv">
+                    @Html.EditorFor(m => m.LignesInventaire[i].ecartinv, new { HtmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </td>
+            </tr>
             }
         </tbody>
     </table>
 
 
     @section Scripts {
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/jsqrcode/1.0.0/qrscanner.js"></script>
+        
 
-        <script>
-            function generatePdf() {
-                // Create a new PDF document
-                var pdf = new jsPDF();
-
-                // Define the options for the addHTML method
-                var options = {
-                    pagesplit: true
-                };
-
-                // Add the HTML content to the PDF document
-                pdf.addHTML(document.body, options, function () {
-                    // Get the data from the HTML form
-                    var numinv = $('#numinv').val();
-                    var dateinv = $('#dateinv').val();
-                    var depotCode = $('#Depot_Code').val();
-                    var depotLibelle = $('#Depot_Libelle').val();
-                    var pointVenteCode = $('#PointVente_Code').val();
-                    var pointVenteLibelle = $('#PointVente_Libelle').val();
-
-                    // Create the content for the QR code
-                    var qrContent = "Numéro de l'inventaire: " + numinv + "\n" +
-                        "Date de l'inventaire: " + dateinv + "\n" +
-                        "Code dépôt: " + depotCode + "\n" +
-                        "Nom dépôt: " + depotLibelle + "\n" +
-                        "Code point de vente: " + pointVenteCode + "\n" +
-                        "Nom point de vente: " + pointVenteLibelle;
-
-                    // Create a new QR code image
-                    var qrImage = new Image();
-                    qrImage.onload = function () {
-                        // Add the QR code image to the PDF document
-                        pdf.addImage(this, 'PNG', 10, 10, 50, 50);
-
-                        // Save the PDF document
-                        pdf.save('inventaire.pdf');
-                        pdf.output('dataurlnewwindow');
-                    };
-                    qrImage.src = QRCode.generatePNG(qrContent, { ecclevel: 'Q' });
-                });
-            }
-        </script>
+        
+            
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.css" />
         <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.js"></script>
@@ -239,8 +235,8 @@
                     "paging": true,
                     "searching": true,
                     "ordering": true,
-                    
-                    
+
+
                 });
             });
         </script>
@@ -248,47 +244,7 @@
 
 
 
-        <script>
 
-            function filtrercodeart() {
-                var filtre, tableau, ligne, cellule, i, texte
-                filtre = document.getElementById("codeart").value.toUpperCase();
-                tableau = document.getElementById("ExpTable");
-                ligne = tableau.getElementsByTagName("tr");
-                for (i = 0; i < ligne.length; i++) {
-
-                    cellule = ligne[i].getElementsByTagName("td")[1];
-                    if (cellule) {
-                        texte = cellule.innerHTML;
-                        if (texte.indexOf(filtre) > -1) {
-                            ligne[i].style.display = "";
-                        }
-                        else {
-                            ligne[i].style.display = "none";
-                        }
-                    }
-                }
-            }
-            function filtrerdesart() {
-                var filtre, tableau, ligne, cellule, i, texte
-                filtre = document.getElementById("desart").value.toUpperCase();
-                tableau = document.getElementById("ExpTable");
-                ligne = tableau.getElementsByTagName("tr");
-                for (i = 0; i < ligne.length; i++) {
-
-                    cellule = ligne[i].getElementsByTagName("td")[2];
-                    if (cellule) {
-                        texte = cellule.innerHTML;
-                        if (texte.indexOf(filtre) > -1) {
-                            ligne[i].style.display = "";
-                        }
-                        else {
-                            ligne[i].style.display = "none";
-                        }
-                    }
-                }
-            }
-        </script>
     }
 </body>
 </html>

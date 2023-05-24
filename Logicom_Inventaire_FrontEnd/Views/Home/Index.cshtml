@@ -2,30 +2,263 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        .diagramme {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        body {
+            margin-top: 1px;
+        }
+
+        canvas {
+            width: 900px !important;
+            height: 400px !important;
+            z-index: 9999 !important;
+            margin-top: auto;
+        }
+
+        .main-container {
+            grid-area: main;
+            overflow-y: auto;
+            padding: 20px 20px;
+            margin-top: 0 !important;
+        }
+
+        .main-title {
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .main-title > p {
+                font-size: 20px;
+            }
+
+        .main-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 25px;
+            background-color: #ffffff;
+            box-sizing: border-box;
+            border: 1px solid #d2d2d3;
+            border-radius: 5px;
+            box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+        }
+
+            .card:first-child {
+                border-left: 7px solid #246dec;
+            }
+
+            .card:nth-child(2) {
+                border-left: 7px solid #f5b74f;
+            }
+
+            .card:nth-child(3) {
+                border-left: 7px solid #367952;
+            }
+
+            .card:nth-child(4) {
+                border-left: 7px solid #cc3c43;
+            }
+
+            .card > span {
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+        .card-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+            .card-inner > p {
+                font-size: 18px;
+            }
+
+            .card-inner > span {
+                font-size: 35px;
+            }
+
+        .charts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .charts-card {
+            background-color: #ffffff;
+            margin-bottom: 20px;
+            padding: 25px;
+            box-sizing: border-box;
+            -webkit-column-break-inside: avoid;
+            border: 1px solid #d2d2d3;
+            border-radius: 5px;
+            box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+        }
+
+        .chart-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 600;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+
+
+    <main class="main-container">
+        <div class="main-title">
+            <p class="font-weight-bold">DASHBOARD</p>
+        </div>
+
+        <div class="main-cards">
+
+            <div class="card">
+                <div class="card-inner">
+                    <p class="text-primary">Nombre d'inventaires pour cette année</p>
+                    <span class="material-icons-outlined text-blue">inventory_2</span>
+                </div>
+                <span class="text-primary font-weight-bold">@ViewBag.NbInvsAnneeCourant</span>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <p class="text-primary">Moyenne d'inventaires chaque 6 mois  </p>
+                    <span class="material-icons-outlined text-orange">add_shopping_cart</span>
+                </div>
+                <span class="text-primary font-weight-bold">@ViewBag.Moyenne6Mois</span>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <p class="text-primary">Inventaires clôturés en @DateTime.Now.Year</p>
+                    <span class="material-icons-outlined text-green">shopping_cart</span>
+                </div>
+                <span class="text-primary font-weight-bold">@ViewBag.NbInvsClotures</span>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <p class="text-primary">Inventaires ouverts pour cette année</p>
+                    <span class="material-icons-outlined text-red">notification_important</span>
+                </div>
+                <span class="text-primary font-weight-bold">@ViewBag.NbInvsOuverts</span>
+            </div>
+
+        </div>
+
+        <div class="charts">
+
+            <div class="charts-card">
+                <p class="chart-title">Nombre de points de vente : 2</p>
+                <div id="area-chart"></div>
+            </div>
+
+            <div class="charts-card">
+                <p class="chart-title">Nombre de dépôts : 2</p>
+                <div id="area-chart"></div>
+            </div>
+
+        </div>
+
+    </main>
+    <div class="charts-card diagramme">
+        <!-- Afficher le nombre d'inventaires créés pour l'année dernière -->
+        <h2>Nombre d'inventaires créés l'année dernière : <span id="last-year-inventories"></span></h2>
+        <!-- Créer un canvas pour le graphique -->
+        <br />
+        <canvas id="bar-chart"></canvas>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+    <!-- Script pour récupérer les données et initialiser le graphique -->
+    <script>
+    // Récupérer les données d'inventaire pour les trois dernières années
+    var lastYear = new Date().getFullYear() - 1;
+    var inventoriesData = [];
+    for (var i = lastYear - 2; i <= lastYear; i++) {
+        // Faire une requête AJAX pour récupérer les données d'inventaire pour l'année en cours de la boucle
+        $.ajax({
+           url: "http://localhost:44328/api/Inventaire/?date="+i,
+           headers: { "Authorization": "Bearer " + "@Session["token"]" },
+            type: 'GET',
+            async: false,
+            success: function (data) {
+                // Filtrer les données d'inventaire pour n'inclure que celles de l'année en cours de la boucle
+                var inventoriesOfYear = data.filter(function (inventory) {
+                    return new Date(inventory.dateinv).getFullYear() === i;
+                });
+
+                // Ajouter le nombre d'inventaires créés pour l'année en cours de la boucle à notre tableau de données
+                inventoriesData.push(inventoriesOfYear.length);
+            }
+        });
+    }
+
+    // Afficher le nombre d'inventaires créés pour l'année dernière
+    $('#last-year-inventories').text(inventoriesData[2]);
+
+    // Initialiser le graphique en barres
+        var canvas = document.getElementById('bar-chart');
+
+        // Get the canvas context
+        var ctx = canvas.getContext('2d');
+
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [lastYear - 2, lastYear - 1, lastYear],
+            datasets: [{
+                label: 'Nombre d\'inventaires créés',
+                data: inventoriesData,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        precision: 0,
+                        callback: function (value, index, values) {
+                            return Math.floor(value);
+                        }
+                    }
+                }
+            }
+        }
+    });
+    </script>
+</body>

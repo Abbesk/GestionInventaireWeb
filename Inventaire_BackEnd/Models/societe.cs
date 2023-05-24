@@ -18,7 +18,7 @@ namespace Inventaire_BackEnd.Models
         public string synchronisation { get; set; }
         public string sel { get; set; }
         public string rsoc { get; set; }
-        public string dat { get; set; }
+
         public string e1 { get; set; }
         public string e2 { get; set; }
         public string e3 { get; set; }

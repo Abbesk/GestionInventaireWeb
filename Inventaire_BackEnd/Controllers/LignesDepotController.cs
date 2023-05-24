@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Inventaire_BackEnd.Models;
@@ -14,9 +16,19 @@ namespace Inventaire_BackEnd.Controllers
 {
     public class LignesDepotController : ApiController
     {
-        private somabeEntities db = new somabeEntities();
+        private  string societyName = (string)HttpContext.Current.Cache["SelectedSoc"];
+        private string connectionString;
+        private SocieteEntities db;
+
+        public LignesDepotController()
+        {
+            connectionString = string.Format(ConfigurationManager.ConnectionStrings["SocieteEntities"].ConnectionString, societyName);
+            db = new SocieteEntities(connectionString);
+        }
+
 
         // GET: api/LignesDepot
+        [System.Web.Http.Authorize]
         public IQueryable<lignedepot> Getlignedepot()
         {
             return db.lignedepot;
@@ -24,9 +36,10 @@ namespace Inventaire_BackEnd.Controllers
 
         // GET: api/LignesDepot/5
         [ResponseType(typeof(lignedepot))]
+        [System.Web.Http.Authorize]
         public IHttpActionResult Getlignedepot(string codedep, string codeart,string famille)
         {
-            lignedepot lignedepot = db.lignedepot.Include(f => f.Depot)
+            lignedepot lignedepot = db.lignedepot
 
                 .Where(f => f.famille == famille)
                 .Where(f => f.codeart == codeart)
@@ -42,6 +55,7 @@ namespace Inventaire_BackEnd.Controllers
 
         // PUT: api/LignesDepot/5
         [ResponseType(typeof(void))]
+        [System.Web.Http.Authorize]
         public IHttpActionResult Putlignedepot(string id, lignedepot lignedepot)
         {
             if (!ModelState.IsValid)
@@ -77,6 +91,7 @@ namespace Inventaire_BackEnd.Controllers
 
         // POST: api/LignesDepot
         [ResponseType(typeof(lignedepot))]
+        [System.Web.Http.Authorize]
         public IHttpActionResult Postlignedepot(lignedepot lignedepot)
         {
             if (!ModelState.IsValid)
@@ -107,6 +122,7 @@ namespace Inventaire_BackEnd.Controllers
 
         // DELETE: api/LignesDepot/5
         [ResponseType(typeof(lignedepot))]
+        [System.Web.Http.Authorize]
         public IHttpActionResult Deletelignedepot(string id)
         {
             lignedepot lignedepot = db.lignedepot.Find(id);
@@ -120,7 +136,7 @@ namespace Inventaire_BackEnd.Controllers
 
             return Ok(lignedepot);
         }
-
+        [System.Web.Http.Authorize]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -129,7 +145,7 @@ namespace Inventaire_BackEnd.Controllers
             }
             base.Dispose(disposing);
         }
-
+        [System.Web.Http.Authorize]
         private bool lignedepotExists(string id)
         {
             return db.lignedepot.Count(e => e.codedep == id) > 0;

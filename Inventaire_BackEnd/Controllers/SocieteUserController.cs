@@ -15,15 +15,16 @@ namespace Inventaire_BackEnd.Controllers
     public class SocieteUserController : ApiController
     {
         private usererpEntities db = new usererpEntities();
-
+        [System.Web.Http.Authorize]
         public IQueryable<usersoc> Getusersoc()
         {
 
             return db.usersoc;
         }
-        [Authorize]
-        [Route("api/SocieteUser/GetusersocParUser")]
+        
+        [Route("Api/SocieteUser/GetusersocParUser")]
         [HttpGet]
+        [Authorize]
         public List<usersoc> GetusersocParUser(string codeuser)
         {
             List<usersoc> ListesUserSoc = db.usersoc.ToList();
@@ -39,6 +40,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // GET: api/SocieteUser/5
+        [System.Web.Http.Authorize]
         [ResponseType(typeof(usersoc))]
         public IHttpActionResult Getusersoc(string id)
         {
@@ -52,6 +54,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // PUT: api/SocieteUser/5
+        [System.Web.Http.Authorize]
         [ResponseType(typeof(void))]
         public IHttpActionResult Putusersoc(string id, usersoc usersoc)
         {
@@ -87,6 +90,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // POST: api/SocieteUser
+        [System.Web.Http.Authorize]
         [ResponseType(typeof(usersoc))]
         public IHttpActionResult Postusersoc(usersoc usersoc)
         {
@@ -117,6 +121,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // DELETE: api/SocieteUser/5
+        [System.Web.Http.Authorize]
         [ResponseType(typeof(usersoc))]
         public IHttpActionResult Deleteusersoc(string id)
         {
@@ -131,7 +136,7 @@ namespace Inventaire_BackEnd.Controllers
 
             return Ok(usersoc);
         }
-
+        [System.Web.Http.Authorize]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -140,7 +145,7 @@ namespace Inventaire_BackEnd.Controllers
             }
             base.Dispose(disposing);
         }
-
+        [System.Web.Http.Authorize]
         private bool usersocExists(string id)
         {
             return db.usersoc.Count(e => e.CODEUSER == id) > 0;

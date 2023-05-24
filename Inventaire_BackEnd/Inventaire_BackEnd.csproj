@@ -97,6 +97,9 @@
     <Reference Include="Microsoft.OData.Edm, Version=7.13.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.OData.Edm.7.13.0\lib\net45\Microsoft.OData.Edm.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Owin.Security.Jwt, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Jwt.4.0.1\lib\net45\Microsoft.Owin.Security.Jwt.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Spatial, Version=7.13.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Spatial.7.13.0\lib\net45\Microsoft.Spatial.dll</HintPath>
     </Reference>
@@ -308,16 +311,18 @@
     <Compile Include="Controllers\DepotController.cs" />
     <Compile Include="Controllers\FamilleController.cs" />
     <Compile Include="Controllers\FournisseurController.cs" />
+    <Compile Include="Controllers\HistoriqueController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventaireController.cs" />
+    <Compile Include="Controllers\LigneHistoriqueController.cs" />
     <Compile Include="Controllers\LignesDepotController.cs" />
     <Compile Include="Controllers\LignesInventaireController.cs" />
     <Compile Include="Controllers\PointVenteController.cs" />
-    <Compile Include="Controllers\SocieteController.cs" />
+    <Compile Include="Controllers\SocieteERPController.cs" />
     <Compile Include="Controllers\SocieteUserController.cs" />
     <Compile Include="Controllers\tmpLignesDepotController.cs" />
+    <Compile Include="Controllers\UserPVController.cs" />
     <Compile Include="Controllers\UtilisateurController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -327,6 +332,9 @@
       <DependentUpon>Inventaire_Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\depot.cs">
+      <DependentUpon>Inventaire_Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ehist_erp.cs">
       <DependentUpon>Inventaire_Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\famille.cs">
@@ -352,6 +360,9 @@
       <DependentUpon>Inventaire_Models.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\invphysique.cs">
+      <DependentUpon>Inventaire_Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\lhist_erp.cs">
       <DependentUpon>Inventaire_Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\lignedepot.cs">
@@ -651,6 +662,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -703,8 +715,6 @@
           <DevelopmentServerPort>61673</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:44328/</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:44328/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://192.168.1.182:44328/</CustomServerUrl>

@@ -11,8 +11,7 @@ namespace Inventaire_BackEnd.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class invphysique
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +21,6 @@ namespace Inventaire_BackEnd.Models
         }
     
         public string numinv { get; set; }
-        
         public Nullable<System.DateTime> dateinv { get; set; }
         public Nullable<int> nbrcomptage { get; set; }
         public string commentaire { get; set; }

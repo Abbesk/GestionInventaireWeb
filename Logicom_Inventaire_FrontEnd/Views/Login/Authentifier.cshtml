@@ -1,0 +1,127 @@
+@model Logicom_Inventaire_FrontEnd.Models.Utilisateur
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Se connecter</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="~/Content/images/icons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animate/animate.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/css-hamburgers/hamburgers.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/select2/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/util.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/main.css" />
+
+    <style>
+        .limiter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f2f2f2;
+        }
+
+        .container-login100 {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .wrap-login100 {
+            width: 390px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 77px 55px 33px 55px;
+            box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+        .login100-form-title {
+            font-family: Poppins-Bold;
+            font-size: 30px;
+            color: #333333;
+            line-height: 1;
+            text-align: center;
+            margin-top: 20px; /* Ajout de marge supérieure */
+            
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: flex;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="~/Content/img-01.png" alt="IMG" />
+                </div>
+
+                <form class="login100-form validate-form">
+                    <span class="login100-form-title">
+                        Member Login
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Username is required">
+                        <input class="input100" type="text" name="codeuser" placeholder="Username">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="input100" type="password" name="motpasse" placeholder="Password">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
+                            Login
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="~/Content/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/vendor/select2/select2.min.js"></script>
+    <script src="~/Content/vendor/tilt/tilt.jquery.min.js"></script>
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+    <script src="~/Content/js/main.js"></script>
+
+
+</body>
+</html>

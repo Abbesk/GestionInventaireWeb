@@ -174,6 +174,49 @@
           <Property Name="sel" Type="int" />
           <Property Name="SAISIQTENEG" Type="varchar" MaxLength="1" />
         </EntityType>
+        <EntityType Name="ehist_erp">
+          <Key>
+            <PropertyRef Name="NumMAJ" />
+          </Key>
+          <Property Name="NumMAJ" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="datemaj" Type="date" />
+          <Property Name="heuremaj" Type="varchar" MaxLength="20" />
+          <Property Name="codeapp" Type="varchar" MaxLength="2" />
+          <Property Name="libmaj" Type="varchar" MaxLength="15" />
+          <Property Name="codeutil" Type="varchar" MaxLength="2" />
+          <Property Name="nomutil" Type="varchar" MaxLength="20" />
+          <Property Name="codepv" Type="varchar" MaxLength="3" />
+          <Property Name="codemvt" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="datemvt" Type="date" />
+          <Property Name="typemvt" Type="varchar" MaxLength="30" />
+          <Property Name="MHT" Type="double" />
+          <Property Name="MTTC" Type="double" />
+          <Property Name="MTVA" Type="double" />
+          <Property Name="MREMISE" Type="double" />
+          <Property Name="MFODEC" Type="double" />
+          <Property Name="MRETENUE" Type="double" />
+          <Property Name="numpiece" Type="varchar" MaxLength="9" />
+          <Property Name="TYPEREGL" Type="varchar" MaxLength="15" />
+          <Property Name="CODETRS" Type="varchar" MaxLength="8" />
+          <Property Name="LIBTRS" Type="varchar" MaxLength="50" />
+          <Property Name="TYPETRS" Type="varchar" MaxLength="15" />
+          <Property Name="etat" Type="varchar" MaxLength="10" />
+          <Property Name="numdoss" Type="varchar" MaxLength="11" />
+          <Property Name="typefac" Type="varchar" MaxLength="1" />
+          <Property Name="cours" Type="double" />
+          <Property Name="codesel" Type="varchar" MaxLength="1" />
+          <Property Name="typemvtimp" Type="varchar" MaxLength="5" />
+          <Property Name="datepiece" Type="date" />
+          <Property Name="mtdev" Type="double" />
+          <Property Name="declaration" Type="varchar" MaxLength="10" />
+          <Property Name="typdec" Type="varchar" MaxLength="2" />
+          <Property Name="dateentree" Type="date" />
+          <Property Name="dae" Type="varchar" MaxLength="70" />
+          <Property Name="pieceliee2" Type="varchar" MaxLength="9" />
+          <Property Name="devise" Type="varchar" MaxLength="10" />
+          <Property Name="dureeajout" Type="varchar" MaxLength="20" />
+          <Property Name="dureemodif" Type="varchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="famille">
           <Key>
             <PropertyRef Name="code" />
@@ -291,6 +334,52 @@
           <Property Name="typeapp" Type="varchar" MaxLength="2" />
           <Property Name="zone" Type="varchar" MaxLength="25" />
         </EntityType>
+        <EntityType Name="lhist_erp">
+          <Key>
+            <PropertyRef Name="nummaj" />
+            <PropertyRef Name="CODEART" />
+            <PropertyRef Name="FAMILLE" />
+          </Key>
+          <Property Name="nummaj" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CODEMVT" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="typmvt" Type="varchar" MaxLength="30" />
+          <Property Name="CODEDEP" Type="varchar" MaxLength="3" />
+          <Property Name="LIBDEP" Type="varchar" MaxLength="30" />
+          <Property Name="CODEART" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DESART" Type="varchar" MaxLength="250" />
+          <Property Name="QTEART" Type="float" />
+          <Property Name="PRIX" Type="double" />
+          <Property Name="REMISEART" Type="double" />
+          <Property Name="TAUXMAJO" Type="double" />
+          <Property Name="TAUXTVA" Type="float" />
+          <Property Name="UNITE" Type="varchar" MaxLength="5" />
+          <Property Name="NBUNITE" Type="double" />
+          <Property Name="TYPEART" Type="varchar" MaxLength="30" />
+          <Property Name="TTFODEC" Type="double" />
+          <Property Name="FAMILLE" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="codepv" Type="varchar" MaxLength="3" />
+          <Property Name="libpv" Type="varchar" MaxLength="30" />
+          <Property Name="prixvente" Type="double" />
+          <Property Name="marge" Type="double" />
+          <Property Name="pieceliee" Type="varchar" MaxLength="9" />
+          <Property Name="numseq" Type="varchar" MaxLength="9" />
+          <Property Name="touchestock" Type="varchar" MaxLength="1" />
+          <Property Name="conf" Type="text" />
+          <Property Name="qteliv" Type="double" />
+          <Property Name="Numdoss" Type="varchar" MaxLength="11" />
+          <Property Name="datef" Type="date" />
+          <Property Name="ngp" Type="varchar" MaxLength="13" />
+          <Property Name="puartdev" Type="double" />
+          <Property Name="mtdt" Type="double" />
+          <Property Name="coef" Type="double" />
+          <Property Name="mttaxe" Type="double" />
+          <Property Name="coderep" Type="varchar" MaxLength="50" />
+          <Property Name="artfrs" Type="varchar" MaxLength="20" />
+          <Property Name="pvest" Type="double" />
+          <Property Name="datderninv" Type="date" />
+          <Property Name="PXREV" Type="double" />
+          <Property Name="codeuser" Type="varchar" MaxLength="2" />
+        </EntityType>
         <EntityType Name="lignedepot">
           <Key>
             <PropertyRef Name="codedep" />
@@ -308,9 +397,9 @@
           <Property Name="stockmax" Type="double" />
           <Property Name="typearticle" Type="varchar" MaxLength="2" />
           <Property Name="qteres" Type="double" />
-          <Property Name="numfourn" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="libfourn" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="datderninv" Type="date" />
+          <Property Name="numfourn" Type="varchar" MaxLength="50" />
+          <Property Name="libfourn" Type="varchar" MaxLength="50" />
+          <Property Name="datderninv" Type="datetime" Precision="0" />
           <Property Name="type" Type="varchar" MaxLength="12" />
           <Property Name="artmouv" Type="varchar" MaxLength="1" />
           <Property Name="lot" Type="varchar" MaxLength="1" />
@@ -428,22 +517,6 @@
           <Property Name="Port_conn" Type="varchar" MaxLength="20" />
           <Property Name="User" Type="varchar" MaxLength="20" />
         </EntityType>
-        <EntityType Name="societe">
-          <Key>
-            <PropertyRef Name="code" />
-          </Key>
-          <Property Name="code" Type="varchar" MaxLength="8" Nullable="false" />
-          <Property Name="rsoc" Type="varchar" MaxLength="50" />
-          <Property Name="dat" Type="datetime" Precision="0" />
-          <Property Name="e1" Type="varchar" MaxLength="50" />
-          <Property Name="e2" Type="varchar" MaxLength="50" />
-          <Property Name="e3" Type="varchar" MaxLength="50" />
-          <Property Name="e4" Type="varchar" MaxLength="50" />
-          <Property Name="e5" Type="varchar" MaxLength="50" />
-          <Property Name="e6" Type="varchar" MaxLength="50" />
-          <Property Name="e7" Type="varchar" MaxLength="50" />
-          <Property Name="e8" Type="varchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="tmplignedepot">
           <Key>
             <PropertyRef Name="famille" />
@@ -493,13 +566,14 @@
         <EntityContainer Name="somabeModelStoreContainer">
           <EntitySet Name="article" EntityType="Self.article" Schema="somabe" store:Type="Tables" />
           <EntitySet Name="depot" EntityType="Self.depot" Schema="somabe" store:Type="Tables" />
+          <EntitySet Name="ehist_erp" EntityType="Self.ehist_erp" Schema="somabe" store:Type="Tables" />
           <EntitySet Name="famille" EntityType="Self.famille" Schema="somabe" store:Type="Tables" />
           <EntitySet Name="fournisseur" EntityType="Self.fournisseur" Schema="somabe" store:Type="Tables" />
           <EntitySet Name="invphysique" EntityType="Self.invphysique" Schema="somabe" store:Type="Tables" />
+          <EntitySet Name="lhist_erp" EntityType="Self.lhist_erp" Schema="somabe" store:Type="Tables" />
           <EntitySet Name="lignedepot" EntityType="Self.lignedepot" Schema="somabe" store:Type="Tables" />
           <EntitySet Name="linv" EntityType="Self.linv" Schema="somabe" store:Type="Tables" />
           <EntitySet Name="pointvente" EntityType="Self.pointvente" Schema="somabe" store:Type="Tables" />
-          <EntitySet Name="societe" EntityType="Self.societe" Schema="somabe" store:Type="Tables" />
           <EntitySet Name="tmplignedepot" EntityType="Self.tmplignedepot" Schema="somabe" store:Type="Tables" />
           <EntitySet Name="utilisateurpv" EntityType="Self.utilisateurpv" Schema="somabe" store:Type="Tables" />
         </EntityContainer>
@@ -677,10 +751,8 @@
           <Property Name="inactif" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="sel" Type="Int32" />
           <Property Name="SAISIQTENEG" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="PointVente" Relationship="somabeModel.depotpointvente" FromRole="depot" ToRole="pointvente" />
           <NavigationProperty Name="TMPLignesDepot" Relationship="somabeModel.tmplignedepotdepot" FromRole="depot" ToRole="tmplignedepot" />
           <NavigationProperty Name="LignesDepot" Relationship="somabeModel.depotlignedepot" FromRole="depot" ToRole="lignedepot" />
-          <NavigationProperty Name="InventaireCourant" Relationship="somabeModel.invphysiquedepot" FromRole="depot" ToRole="invphysique" />
         </EntityType>
         <EntityType Name="famille">
           <Key>
@@ -697,7 +769,6 @@
           <Property Name="codepv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="libpv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="favoris" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Articles" Relationship="somabeModel.articlefamille" FromRole="famille" ToRole="article" />
         </EntityType>
         <EntityType Name="fournisseur">
           <Key>
@@ -833,7 +904,6 @@
           <Property Name="qtereap" Type="Double" />
           <Property Name="isSelected" Type="Byte" />
           <Property Name="numInventaireCourant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Depot" Relationship="somabeModel.depotlignedepot" FromRole="lignedepot" ToRole="depot" />
           <NavigationProperty Name="Article" Relationship="somabeModel.articlelignedepot" FromRole="lignedepot" ToRole="article" />
         </EntityType>
         <EntityType Name="linv">
@@ -869,8 +939,6 @@
           <Property Name="dateexp" Type="DateTime" />
           <Property Name="stockinvlot" Type="Double" />
           <Property Name="nligne" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Inventaire" Relationship="somabeModel.invphysiquelinv" FromRole="linv" ToRole="invphysique" />
-          <NavigationProperty Name="Article" Relationship="somabeModel.linvarticle" FromRole="linv" ToRole="article" />
         </EntityType>
         <EntityType Name="pointvente">
           <Key>
@@ -943,26 +1011,6 @@
           <Property Name="Pwd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Port_conn" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="User" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Depots" Relationship="somabeModel.depotpointvente" FromRole="pointvente" ToRole="depot" />
-          <NavigationProperty Name="InventairesPhysiques" Relationship="somabeModel.invphysiquepointvente" FromRole="pointvente" ToRole="invphysique" />
-          <NavigationProperty Name="utilisateur" Relationship="somabeModel.utilisateurpvpointvente" FromRole="pointvente" ToRole="utilisateurpv" />
-        </EntityType>
-        <EntityType Name="societe">
-          <Key>
-            <PropertyRef Name="code" />
-          </Key>
-          <Property Name="code" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="rsoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="dat" Type="DateTime" />
-          <Property Name="e1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="e2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="e3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="e4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="e5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="e6" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="e7" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="e8" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="utilisateurs" Relationship="somabeModel.societeutilisateurpv" FromRole="societe" ToRole="utilisateurpv" />
         </EntityType>
         <EntityType Name="tmplignedepot">
           <Key>
@@ -990,7 +1038,6 @@
           <Property Name="numinv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="puht" Type="Double" />
           <Property Name="isSelected" Type="SByte" Nullable="false" />
-          <NavigationProperty Name="Depot" Relationship="somabeModel.tmplignedepotdepot" FromRole="tmplignedepot" ToRole="depot" />
           <Property Name="codepv" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Article" Relationship="somabeModel.articletmplignedepot" FromRole="tmplignedepot" ToRole="article" />
           <Property Name="qteInventaire" Type="Double" Nullable="true" />
@@ -1011,8 +1058,6 @@
           <Property Name="codedep" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="societe_code" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="libdep" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="pointVente" Relationship="somabeModel.utilisateurpvpointvente" FromRole="utilisateurpv" ToRole="pointvente" />
-          <NavigationProperty Name="societe" Relationship="somabeModel.societeutilisateurpv" FromRole="utilisateurpv" ToRole="societe" />
         </EntityType>
         <EntityContainer Name="somabeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="article" EntityType="Self.article" />
@@ -1023,7 +1068,6 @@
           <EntitySet Name="lignedepot" EntityType="Self.lignedepot" />
           <EntitySet Name="linv" EntityType="Self.linv" />
           <EntitySet Name="pointvente" EntityType="Self.pointvente" />
-          <EntitySet Name="societe" EntityType="Self.societe" />
           <EntitySet Name="tmplignedepot" EntityType="Self.tmplignedepot" />
           <EntitySet Name="utilisateurpv" EntityType="Self.utilisateurpv" />
           <AssociationSet Name="articlefournisseur" Association="somabeModel.articlefournisseur">
@@ -1070,13 +1114,11 @@
             <End Role="invphysique" EntitySet="invphysique" />
             <End Role="depot" EntitySet="depot" />
           </AssociationSet>
-          <AssociationSet Name="utilisateurpvpointvente" Association="somabeModel.utilisateurpvpointvente">
-            <End Role="utilisateurpv" EntitySet="utilisateurpv" />
-            <End Role="pointvente" EntitySet="pointvente" />
-          </AssociationSet>
-          <AssociationSet Name="societeutilisateurpv" Association="somabeModel.societeutilisateurpv">
-            <End Role="societe" EntitySet="societe" />
-            <End Role="utilisateurpv" EntitySet="utilisateurpv" />
+          <EntitySet Name="ehist_erp" EntityType="somabeModel.ehist_erp" />
+          <EntitySet Name="lhist_erp" EntityType="somabeModel.lhist_erp" />
+          <AssociationSet Name="ehist_erplhist_erp" Association="somabeModel.ehist_erplhist_erp">
+            <End Role="ehist_erp" EntitySet="ehist_erp" />
+            <End Role="lhist_erp" EntitySet="lhist_erp" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="articlefournisseur">
@@ -1223,27 +1265,105 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="utilisateurpvpointvente">
-          <End Type="somabeModel.utilisateurpv" Role="utilisateurpv" Multiplicity="*" />
-          <End Type="somabeModel.pointvente" Role="pointvente" Multiplicity="1" />
+        <EntityType Name="ehist_erp">
+          <Key>
+            <PropertyRef Name="NumMAJ" />
+          </Key>
+          <Property Name="NumMAJ" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="datemaj" Type="DateTime" />
+          <Property Name="heuremaj" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="codeapp" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="libmaj" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="codeutil" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="nomutil" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="codepv" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="codemvt" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="datemvt" Type="DateTime" />
+          <Property Name="typemvt" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MHT" Type="Double" />
+          <Property Name="MTTC" Type="Double" />
+          <Property Name="MTVA" Type="Double" />
+          <Property Name="MREMISE" Type="Double" />
+          <Property Name="MFODEC" Type="Double" />
+          <Property Name="MRETENUE" Type="Double" />
+          <Property Name="numpiece" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="TYPEREGL" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CODETRS" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="LIBTRS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TYPETRS" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="etat" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="numdoss" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="typefac" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="cours" Type="Double" />
+          <Property Name="codesel" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="typemvtimp" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="datepiece" Type="DateTime" />
+          <Property Name="mtdev" Type="Double" />
+          <Property Name="declaration" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="typdec" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="dateentree" Type="DateTime" />
+          <Property Name="dae" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="pieceliee2" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="devise" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dureeajout" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="dureemodif" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Lignes" Relationship="somabeModel.ehist_erplhist_erp" FromRole="ehist_erp" ToRole="lhist_erp" />
+        </EntityType>
+        <EntityType Name="lhist_erp">
+          <Key>
+            <PropertyRef Name="nummaj" />
+            <PropertyRef Name="CODEART" />
+            <PropertyRef Name="FAMILLE" />
+          </Key>
+          <Property Name="nummaj" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CODEMVT" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="typmvt" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CODEDEP" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="LIBDEP" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CODEART" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DESART" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="QTEART" Type="Single" />
+          <Property Name="PRIX" Type="Double" />
+          <Property Name="REMISEART" Type="Double" />
+          <Property Name="TAUXMAJO" Type="Double" />
+          <Property Name="TAUXTVA" Type="Single" />
+          <Property Name="UNITE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="NBUNITE" Type="Double" />
+          <Property Name="TYPEART" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TTFODEC" Type="Double" />
+          <Property Name="FAMILLE" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="codepv" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="libpv" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="prixvente" Type="Double" />
+          <Property Name="marge" Type="Double" />
+          <Property Name="pieceliee" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="numseq" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="touchestock" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="conf" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="qteliv" Type="Double" />
+          <Property Name="Numdoss" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="datef" Type="DateTime" />
+          <Property Name="ngp" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="puartdev" Type="Double" />
+          <Property Name="mtdt" Type="Double" />
+          <Property Name="coef" Type="Double" />
+          <Property Name="mttaxe" Type="Double" />
+          <Property Name="coderep" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="artfrs" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="pvest" Type="Double" />
+          <Property Name="datderninv" Type="DateTime" />
+          <Property Name="PXREV" Type="Double" />
+          <Property Name="codeuser" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="ehist_erplhist_erp">
+          <End Type="somabeModel.ehist_erp" Role="ehist_erp" Multiplicity="1" />
+          <End Type="somabeModel.lhist_erp" Role="lhist_erp" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="pointvente">
-              <PropertyRef Name="Code" />
+            <Principal Role="ehist_erp">
+              <PropertyRef Name="NumMAJ" />
             </Principal>
-            <Dependent Role="utilisateurpv">
-              <PropertyRef Name="codepv" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="societeutilisateurpv">
-          <End Type="somabeModel.societe" Role="societe" Multiplicity="1" />
-          <End Type="somabeModel.utilisateurpv" Role="utilisateurpv" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="societe">
-              <PropertyRef Name="code" />
-            </Principal>
-            <Dependent Role="utilisateurpv">
-              <PropertyRef Name="codeuser" />
+            <Dependent Role="lhist_erp">
+              <PropertyRef Name="nummaj" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1677,23 +1797,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="societe">
-            <EntityTypeMapping TypeName="somabeModel.societe">
-              <MappingFragment StoreEntitySet="societe">
-                <ScalarProperty Name="code" ColumnName="code" />
-                <ScalarProperty Name="rsoc" ColumnName="rsoc" />
-                <ScalarProperty Name="dat" ColumnName="dat" />
-                <ScalarProperty Name="e1" ColumnName="e1" />
-                <ScalarProperty Name="e2" ColumnName="e2" />
-                <ScalarProperty Name="e3" ColumnName="e3" />
-                <ScalarProperty Name="e4" ColumnName="e4" />
-                <ScalarProperty Name="e5" ColumnName="e5" />
-                <ScalarProperty Name="e6" ColumnName="e6" />
-                <ScalarProperty Name="e7" ColumnName="e7" />
-                <ScalarProperty Name="e8" ColumnName="e8" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tmplignedepot">
             <EntityTypeMapping TypeName="somabeModel.tmplignedepot">
               <MappingFragment StoreEntitySet="tmplignedepot">
@@ -1734,6 +1837,95 @@
                 <ScalarProperty Name="codedep" ColumnName="codedep" />
                 <ScalarProperty Name="societe_code" ColumnName="societe_code" />
                 <ScalarProperty Name="libdep" ColumnName="libdep" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ehist_erp">
+            <EntityTypeMapping TypeName="somabeModel.ehist_erp">
+              <MappingFragment StoreEntitySet="ehist_erp">
+                <ScalarProperty Name="dureemodif" ColumnName="dureemodif" />
+                <ScalarProperty Name="dureeajout" ColumnName="dureeajout" />
+                <ScalarProperty Name="devise" ColumnName="devise" />
+                <ScalarProperty Name="pieceliee2" ColumnName="pieceliee2" />
+                <ScalarProperty Name="dae" ColumnName="dae" />
+                <ScalarProperty Name="dateentree" ColumnName="dateentree" />
+                <ScalarProperty Name="typdec" ColumnName="typdec" />
+                <ScalarProperty Name="declaration" ColumnName="declaration" />
+                <ScalarProperty Name="mtdev" ColumnName="mtdev" />
+                <ScalarProperty Name="datepiece" ColumnName="datepiece" />
+                <ScalarProperty Name="typemvtimp" ColumnName="typemvtimp" />
+                <ScalarProperty Name="codesel" ColumnName="codesel" />
+                <ScalarProperty Name="cours" ColumnName="cours" />
+                <ScalarProperty Name="typefac" ColumnName="typefac" />
+                <ScalarProperty Name="numdoss" ColumnName="numdoss" />
+                <ScalarProperty Name="etat" ColumnName="etat" />
+                <ScalarProperty Name="TYPETRS" ColumnName="TYPETRS" />
+                <ScalarProperty Name="LIBTRS" ColumnName="LIBTRS" />
+                <ScalarProperty Name="CODETRS" ColumnName="CODETRS" />
+                <ScalarProperty Name="TYPEREGL" ColumnName="TYPEREGL" />
+                <ScalarProperty Name="numpiece" ColumnName="numpiece" />
+                <ScalarProperty Name="MRETENUE" ColumnName="MRETENUE" />
+                <ScalarProperty Name="MFODEC" ColumnName="MFODEC" />
+                <ScalarProperty Name="MREMISE" ColumnName="MREMISE" />
+                <ScalarProperty Name="MTVA" ColumnName="MTVA" />
+                <ScalarProperty Name="MTTC" ColumnName="MTTC" />
+                <ScalarProperty Name="MHT" ColumnName="MHT" />
+                <ScalarProperty Name="typemvt" ColumnName="typemvt" />
+                <ScalarProperty Name="datemvt" ColumnName="datemvt" />
+                <ScalarProperty Name="codemvt" ColumnName="codemvt" />
+                <ScalarProperty Name="codepv" ColumnName="codepv" />
+                <ScalarProperty Name="nomutil" ColumnName="nomutil" />
+                <ScalarProperty Name="codeutil" ColumnName="codeutil" />
+                <ScalarProperty Name="libmaj" ColumnName="libmaj" />
+                <ScalarProperty Name="codeapp" ColumnName="codeapp" />
+                <ScalarProperty Name="heuremaj" ColumnName="heuremaj" />
+                <ScalarProperty Name="datemaj" ColumnName="datemaj" />
+                <ScalarProperty Name="NumMAJ" ColumnName="NumMAJ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lhist_erp">
+            <EntityTypeMapping TypeName="somabeModel.lhist_erp">
+              <MappingFragment StoreEntitySet="lhist_erp">
+                <ScalarProperty Name="codeuser" ColumnName="codeuser" />
+                <ScalarProperty Name="PXREV" ColumnName="PXREV" />
+                <ScalarProperty Name="datderninv" ColumnName="datderninv" />
+                <ScalarProperty Name="pvest" ColumnName="pvest" />
+                <ScalarProperty Name="artfrs" ColumnName="artfrs" />
+                <ScalarProperty Name="coderep" ColumnName="coderep" />
+                <ScalarProperty Name="mttaxe" ColumnName="mttaxe" />
+                <ScalarProperty Name="coef" ColumnName="coef" />
+                <ScalarProperty Name="mtdt" ColumnName="mtdt" />
+                <ScalarProperty Name="puartdev" ColumnName="puartdev" />
+                <ScalarProperty Name="ngp" ColumnName="ngp" />
+                <ScalarProperty Name="datef" ColumnName="datef" />
+                <ScalarProperty Name="Numdoss" ColumnName="Numdoss" />
+                <ScalarProperty Name="qteliv" ColumnName="qteliv" />
+                <ScalarProperty Name="conf" ColumnName="conf" />
+                <ScalarProperty Name="touchestock" ColumnName="touchestock" />
+                <ScalarProperty Name="numseq" ColumnName="numseq" />
+                <ScalarProperty Name="pieceliee" ColumnName="pieceliee" />
+                <ScalarProperty Name="marge" ColumnName="marge" />
+                <ScalarProperty Name="prixvente" ColumnName="prixvente" />
+                <ScalarProperty Name="libpv" ColumnName="libpv" />
+                <ScalarProperty Name="codepv" ColumnName="codepv" />
+                <ScalarProperty Name="FAMILLE" ColumnName="FAMILLE" />
+                <ScalarProperty Name="TTFODEC" ColumnName="TTFODEC" />
+                <ScalarProperty Name="TYPEART" ColumnName="TYPEART" />
+                <ScalarProperty Name="NBUNITE" ColumnName="NBUNITE" />
+                <ScalarProperty Name="UNITE" ColumnName="UNITE" />
+                <ScalarProperty Name="TAUXTVA" ColumnName="TAUXTVA" />
+                <ScalarProperty Name="TAUXMAJO" ColumnName="TAUXMAJO" />
+                <ScalarProperty Name="REMISEART" ColumnName="REMISEART" />
+                <ScalarProperty Name="PRIX" ColumnName="PRIX" />
+                <ScalarProperty Name="QTEART" ColumnName="QTEART" />
+                <ScalarProperty Name="DESART" ColumnName="DESART" />
+                <ScalarProperty Name="CODEART" ColumnName="CODEART" />
+                <ScalarProperty Name="LIBDEP" ColumnName="LIBDEP" />
+                <ScalarProperty Name="CODEDEP" ColumnName="CODEDEP" />
+                <ScalarProperty Name="typmvt" ColumnName="typmvt" />
+                <ScalarProperty Name="CODEMVT" ColumnName="CODEMVT" />
+                <ScalarProperty Name="nummaj" ColumnName="nummaj" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

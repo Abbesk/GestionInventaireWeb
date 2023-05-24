@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Inventaire_BackEnd.Models;
@@ -14,15 +16,29 @@ namespace Inventaire_BackEnd.Controllers
 {
     public class LignesInventaireController : ApiController
     {
-        private somabeEntities db = new somabeEntities();
+        private  string societyName = (string)HttpContext.Current.Cache["SelectedSoc"];
+        private string connectionString;
+        private SocieteEntities db;
+        private string RoleUser; 
+
+
+        public LignesInventaireController()
+        {
+            connectionString = string.Format(ConfigurationManager.ConnectionStrings["SocieteEntities"].ConnectionString, societyName);
+            db = new SocieteEntities(connectionString);
+            RoleUser = (string)HttpContext.Current.Cache["SelectedSoc"];
+        }
+
 
         // GET: api/LignesInventaire
+        [System.Web.Http.Authorize]
         public IQueryable<linv> Getlinv()
         {
-            return db.linv.Include(f => f.Inventaire).Include(f => f.Inventaire.Depot);
+            return db.linv;
         }
 
         // GET: api/LignesInventaire/5
+        [System.Web.Http.Authorize]
         [ResponseType(typeof(linv))]
         public IHttpActionResult Getlinv(string id)
         {
@@ -36,6 +52,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // PUT: api/LignesInventaire/5
+        [System.Web.Http.Authorize]
         [ResponseType(typeof(void))]
         public IHttpActionResult Putlinv(string id, linv linv)
         {
@@ -71,6 +88,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // POST: api/LignesInventaire
+        [System.Web.Http.Authorize]
         [ResponseType(typeof(linv))]
         public IHttpActionResult Postlinv(linv linv)
         {
@@ -101,6 +119,7 @@ namespace Inventaire_BackEnd.Controllers
         }
 
         // DELETE: api/LignesInventaire/5
+        [System.Web.Http.Authorize]
         [ResponseType(typeof(linv))]
         public IHttpActionResult Deletelinv(string id)
         {
@@ -115,7 +134,7 @@ namespace Inventaire_BackEnd.Controllers
 
             return Ok(linv);
         }
-
+        [System.Web.Http.Authorize]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -124,7 +143,7 @@ namespace Inventaire_BackEnd.Controllers
             }
             base.Dispose(disposing);
         }
-
+        [System.Web.Http.Authorize]
         private bool linvExists(string id)
         {
             return db.linv.Count(e => e.NumInv == id) > 0;

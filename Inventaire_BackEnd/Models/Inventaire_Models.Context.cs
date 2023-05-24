@@ -12,14 +12,15 @@ namespace Inventaire_BackEnd.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
-    public partial class somabeEntities : DbContext
+
+    public partial class SocieteEntities : DbContext
     {
-        public somabeEntities()
-            : base("name=somabeEntities")
+        public SocieteEntities(string connectionString)
+    : base(connectionString)
         {
         }
-    
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -33,8 +34,9 @@ namespace Inventaire_BackEnd.Models
         public virtual DbSet<lignedepot> lignedepot { get; set; }
         public virtual DbSet<linv> linv { get; set; }
         public virtual DbSet<pointvente> pointvente { get; set; }
-        public virtual DbSet<societe> societe { get; set; }
         public virtual DbSet<tmplignedepot> tmplignedepot { get; set; }
         public virtual DbSet<utilisateurpv> utilisateurpv { get; set; }
+        public virtual DbSet<ehist_erp> ehist_erp { get; set; }
+        public virtual DbSet<lhist_erp> lhist_erp { get; set; }
     }
 }

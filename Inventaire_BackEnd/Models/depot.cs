@@ -19,7 +19,6 @@ namespace Inventaire_BackEnd.Models
         {
             this.TMPLignesDepot = new HashSet<tmplignedepot>();
             this.LignesDepot = new HashSet<lignedepot>();
-            this.InventaireCourant = new HashSet<invphysique>();
         }
     
         public string Code { get; set; }
@@ -37,12 +36,9 @@ namespace Inventaire_BackEnd.Models
         public Nullable<int> sel { get; set; }
         public string SAISIQTENEG { get; set; }
     
-        public virtual pointvente PointVente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tmplignedepot> TMPLignesDepot { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<lignedepot> LignesDepot { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<invphysique> InventaireCourant { get; set; }
     }
 }

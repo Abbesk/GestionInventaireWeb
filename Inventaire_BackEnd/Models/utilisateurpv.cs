@@ -23,8 +23,5 @@ namespace Inventaire_BackEnd.Models
         public string codedep { get; set; }
         public string societe_code { get; set; }
         public string libdep { get; set; }
-    
-        public virtual pointvente pointVente { get; set; }
-        public virtual societe societe { get; set; }
     }
 }

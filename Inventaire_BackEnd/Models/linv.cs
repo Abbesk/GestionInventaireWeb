@@ -40,8 +40,5 @@ namespace Inventaire_BackEnd.Models
         public Nullable<System.DateTime> dateexp { get; set; }
         public Nullable<double> stockinvlot { get; set; }
         public double nligne { get; set; }
-    
-        public virtual invphysique Inventaire { get; set; }
-        public virtual article Article { get; set; }
     }
 }

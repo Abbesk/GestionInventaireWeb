@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Logicom_Inventaire_FrontEnd.Models
 {
@@ -30,7 +27,7 @@ namespace Logicom_Inventaire_FrontEnd.Models
         public string commentaire { get; set; }
         public double? qteInventaire { get; set; }
         public Article Article { get; set; }
-        public Depot Depot { get; set; }
+        
 
     }
 }
